@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard & CRUD Studio — India Accident Hotspot System</title>
+  <meta name="description" content="Admin Dashboard & CRUD Studio for India Accident Hotspot System." />
+  <meta property="og:title" content="Admin Dashboard & CRUD Studio — India Accident Hotspot System" />
+  <meta property="og:description" content="Admin Dashboard & CRUD Studio for India Accident Hotspot System." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+  <!-- Admin Top Header -->
+  <header class="app-header">
+    <div class="brand-wrapper">
+      <div class="brand-icon" style="background:linear-gradient(135deg, #10b981, #059669);">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+      </div>
+      <div class="brand-info">
+        <h1>
+          Admin Management Studio
+          <span class="sub-badge" style="background:#064e3b; color:#6ee7b7; border-color:#059669;">PostgreSQL RLS Protected</span>
+        </h1>
+        <p>Direct Database Mutation & Ingestion Pipeline</p>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <div style="display:flex; align-items:center; gap:8px; font-size:0.82rem; color:var(--text-secondary);">
+        <span class="badge badge-verified">Administrator</span>
+        <span id="adminUserEmail" style="font-weight:600; color:var(--text-primary); font-family:var(--font-mono);">admin</span>
+      </div>
+
+      <button class="btn btn-secondary btn-sm" id="btnHeaderSupabaseSync" style="display:flex; align-items:center; gap:6px;">
+        <span id="headerSyncDot" style="width:8px; height:8px; border-radius:50%; background:#10b981;"></span>
+        <span id="headerSyncText">Supabase Sync</span>
+      </button>
+
+      <a href="index.html" class="btn btn-secondary btn-sm" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+        Public Map
+      </a>
+
+      <button class="btn btn-danger btn-sm" id="btnAdminLogout">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        Sign Out
+      </button>
+    </div>
+  </header>
+
+  <!-- Admin Main Workspace -->
+  <div class="admin-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar">
+      <ul class="admin-nav-list">
+        <li class="admin-nav-item active">
+          <button data-tab="tabDashboard">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            Dashboard
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button data-tab="tabAccidents">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+            Accident Records (CRUD)
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button data-tab="tabForm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            Add New Incident
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button data-tab="tabImport">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            CSV Batch Import
+          </button>
+        </li>
+        <li class="admin-nav-item">
+          <button data-tab="tabSupabase">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+            Supabase Cloud & Sync
+          </button>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Dynamic Tab Content Panes -->
+    <main class="admin-main">
+      
+      <!-- TAB 1: DASHBOARD OVERVIEW -->
+      <section id="tabDashboard" class="tab-pane active">
+        <div class="pane-header">
+          <div>
+            <h2>PostgreSQL Telemetry Overview</h2>
+            <p>High-level aggregated key performance indicators derived from the database</p>
+          </div>
+        </div>
+
+        <div class="admin-stats-grid">
+          <div class="admin-stat-card">
+            <span class="title">Total Recorded Accidents</span>
+            <span class="val" id="adminTotalAccidents">-</span>
+          </div>
+          <div class="admin-stat-card fatal">
+            <span class="title">Total Fatalities</span>
+            <span class="val" id="adminTotalDeaths">-</span>
+          </div>
+          <div class="admin-stat-card injuries">
+            <span class="title">Total Casualties Injured</span>
+            <span class="val" id="adminTotalInjured">-</span>
+          </div>
+          <div class="admin-stat-card locations">
+            <span class="title">Physical Corridor Points</span>
+            <span class="val" id="adminTotalLocations">-</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: ACCIDENTS TABLE (CRUD) -->
+      <section id="tabAccidents" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2>Accident Fact Records</h2>
+            <p>Inspect, filter, update, and delete individual incident facts</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="window.adminCtrl.resetForm(); window.adminCtrl.switchTab('tabForm');">
+            + Add Accident
+          </button>
+        </div>
+
+        <div class="table-card">
+          <div class="table-toolbar">
+            <div style="flex:1; max-width:400px;">
+              <input type="text" id="adminSearchInput" class="input-control" placeholder="Search by road, city, state, or description...">
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="window.adminCtrl.loadAccidentsTable()">Refresh Table</button>
+          </div>
+
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Location / Road</th>
+                  <th>State</th>
+                  <th>District</th>
+                  <th>Severity</th>
+                  <th>Deaths</th>
+                  <th>Injured</th>
+                  <th>Cause</th>
+                  <th>Source</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminTableBody">
+                <tr><td colspan="10" style="text-align:center; padding:20px;">Loading accident table...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-pagination">
+            <span id="adminPaginationInfo">Page 1 of 1</span>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-secondary btn-sm" id="btnPrevPage">Previous</button>
+              <button class="btn btn-secondary btn-sm" id="btnNextPage">Next</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: ADD / EDIT ACCIDENT FORM WITH MAP LOCATION PICKER -->
+      <section id="tabForm" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2 id="formTitle">Record New Accident</h2>
+            <p>Enter relational facts, casualty figures, and pinpoint exact road coordinates</p>
+          </div>
+        </div>
+
+        <form id="accidentForm" class="form-card">
+          
+          <!-- MAP-BASED LOCATION ENTRY -->
+          <div class="location-picker-box">
+            <div class="picker-toolbar">
+              <span style="font-size:0.8rem; font-weight:700; text-transform:uppercase; color:var(--text-secondary);">
+                Interactive Map Location Picker (Click Map to Capture Coordinates)
+              </span>
+              <div style="margin-left:auto; display:flex; gap:8px; align-items:center;">
+                <input type="text" id="pickerSearchInput" class="input-control" style="width:240px; padding:4px 8px; font-size:0.75rem;" placeholder="Search town or highway...">
+                <button type="button" id="btnPickerSearch" class="btn btn-secondary btn-sm" style="padding:4px 8px;">Geocode</button>
+                <span class="picker-coords-badge" id="pickerCoordinatesBadge">Click map to select</span>
+              </div>
+            </div>
+            <div id="pickerMap"></div>
+          </div>
+
+          <!-- Spatial & Administrative Hierarchy -->
+          <h4 style="font-size:0.9rem; font-weight:700; margin-bottom:12px; color:#a5b4fc;">1. Geographic Location & Corridor</h4>
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label>State / Union Territory <span class="required">*</span></label>
+              <select id="fieldState" class="select-control" required></select>
+            </div>
+            <div class="form-group">
+              <label>District <span class="required">*</span></label>
+              <select id="fieldDistrict" class="select-control" required disabled>
+                <option value="">Select State First</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>City / Municipal Area</label>
+              <input type="text" id="fieldCity" class="input-control" placeholder="e.g. Lonavala">
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label>Locality / Landmark</label>
+              <input type="text" id="fieldLocality" class="input-control" placeholder="e.g. Khandala Ghat Section">
+            </div>
+            <div class="form-group">
+              <label>Road / Corridor Name <span class="required">*</span></label>
+              <input type="text" id="fieldRoadName" class="input-control" placeholder="e.g. Mumbai-Pune Expressway" required>
+            </div>
+            <div class="form-group">
+              <label>Highway / Road Number</label>
+              <input type="text" id="fieldRoadNumber" class="input-control" placeholder="e.g. NH-48 / EXP-MH">
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label>Road Classification <span class="required">*</span></label>
+              <select id="fieldRoadType" class="select-control" required></select>
+            </div>
+            <div class="form-group">
+              <label>Latitude <span class="required">*</span></label>
+              <input type="number" step="0.000001" id="fieldLatitude" class="input-control" placeholder="Click map or type" required>
+            </div>
+            <div class="form-group">
+              <label>Longitude <span class="required">*</span></label>
+              <input type="number" step="0.000001" id="fieldLongitude" class="input-control" placeholder="Click map or type" required>
+            </div>
+          </div>
+
+          <!-- Incident Fact Details -->
+          <h4 style="font-size:0.9rem; font-weight:700; margin:16px 0 12px 0; color:#a5b4fc;">2. Incident Details & Casualties</h4>
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label>Accident Date <span class="required">*</span></label>
+              <input type="date" id="fieldDate" class="input-control" required>
+            </div>
+            <div class="form-group">
+              <label>Accident Time</label>
+              <input type="time" id="fieldTime" class="input-control">
+            </div>
+            <div class="form-group">
+              <label>Collision Type <span class="required">*</span></label>
+              <select id="fieldAccidentType" class="select-control" required></select>
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label>Severity Tier <span class="required">*</span></label>
+              <select id="fieldSeverity" class="select-control" required>
+                <option value="Minor">Minor</option>
+                <option value="Moderate" selected>Moderate</option>
+                <option value="Severe">Severe</option>
+                <option value="Fatal">Fatal</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Total Deaths <span class="required">*</span></label>
+              <input type="number" min="0" id="fieldDeaths" class="input-control" value="0" required>
+            </div>
+            <div class="form-group">
+              <label>Total Injured <span class="required">*</span></label>
+              <input type="number" min="0" id="fieldInjured" class="input-control" value="0" required>
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label>Critical / ICU Injuries</label>
+              <input type="number" min="0" id="fieldCritical" class="input-control" value="0">
+            </div>
+            <div class="form-group">
+              <label>Vehicles Involved</label>
+              <input type="number" min="1" id="fieldVehicles" class="input-control" value="1">
+            </div>
+            <div class="form-group">
+              <label>Primary Cause Factor <span class="required">*</span></label>
+              <select id="fieldCause" class="select-control" required></select>
+            </div>
+          </div>
+
+          <div class="form-grid-3">
+            <div class="form-group">
+              <label>Weather Condition</label>
+              <select id="fieldWeather" class="select-control"></select>
+            </div>
+            <div class="form-group">
+              <label>Road Condition</label>
+              <input type="text" id="fieldRoadCondition" class="input-control" placeholder="e.g. Dry, Wet, Under Construction">
+            </div>
+            <div class="form-group">
+              <label>Verification Status</label>
+              <select id="fieldVerification" class="select-control">
+                <option value="Verified" selected>Verified</option>
+                <option value="Pending">Pending Audit</option>
+                <option value="Flagged">Flagged for Review</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label>Data Source Citation <span class="required">*</span></label>
+              <input type="text" id="fieldSourceName" class="input-control" list="sourceSuggestions" placeholder="Select or type official source (MoRTH / data.gov.in / NCRB)" required>
+              <datalist id="sourceSuggestions">
+                <option value="MoRTH - Road Accidents in India Report">
+                <option value="MoRTH - Black Spots on National Highways">
+                <option value="data.gov.in - Open Government Data (OGD)">
+                <option value="NCRB - Accidental Deaths & Suicides in India (ADSI)">
+                <option value="NHAI Highway Safety Engineering Audit">
+                <option value="State Traffic Police Official Log">
+              </datalist>
+            </div>
+            <div class="form-group">
+              <label>Source Reference URL</label>
+              <input type="url" id="fieldSourceUrl" class="input-control" placeholder="https://morth.nic.in/ or https://data.gov.in/">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom:24px;">
+            <label>Case Synopsis & Investigation Narrative</label>
+            <textarea id="fieldDescription" class="input-control" rows="3" placeholder="Document preliminary factual details of the accident incident..."></textarea>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; gap:12px;">
+            <button type="button" class="btn btn-secondary" id="btnCancelForm">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="btnSaveAccident">Save Accident Record</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- TAB 4: CSV BATCH IMPORT STUDIO -->
+      <section id="tabImport" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2>CSV Data Ingestion Pipeline</h2>
+            <p>Upload structured CSV datasets with automated schema, coordinate, and foreign key verification</p>
+          </div>
+          <a href="/data/sample_accidents_import.csv" download class="btn btn-secondary btn-sm">
+            Download CSV Template
+          </a>
+        </div>
+
+        <div class="form-card">
+          <input type="file" id="csvFileInput" accept=".csv" style="display:none;">
+          <div class="csv-dropzone" id="csvDropzone">
+            <div class="dropzone-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+            </div>
+            <h4 style="margin-bottom:6px; font-size:1.05rem;">Click or Drag & Drop CSV File to Ingest</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
+              Validates dates, latitude/longitude bounds, causality taxonomies, and casualty bounds before inserting.
+            </p>
+          </div>
+
+          <!-- Preview & Validation Results Table -->
+          <div id="csvPreviewCard" class="csv-preview-card">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+              <span id="csvPreviewSummary">0 Valid Rows</span>
+              <button class="btn btn-primary btn-sm" id="btnExecuteImport" disabled>Start Batch Import</button>
+            </div>
+
+            <div class="table-wrapper" style="max-height:350px;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Road</th>
+                    <th>State</th>
+                    <th>Severity</th>
+                    <th>Deaths</th>
+                    <th>Injuries</th>
+                    <th>Validation Remarks</th>
+                  </tr>
+                </thead>
+                <tbody id="csvPreviewBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: SUPABASE CLOUD DATABASE & PERSISTENT SYNC ENGINE -->
+      <section id="tabSupabase" class="tab-pane">
+        <div class="pane-header">
+          <div>
+            <h2>Supabase Cloud Database & Persistent Sync</h2>
+            <p>Monitor remote schema health, trigger bi-directional synchronization, and manage API credentials</p>
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-secondary btn-sm" id="btnRefreshSupabaseStatus">
+              Refresh Health Check
+            </button>
+            <button class="btn btn-primary btn-sm" id="btnSyncAllToSupabase">
+              Push All Records to Supabase
+            </button>
+          </div>
+        </div>
+
+        <!-- Connection Diagnostics & Telemetry Card -->
+        <div class="form-card" style="margin-bottom:20px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:12px;">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <span class="status-dot" id="cloudStatusDot" style="width:12px; height:12px; border-radius:50%; background:#10b981;"></span>
+              <div>
+                <h4 style="margin:0; font-size:1.05rem;" id="cloudStatusTitle">Supabase Engine Active</h4>
+                <p style="margin:0; font-size:0.8rem; color:var(--text-secondary);" id="cloudStatusSubtitle">Local PostgreSQL engine handling persistence</p>
+              </div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-secondary btn-sm" id="btnFetchInternetData">
+                Ingest More Internet Data (OSM & OGD)
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btnPullSupabaseFeed">
+                Pull Remote Feed
+              </button>
+            </div>
+          </div>
+
+          <!-- Diagnostic Grid -->
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-bottom:16px;">
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px;">
+              <div style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Project Host</div>
+              <div style="font-family:var(--font-mono); font-size:0.85rem; word-break:break-all; margin-top:4px;" id="cloudProjectHost">-</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px;">
+              <div style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Local Accidents vs Supabase</div>
+              <div style="font-size:1.15rem; font-weight:700; margin-top:4px;" id="cloudRecordsCount">160 local / 0 remote</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:12px;">
+              <div style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Last Verified</div>
+              <div style="font-size:0.85rem; font-family:var(--font-mono); margin-top:4px;" id="cloudLastChecked">-</div>
+            </div>
+          </div>
+
+          <!-- Table Schema Verification Checklist -->
+          <div style="margin-bottom:12px;">
+            <div style="font-size:0.8rem; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:8px;">
+              Remote PostgreSQL Table Verification
+            </div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;" id="cloudTablesChecklist">
+              <span class="badge" id="badgeTableLocations">locations: Pending</span>
+              <span class="badge" id="badgeTableAccidents">accidents: Pending</span>
+              <span class="badge" id="badgeTableStates">states: Pending</span>
+              <span class="badge" id="badgeTableDistricts">districts: Pending</span>
+              <span class="badge" id="badgeTableProfiles">profiles: Pending</span>
+              <span class="badge" id="badgeTableStats">hotspot_statistics: Pending</span>
+            </div>
+          </div>
+
+          <!-- Alert / Diagnostic Message Box -->
+          <div id="cloudDiagnosticBox" style="padding:10px 14px; border-radius:6px; font-size:0.82rem; background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.25); color:#93c5fd; margin-top:12px;">
+            Checking Supabase synchronization status...
+          </div>
+        </div>
+
+        <!-- Supabase Project Credentials Form -->
+        <div class="form-card" style="margin-bottom:20px;">
+          <h4 style="font-size:0.95rem; font-weight:700; margin-bottom:12px;">Supabase Project Configuration</h4>
+          <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:16px;">
+            Connect your own Supabase project by providing your Project URL and anon public key. Changes are verified and saved immediately.
+          </p>
+
+          <form id="formSupabaseConfig" style="display:grid; grid-template-columns: 1fr 1.5fr auto; gap:12px; align-items:flex-end;">
+            <div class="form-group" style="margin:0;">
+              <label style="font-size:0.8rem;">Supabase Project URL</label>
+              <input type="url" id="cfgSupabaseUrl" class="input-control" placeholder="https://xyz.supabase.co" required>
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label style="font-size:0.8rem;">Supabase Anon / Service Role Key</label>
+              <input type="text" id="cfgSupabaseKey" class="input-control" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="btnSaveSupabaseConfig" style="height:38px;">
+              Save & Connect
+            </button>
+          </form>
+        </div>
+
+        <!-- Master SQL Setup Script Exporter & Runner -->
+        <div class="form-card">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; flex-wrap:wrap; gap:8px;">
+            <div>
+              <h4 style="font-size:0.95rem; font-weight:700; margin:0;">Complete Supabase Setup SQL Script (987 lines)</h4>
+              <p style="font-size:0.8rem; color:var(--text-secondary); margin:0;">
+                Includes all 6 tables, foreign keys, 36 states, benchmark seed data, views, RLS policies, and spatial indexes
+              </p>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btnCopyAdminSql">
+              Copy Master SQL Script
+            </button>
+          </div>
+
+          <div style="background:#090d16; border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:12px; max-height:220px; overflow-y:auto; font-family:var(--font-mono); font-size:0.75rem; color:#94a3b8; line-height:1.5;" id="adminSqlPreviewBox">
+            -- Loading master SQL setup script...
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Leaflet & Supabase Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <script src="/js/config.js"></script>
+  <script src="/js/supabase.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/overlays_data.js"></script>
+  <script src="/js/accidents.js"></script>
+  <script src="/js/admin.js"></script>
+  <script src="/js/import.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      window.adminCtrl = new AdminController();
+      await window.adminCtrl.init();
+
+      window.csvImportMgr = new CsvImportManager();
+    });
+  </script>
+</body>
+</html>

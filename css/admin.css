@@ -1,0 +1,380 @@
+/* ==========================================================================
+   INDIA ACCIDENT HOTSPOT DATABASE & VISUALIZATION SYSTEM
+   Admin Stylesheet: Dashboard, CRUD Studio, Map Picker, CSV Importer
+   ========================================================================== */
+
+/* Admin Main Layout */
+.admin-layout {
+  display: flex;
+  min-height: calc(100vh - 64px);
+}
+
+/* Sidebar Navigation */
+.admin-sidebar {
+  width: 260px;
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.admin-nav-list {
+  list-style: none;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-nav-item button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+}
+
+.admin-nav-item button:hover {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.admin-nav-item.active button {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.35);
+}
+
+.admin-nav-item button svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Admin Content Area */
+.admin-main {
+  flex: 1;
+  background-color: var(--bg-main);
+  padding: 24px 32px;
+  overflow-y: auto;
+  max-width: 1440px;
+}
+
+.tab-pane {
+  display: none;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+.pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.pane-header h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.pane-header p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Admin KPI Overview Grid
+   ========================================================================== */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.admin-stat-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--border-accent);
+}
+
+.admin-stat-card.fatal::before { background: var(--tier-critical); }
+.admin-stat-card.injuries::before { background: var(--tier-high); }
+.admin-stat-card.locations::before { background: var(--success); }
+
+.admin-stat-card .title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.admin-stat-card .val {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Responsive Data Tables
+   ========================================================================== */
+.table-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.table-toolbar {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.data-table th {
+  background-color: var(--bg-card);
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.data-table tr:hover td {
+  background-color: rgba(31, 41, 55, 0.4);
+}
+
+.table-pagination {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ==========================================================================
+   Forms & Location Picker
+   ========================================================================== */
+.form-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 24px;
+}
+
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-group label .required {
+  color: var(--danger);
+}
+
+.form-help {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* Map Location Picker inside Form */
+.location-picker-box {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 20px;
+  background-color: var(--bg-card);
+}
+
+.picker-toolbar {
+  padding: 10px 14px;
+  background-color: var(--bg-card);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+#pickerMap {
+  width: 100%;
+  height: 280px;
+  background: #090d16;
+}
+
+.picker-coords-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background-color: var(--bg-surface);
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+  color: #a5b4fc;
+}
+
+/* Duplicate Check Warning Banner */
+.duplicate-warning-box {
+  background-color: rgba(245, 158, 11, 0.15);
+  border: 1px solid var(--warning);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  display: none;
+}
+
+.duplicate-warning-box.active {
+  display: block;
+}
+
+/* ==========================================================================
+   CSV Import Studio
+   ========================================================================== */
+.csv-dropzone {
+  border: 2px dashed var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 40px 24px;
+  text-align: center;
+  background-color: rgba(17, 24, 39, 0.4);
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 24px;
+}
+
+.csv-dropzone:hover, .csv-dropzone.dragover {
+  border-color: var(--primary);
+  background-color: rgba(79, 70, 229, 0.08);
+}
+
+.dropzone-icon {
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.csv-preview-card {
+  display: none;
+}
+
+.csv-preview-card.active {
+  display: block;
+}
+
+.row-valid {
+  background-color: rgba(16, 185, 129, 0.08) !important;
+}
+
+.row-invalid {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+}
+
+.invalid-cell-reason {
+  font-size: 0.72rem;
+  color: var(--tier-critical);
+  display: block;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .admin-layout {
+    flex-direction: column;
+  }
+  .admin-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .admin-nav-list {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .form-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  .admin-main {
+    padding: 16px;
+  }
+}

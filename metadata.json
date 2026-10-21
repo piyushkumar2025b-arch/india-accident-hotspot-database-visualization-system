@@ -1,0 +1,6 @@
+{
+  "name": "India Accident Hotspot Database & Visualization System",
+  "description": "Real-Time PostgreSQL Geospatial Hotspot Analytics & Visualization System for accident corridors across India.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

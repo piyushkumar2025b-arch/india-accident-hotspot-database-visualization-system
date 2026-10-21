@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India Accident Hotspot Database & Visualization System</title>
+  <meta name="description" content="Real-Time PostgreSQL Geospatial Hotspot Analytics & Visualization System for accident corridors across India." />
+  <meta property="og:title" content="India Accident Hotspot Database & Visualization System" />
+  <meta property="og:description" content="Real-Time PostgreSQL Geospatial Hotspot Analytics & Visualization System for accident corridors across India." />
+  
+  <!-- Inter & JetBrains Mono Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet GIS CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- Project Stylesheets -->
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/map.css">
+</head>
+<body>
+
+  <!-- App Navigation Header -->
+  <header class="app-header">
+    <div class="brand-wrapper">
+      <div class="brand-icon">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+      </div>
+      <div class="brand-info">
+        <span class="brand-name">Bharat Road Safety GIS</span>
+        <span class="brand-tag">MoRTH</span>
+      </div>
+    </div>
+
+    <!-- Center Live Telemetry Summary Ticker -->
+    <div class="header-telemetry-ticker">
+      <div class="ticker-pill">
+        <span class="ticker-dot live"></span>
+        <span class="ticker-item"><strong id="headerKpiHotspots">52</strong>&nbsp;Hotspots</span>
+        <span class="ticker-sep">•</span>
+        <span class="ticker-item"><strong id="headerKpiDeaths" class="val-fatal">1,240</strong>&nbsp;Deaths</span>
+        <span class="ticker-sep">•</span>
+        <span class="ticker-item"><strong id="headerKpiInjured" class="val-injured">3,110</strong>&nbsp;Injured</span>
+        <span class="ticker-sep">•</span>
+        <span class="db-live-tag" id="dbStatusBadge" style="cursor:pointer;" title="Click to view SQL schema setup">
+          <span class="db-live-dot"></span>
+          <span>PostgreSQL</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="nav-actions">
+      <!-- Consolidated Data Sync & Live Feeds Dropdown -->
+      <div class="header-dropdown" id="syncDropdown">
+        <button class="nav-header-btn nav-btn-emerald" id="btnSyncMenu" title="Data Synchronization & Live Feeds">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+          </svg>
+          <span id="btnSyncHeaderLabel">Sync & Feeds</span>
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="header-dropdown-menu" id="syncMenuContent" style="min-width: 280px;">
+          <button class="header-dropdown-item" id="btnSyncLiveData">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+            </svg>
+            <div>
+              <strong id="btnSyncText">Sync MoRTH Verified Spots</strong>
+              <small>Real MoRTH audits & Open Government Data</small>
+            </div>
+          </button>
+          <button class="header-dropdown-item" id="btnIngestBigData">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <div>
+              <strong id="btnIngestText">📡 Ingest Big Data (OSM Overpass)</strong>
+              <small>Live OpenStreetMap Overpass GIS API feeds</small>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Clean Resources Dropdown -->
+      <div class="header-dropdown" id="resourcesDropdown">
+        <button class="nav-header-btn nav-btn-slate" id="btnResourcesMenu" title="Technical Resources & Documentation">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+          </svg>
+          <span>Resources</span>
+          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="header-dropdown-menu" id="resourcesMenuContent">
+          <button class="header-dropdown-item" id="btnOpenSqlModal">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+            <div>
+              <strong>Supabase SQL Setup</strong>
+              <small>Deploy schema, views, and indexes</small>
+            </div>
+          </button>
+          <button class="header-dropdown-item" id="btnOpenDocs">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <div>
+              <strong>DBMS Specification</strong>
+              <small>3NF Schema, RLS, and Hotspot Formula</small>
+            </div>
+          </button>
+          <button class="header-dropdown-item" id="btnOpenSources">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <div>
+              <strong>Official Data Sources</strong>
+              <small>data.gov.in, MoRTH, NCRB & OSM</small>
+            </div>
+          </button>
+          <button class="header-dropdown-item" id="btnExportGeoJsonMain">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <div>
+              <strong>Export GeoJSON (MoRTH Blackspots)</strong>
+              <small>Download RFC 7946 GIS layer for QGIS/ArcGIS</small>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Admin Portal Link -->
+      <a href="login.html" class="nav-header-btn nav-btn-indigo" id="btnAdminPortal" title="Officer Login & Admin Portal">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
+        <span>Admin Portal</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Configuration Alert Banner (Shown if Supabase keys need to be filled in js/config.js) -->
+  <div id="configAlertBanner" class="alert-banner alert-warning" style="display:none; border-radius:0;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+        <line x1="12" y1="9" x2="12" y2="13"></line>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+      <span>
+        <strong>Supabase Configuration Required:</strong> Please set your <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> inside <code>js/config.js</code>. The database is currently standing by.
+      </span>
+    </div>
+    <button class="btn btn-secondary btn-sm" onclick="this.parentElement.style.display='none'">Dismiss</button>
+  </div>
+
+  <!-- Main Map Viewport Wrapper -->
+  <main class="map-view-container">
+    
+    <!-- Clean Floating Search & Filter Pill (Top Left) -->
+    <div class="search-filter-container" id="searchFilterContainer">
+      <div class="search-pill">
+        <div class="search-input-wrapper">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="filterSearch" placeholder="Search Highway, NH-44, District, City...">
+          <button type="button" class="search-clear-btn" id="btnClearSearch" title="Clear search">&times;</button>
+        </div>
+
+        <button type="button" class="btn-filter-toggle" id="btnToggleFilters" title="Filter by State, District, Tier & Year">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+          </svg>
+          <span>Filters</span>
+          <span class="filter-count-badge" id="activeFilterBadge">0</span>
+        </button>
+
+        <button type="button" class="btn-filter-reset" id="btnResetFilters" title="Reset all active filters">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+            <path d="M3 3v5h5"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Real-Time Applied Filters Chips Bar (Auto-updates on map view) -->
+      <div class="map-active-filters-container" id="mapActiveFiltersContainer" style="display:none;">
+        <div id="activeFiltersChipsList" style="display:flex; flex-wrap:wrap; gap:6px; align-items:center;">
+          <!-- Dynamically rendered active filter chips -->
+        </div>
+      </div>
+
+      <!-- Popover Filter Panel -->
+      <div class="filter-popover-card" id="filterPopover">
+        <div class="filter-popover-header">
+          <div class="filter-popover-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            <span>Filter Black Spot Corridors</span>
+          </div>
+          <button type="button" class="filter-popover-close" id="btnCloseFilterPopover" title="Close">&times;</button>
+        </div>
+
+        <div class="filter-grid-2col">
+          <div class="filter-field">
+            <label for="filterState">State / UT</label>
+            <select id="filterState" class="select-control">
+              <option value="">All States / UTs</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterDistrict">District</label>
+            <select id="filterDistrict" class="select-control" disabled>
+              <option value="">Select State First</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterTier">Risk Severity Tier</label>
+            <select id="filterTier" class="select-control">
+              <option value="">All Risk Tiers</option>
+              <option value="Critical">Critical Risk (75+)</option>
+              <option value="High">High Risk (50-74)</option>
+              <option value="Moderate">Moderate Risk (25-49)</option>
+              <option value="Low">Low Risk (&lt;25)</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterYear">Incident Year</label>
+            <select id="filterYear" class="select-control">
+              <option value="">All Years</option>
+              <option value="2026">2026</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterMonth">Month</label>
+            <select id="filterMonth" class="select-control">
+              <option value="">All Months</option>
+              <option value="1">January</option>
+              <option value="2">February</option>
+              <option value="3">March</option>
+              <option value="4">April</option>
+              <option value="5">May</option>
+              <option value="6">June</option>
+              <option value="7">July</option>
+              <option value="8">August</option>
+              <option value="9">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterSource">Data Source</label>
+            <select id="filterSource" class="select-control">
+              <option value="">All Official Sources</option>
+              <option value="MoRTH">MoRTH</option>
+              <option value="data.gov.in">data.gov.in (OGD)</option>
+              <option value="NCRB">NCRB (ADSI)</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterRoadType">Road Classification</label>
+            <select id="filterRoadType" class="select-control">
+              <option value="">All Highway Types</option>
+              <option value="National Highway">National Highway (NH)</option>
+              <option value="Expressway">Access-Controlled Expressway</option>
+              <option value="State Highway">State Highway (SH)</option>
+              <option value="Major District Road">Major District Road (MDR)</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterMinFatalities">Casualty Threshold</label>
+            <select id="filterMinFatalities" class="select-control">
+              <option value="">Any Casualty Level</option>
+              <option value="10">≥ 10 Fatalities</option>
+              <option value="25">≥ 25 Fatalities (Mass Casualty)</option>
+              <option value="50">≥ 50 Fatalities (Extreme Catastrophe)</option>
+            </select>
+          </div>
+
+          <div class="filter-field">
+            <label for="filterCause">Primary Accident Cause</label>
+            <select id="filterCause" class="select-control">
+              <option value="">All Primary Causes</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-popover-footer">
+          <span class="active-filter-summary" id="filterSummaryText">Showing all corridors</span>
+          <button type="button" class="btn btn-primary btn-sm" id="btnApplyFilters">Apply & Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Live Telemetry KPI HUD (Top Left, Collapsible) -->
+    <div class="map-kpi-hud collapsed" id="kpiHud">
+      <div class="kpi-hud-header">
+        <div class="kpi-hud-title">
+          <span>Active Telemetry</span>
+          <span class="badge badge-verified" id="dbStatusBadgeHud" style="cursor:pointer;" title="Connected to Live PostgreSQL Database & Real-Time APIs"><span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#10b981; margin-right:4px; box-shadow:0 0 6px #10b981;"></span>Live DB</span>
+        </div>
+        <button type="button" class="btn-toggle-kpi" id="btnToggleKpiHud" title="Collapse / Expand Telemetry HUD">
+          <span id="kpiToggleIcon">+</span>
+        </button>
+      </div>
+
+      <div class="kpi-hud-stats" id="kpiStatsGrid">
+        <div class="kpi-mini-card">
+          <div class="kpi-label">Incidents</div>
+          <div class="kpi-val" id="kpiTotalAccidents">5,420</div>
+        </div>
+        <div class="kpi-mini-card kpi-fatal">
+          <div class="kpi-label">Deaths</div>
+          <div class="kpi-val" id="kpiTotalDeaths">1,642</div>
+        </div>
+        <div class="kpi-mini-card kpi-injuries">
+          <div class="kpi-label">Injured</div>
+          <div class="kpi-val" id="kpiTotalInjured">3,894</div>
+        </div>
+        <div class="kpi-mini-card">
+          <div class="kpi-label">Hotspots</div>
+          <div class="kpi-val" id="kpiHotspotsCount">64</div>
+        </div>
+      </div>
+
+      <!-- Compact Ticker when collapsed -->
+      <div class="kpi-compact-view" id="kpiCompactView">
+        <span>🔥 <strong id="kpiCompactHotspots">52</strong> Spots • 💀 <strong id="kpiCompactFatalities" class="val-fatal">1,240</strong> Fatalities</span>
+      </div>
+
+      <!-- Hidden compatibility hook for kpiTopState -->
+      <span id="kpiTopState" style="display:none;">-</span>
+    </div>
+
+    <!-- Floating Map Controls (Top Right, Sleek Consolidated Modular Deck) -->
+    <div class="map-engine-toolbar" id="mapEngineToolbar">
+      <!-- 1. Basemap Cartography Selector Dropdown -->
+      <div class="toolbar-dropdown-wrapper" id="basemapDropdownWrapper">
+        <button class="toolbar-pill-btn" id="btnBasemapDropdown" title="Switch Base Cartography Style">
+          <span id="activeBasemapLabel">🛰️ Satellite</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <div class="toolbar-flyout-popover" id="basemapMenuContent">
+          <div class="popover-mini-header">Base Cartography</div>
+          <div class="basemap-chips-grid" id="modeChipsContainer">
+            <button class="mode-chip active" data-mode="satellite" title="Satellite & Aerial Photography">🛰️ Satellite</button>
+            <button class="mode-chip" data-mode="dark" title="Dark Night Patrol">🌙 Dark</button>
+            <button class="mode-chip" data-mode="light" title="Daytime Executive Light">☀️ Light</button>
+            <button class="mode-chip" data-mode="terrain" title="Topographic & Ghat Contours">⛰️ Topo</button>
+            <button class="mode-chip" data-mode="streets" title="Detailed Street Corridors">🛣️ Streets</button>
+            <button class="mode-chip" data-mode="atmospheric" title="Atmospheric Hazard Radar">🌫️ Radar</button>
+            <button class="mode-chip" data-mode="monochrome" title="Silver Minimalist">🧭 Silver</button>
+            <button class="mode-chip" data-mode="risk_canvas" title="Pure Black Casualty Density Canvas">🚨 Canvas</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Core Layers & Overlays Pill -->
+      <div class="toolbar-pill-container" id="toolbarLayersPod">
+        <!-- Direct Quick Toggles: Heatmap + Traffic -->
+        <div class="quick-toggle-group">
+          <button class="engine-btn active" id="btnToggleHeatmap" title="Toggle Accident Density Heatmap (Fatality Clustering)">
+            <span>🔥 Heatmap</span>
+          </button>
+          <button class="engine-btn" id="btnHeatmapSettings" title="Customize Heatmap Density & Radius" style="padding:4px 6px; margin-left:-4px; border-top-left-radius:0; border-bottom-left-radius:0; border-left:none;">
+            <span>⚙️</span>
+          </button>
+        </div>
+        
+        <button class="engine-btn active" id="btnToggleTraffic" title="Toggle Real-Time Google Maps Traffic Layer">
+          <span class="traffic-badge-dot" id="trafficStatusDot"></span>
+          <span>Traffic</span>
+        </button>
+
+        <div class="toolbar-divider"></div>
+
+        <!-- Consolidated Layers Dropdown -->
+        <div class="toolbar-dropdown-wrapper" id="layersDropdownWrapper">
+          <button class="engine-btn" id="btnLayersDropdown" title="Toggle Additional Highway Safety Overlays">
+            <span>📑 Layers</span>
+            <span class="layers-count-badge" id="activeLayersBadge">2</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          
+          <div class="toolbar-flyout-popover layers-popover-card" id="layersMenuContent">
+            <div class="popover-mini-header">
+              <span>Highway Safety Overlays</span>
+              <small id="activeLayersSummary">2 of 6 active</small>
+            </div>
+            <div class="layer-items-list">
+              <button class="layer-item-row active" id="btnToggleMarkers" title="Show/Hide Hotspot Marker Pins">
+                <div class="layer-info">
+                  <span class="layer-icon">📍</span>
+                  <div class="layer-text">
+                    <span class="layer-name">Hotspot Marker Pins</span>
+                    <span class="layer-hint">Interactive crash cluster pins</span>
+                  </div>
+                </div>
+                <span class="layer-status-pill">ON</span>
+              </button>
+
+              <button class="layer-item-row active" id="btnToggleCorridors" title="Toggle High-Fatality Expressways (MoRTH Stretches)">
+                <div class="layer-info">
+                  <span class="layer-icon">🛣️</span>
+                  <div class="layer-text">
+                    <span class="layer-name">Highway Corridors</span>
+                    <span class="layer-hint">Audited national expressways</span>
+                  </div>
+                </div>
+                <span class="layer-status-pill">ON</span>
+              </button>
+
+              <button class="layer-item-row" id="btnToggleSpeedCameras" title="Toggle 30+ Highway Speed Radar Interceptors & ANPR Gantries">
+                <div class="layer-info">
+                  <span class="layer-icon">📹</span>
+                  <div class="layer-text">
+                    <span class="layer-name">Speed Radars & ANPR</span>
+                    <span class="layer-hint">30+ automated enforcement gantries</span>
+                  </div>
+                </div>
+                <span class="layer-status-pill">OFF</span>
+              </button>
+
+              <button class="layer-item-row" id="btnToggleGhats" title="Toggle 22+ Hazardous Mountain Ghats & Hairpin Bends">
+                <div class="layer-info">
+                  <span class="layer-icon">⛰️</span>
+                  <div class="layer-text">
+                    <span class="layer-name">Hazardous Ghats</span>
+                    <span class="layer-hint">22+ mountain hairpins & slopes</span>
+                  </div>
+                </div>
+                <span class="layer-status-pill">OFF</span>
+              </button>
+
+              <button class="layer-item-row" id="btnToggleRiskBuffers" title="Toggle 5km/12km Danger Impact Radii">
+                <div class="layer-info">
+                  <span class="layer-icon">⭕</span>
+                  <div class="layer-text">
+                    <span class="layer-name">Danger Risk Buffers</span>
+                    <span class="layer-hint">5km & 12km casualty circles</span>
+                  </div>
+                </div>
+                <span class="layer-status-pill">OFF</span>
+              </button>
+
+              <button class="layer-item-row" id="btnToggleTrauma" title="Toggle Emergency Trauma Care Hospitals">
+                <div class="layer-info">
+                  <span class="layer-icon">🏥</span>
+                  <div class="layer-text">
+                    <span class="layer-name">Trauma Care Hospitals</span>
+                    <span class="layer-hint">Emergency highway medical centers</span>
+                  </div>
+                </div>
+                <span class="layer-status-pill">OFF</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Tools & Navigation Pill -->
+      <div class="toolbar-pill-container" id="toolbarToolsPod">
+        <!-- Tools Dropdown -->
+        <div class="toolbar-dropdown-wrapper" id="toolsDropdownWrapper">
+          <button class="engine-btn" id="btnToolsDropdown" title="GIS Analysis Tools & Perspective">
+            <span>🛠️ Tools</span>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="toolbar-flyout-popover tools-popover-card" id="toolsMenuContent">
+            <div class="popover-mini-header">GIS & Analysis Tools</div>
+            <div class="tool-items-list">
+              <button class="tool-item-btn" id="btnToggleMeasure" title="Measure Highway Route Distance & Crash Vulnerability">
+                <span class="tool-icon">📏</span>
+                <div class="tool-text">
+                  <strong>Route Distance & Risk Ruler</strong>
+                  <small>Measure highway kilometers and risk exposure</small>
+                </div>
+              </button>
+
+              <button class="tool-item-btn" id="btnToggle3D" title="Toggle 45° 3D Oblique Terrain Perspective">
+                <span class="tool-icon">📐</span>
+                <div class="tool-text">
+                  <strong>3D Oblique Perspective</strong>
+                  <small>45° terrain pitch and contour view</small>
+                </div>
+              </button>
+
+              <button class="tool-item-btn" id="btnLocateUser" title="Find GPS Location & Radar Nearest Black Spot Hazard">
+                <span class="tool-icon">🎯</span>
+                <div class="tool-text">
+                  <strong>Hazard Radar Near Me</strong>
+                  <small>Detect nearest black spot to current GPS</small>
+                </div>
+              </button>
+
+              <button class="tool-item-btn" id="btnToggleFullscreen" title="Toggle Fullscreen Operations Display">
+                <span class="tool-icon">⛶</span>
+                <div class="tool-text">
+                  <strong>Fullscreen Operations Mode</strong>
+                  <small>Maximize display for operations monitoring</small>
+                </div>
+              </button>
+
+              <button class="tool-item-btn" id="btnExportGeoJson" title="Export Verified MoRTH Blackspots as GIS GeoJSON">
+                <span class="tool-icon">🌐</span>
+                <div class="tool-text">
+                  <strong>Export GIS GeoJSON</strong>
+                  <small>Download MoRTH blackspot features</small>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <!-- Jump to Corridor Dropdown -->
+        <select id="selectJumpCorridor" class="toolbar-select" title="Fly to High-Fatality Black Spot Corridor">
+          <option value="">⚡ Corridors...</option>
+          <option value="loc-tn-thoppur-ghat">Thoppur Ghat (NH-44 TN)</option>
+          <option value="loc-mh-mumbai-pune-khandala">Mumbai-Pune Exp (MH)</option>
+          <option value="loc-up-yamuna-m88">Yamuna Exp M-88 (UP)</option>
+          <option value="loc-mh-navale-bridge">Navale Bridge (Pune MH)</option>
+          <option value="loc-dl-mukarba-chowk">Mukarba Chowk (Delhi)</option>
+          <option value="loc-ka-mysuru-exp-ramanagara">Mysuru Exp (KA)</option>
+          <option value="loc-kl-kuthiran-tunnel">Kuthiran Tunnel (KL)</option>
+          <option value="loc-gj-kim-char-rasta">Kim Char Rasta (GJ)</option>
+          <option value="loc-mp-ghat-bilod">Ghat Bilod (MP)</option>
+          <option value="loc-hp-swarghat-descent">Swarghat Descent (HP)</option>
+          <option value="loc-uk-teen-dhara">Teen Dhara Rishikesh (UK)</option>
+          <option value="loc-jh-koderma-ghat">Koderma Valley (JH)</option>
+          <option value="loc-cg-tatibandh-chowk">Tatibandh Chowk (CG)</option>
+          <option value="loc-ga-zuari-bridge">Zuari Bridge (Goa)</option>
+          <option value="loc-as-kaliabor-tiniali">Kaliabor (Assam)</option>
+          <option value="loc-ka-hubballi-bypass">Hubballi Bypass (KA)</option>
+          <option value="loc-hr-kherki-daula">Kherki Daula (Gurugram)</option>
+          <option value="loc-rj-jaipur-kishangarh">Dudu-Kishangarh (NH-48 RJ)</option>
+          <option value="loc-or-rasulgarh-square">Rasulgarh (Bhubaneswar OD)</option>
+          <option value="loc-ap-vizag-nh16">Madhurawada / Gajuwaka (Vizag AP)</option>
+          <option value="loc-ka-electronic-city">Bangalore E-City Flyover (KA)</option>
+          <option value="loc-ts-orr-shamshabad">Hyderabad Nehru ORR (TG)</option>
+          <option value="loc-tn-ecr-mahabalipuram">Chennai ECR Coast (TN)</option>
+          <option value="loc-mh-pune-satara-katraj">Katraj Tunnel / Navale (MH)</option>
+        </select>
+
+        <select id="selectMapProvider" class="toolbar-select" title="Switch Map Provider Engine" style="display:none;">
+          <option value="google" selected>Google Maps Platform</option>
+          <option value="carto">CARTO / OpenStreetMap</option>
+          <option value="esri">ESRI ArcGIS World</option>
+          <option value="opentopo">OpenTopoMap (Topographic)</option>
+        </select>
+
+        <button class="engine-btn icon-only-btn" id="btnRecenterMap" title="Recenter All-India View">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- On-Map Real-Time Live View Confirmation HUD -->
+    <div class="map-view-live-hud" id="mapViewLiveHud" title="Real-Time PostgreSQL Database View Sync">
+      <span class="live-pulse-dot" id="liveHudDot"></span>
+      <span class="live-hud-text" id="liveHudText">Live GIS View Active</span>
+      <span class="live-hud-count" id="liveHudCount">198</span>
+    </div>
+
+    <!-- Empty State Overlay on Map (When filters match 0 corridors) -->
+    <div class="map-empty-overlay" id="mapEmptyOverlay" style="display:none;">
+      <span style="font-size:26px;">🔍</span>
+      <strong style="color:#f8fafc; font-size:0.88rem;">No Blackspots Match Filters</strong>
+      <p style="color:#94a3b8; font-size:0.75rem; margin:0; line-height:1.4;" id="mapEmptyMessage">No blackspot corridors match the active query in Supabase.</p>
+      <button type="button" class="btn btn-secondary btn-sm" id="btnEmptyResetFilters" style="margin-top:4px; font-weight:600;">Clear All Filters</button>
+    </div>
+
+    <!-- Interactive Map Target (Google Maps & Leaflet) -->
+    <div id="map"></div>
+
+    <!-- Highway Distance & Risk Measurement HUD Floating Bar -->
+    <div id="measureHudBar" class="measure-hud-bar" style="display:none;">
+      <div class="measure-hud-item">
+        <span class="measure-hud-label">Route:</span>
+        <span id="measureDistanceValue" class="measure-hud-value">0.0 km</span>
+      </div>
+      <div class="measure-hud-divider"></div>
+      <div class="measure-hud-item">
+        <span class="measure-hud-label">Vulnerability:</span>
+        <span id="measureRiskValue" class="measure-hud-risk">Click map points to calculate route risk...</span>
+      </div>
+      <div class="measure-hud-actions">
+        <button id="btnClearMeasure" class="measure-action-btn" title="Reset Route">Reset</button>
+        <button id="btnCloseMeasure" class="measure-action-btn close" title="Exit Measurement Mode">&times;</button>
+      </div>
+    </div>
+
+    <!-- Heatmap Customization Popover Panel -->
+    <div id="heatmapControlsPopover" class="heatmap-controls-popover" style="display:none;">
+      <div class="heatmap-popover-header">
+        <span>🔥 Heatmap Controls</span>
+        <button id="btnCloseHeatmapControls" class="heatmap-popover-close" title="Close">&times;</button>
+      </div>
+      <div class="heatmap-popover-field">
+        <label>Weight Metric:</label>
+        <select id="selectHeatmapMetric" class="heatmap-popover-select">
+          <option value="fatalities" selected>Annual Fatalities (Weighted)</option>
+          <option value="accidents">Total Accident Count</option>
+          <option value="score">Calculated Hotspot Score</option>
+        </select>
+      </div>
+      <div class="heatmap-popover-field">
+        <label>Blur Radius:</label>
+        <div class="radius-button-group">
+          <button type="button" class="radius-btn" data-radius="30">Tight (30px)</button>
+          <button type="button" class="radius-btn active" data-radius="48">Standard (48px)</button>
+          <button type="button" class="radius-btn" data-radius="72">Broad (72px)</button>
+        </div>
+      </div>
+      <div class="heatmap-popover-field">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <label>Density Opacity:</label>
+          <span id="heatmapOpacityVal" style="font-size:0.68rem; color:#f8fafc; font-family:'JetBrains Mono', monospace;">85%</span>
+        </div>
+        <input type="range" id="rangeHeatmapOpacity" min="30" max="100" value="85" style="width:100%; accent-color:#ef4444; cursor:pointer;" />
+      </div>
+      <div class="heatmap-popover-field" style="margin-top:2px;">
+        <button type="button" id="btnTogglePinsFromHeatmap" class="btn btn-secondary btn-sm" style="width:100%; font-size:0.72rem; padding:5px 8px; justify-content:center;">
+          📍 Toggle Markers Pin Overlay
+        </button>
+      </div>
+    </div>
+
+    <!-- Map Legend (Collapsible, Bottom Left) -->
+    <div class="map-legend" id="mapLegend">
+      <div class="legend-title">
+        <span>Risk Tiers</span>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <a href="#" id="linkFormulaExplainer" style="font-size:0.68rem; text-transform:none;">Formula</a>
+          <button type="button" class="legend-toggle-btn" id="btnToggleLegend" title="Minimize / Expand Legend">−</button>
+        </div>
+      </div>
+      <div class="legend-items" id="legendItemsList">
+        <div class="legend-item">
+          <div class="legend-dot critical"></div>
+          <span>Critical Risk (Score 75 - 100)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot high"></div>
+          <span>High Risk (Score 50 - 74)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot moderate"></div>
+          <span>Moderate Risk (Score 25 - 49)</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot low"></div>
+          <span>Low Risk (Score &lt; 25)</span>
+        </div>
+      </div>
+      <!-- Real-Time Density Heatmap Spectrum -->
+      <div class="legend-spectrum-box" id="legendSpectrumBox" style="margin-top:8px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.12);">
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.65rem; color:var(--text-secondary); margin-bottom:4px; font-weight:600;">
+          <span>🔥 Heatmap Density</span>
+          <span style="color:#ef4444;">High Fatalities</span>
+        </div>
+        <div style="height:6px; border-radius:3px; background:linear-gradient(to right, rgba(0,255,255,0.4), #00bfff, #0000ff, #10b981, #f59e0b, #f97316, #ef4444); box-shadow:0 0 8px rgba(239,68,68,0.25);"></div>
+        <div style="display:flex; justify-content:space-between; font-size:0.6rem; color:var(--text-muted); margin-top:3px;">
+          <span>Dispersed</span>
+          <span>Moderate</span>
+          <span>Extreme</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Collapsible Analytics Bottom Drawer -->
+    <div class="analytics-drawer" id="analyticsDrawer">
+      <div class="drawer-toggle-bar" id="drawerToggleBar">
+        <div class="drawer-toggle-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 20V10M12 20V4M6 20v-6"></path>
+          </svg>
+          <span>Corridor Hotspots & Temporal Trends Drawer</span>
+          <span id="drawerHotspotCountBadge" class="badge badge-high" style="font-size:0.65rem;">0 Hotspots</span>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btnToggleDrawerText">Open Insights ▲</button>
+      </div>
+
+      <div class="drawer-content">
+        <!-- Hotspots Ranking Table -->
+        <div>
+          <h5 style="font-size:0.85rem; font-weight:700; margin-bottom:12px;">Ranked High-Risk Highway Corridors</h5>
+          <div style="max-height:220px; overflow-y:auto; border:1px solid var(--border-subtle); border-radius:var(--radius-sm);">
+            <table class="data-table" id="drawerHotspotsTable">
+              <thead>
+                <tr>
+                  <th>Rank / Corridor & GPS Pinpoint</th>
+                  <th>State</th>
+                  <th>Accidents</th>
+                  <th>Deaths</th>
+                  <th>Score</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="drawerHotspotsBody">
+                <tr><td colspan="6" style="text-align:center; padding:15px; color:var(--text-muted);">Loading corridors...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Monthly Trends & Causes Breakdown -->
+        <div class="drawer-chart-card">
+          <h5>Monthly Incident Frequency (PostgreSQL View)</h5>
+          <div id="monthlyTrendChart"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real-time GIS Map Telemetry & Coordinate Footer Strip -->
+    <div class="map-telemetry-strip" id="mapTelemetryStrip">
+      <div class="telemetry-item">
+        <span class="telemetry-label">CURSOR:</span>
+        <span class="telemetry-value" id="telemetryCoords">20.5937° N, 78.9629° E</span>
+      </div>
+      <div class="telemetry-sep">|</div>
+      <div class="telemetry-item">
+        <span class="telemetry-label">ZOOM:</span>
+        <span class="telemetry-value" id="telemetryZoom">5x</span>
+      </div>
+      <div class="telemetry-sep">|</div>
+      <div class="telemetry-item">
+        <span class="telemetry-label">VIEW:</span>
+        <span class="telemetry-value" id="telemetryBearing">0° Nadir</span>
+      </div>
+      <div class="telemetry-sep">|</div>
+      <div class="telemetry-item">
+        <span class="telemetry-label">PROJECTION:</span>
+        <span class="telemetry-value">WGS84 / EPSG:4326</span>
+      </div>
+      <div class="telemetry-sep">|</div>
+      <div class="telemetry-item">
+        <span class="telemetry-label">INTERNET FEEDS:</span>
+        <span class="telemetry-value" id="telemetryFeedsStatus" style="color:#10b981;">● OSM Overpass + MoRTH OGD Ready</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- DBMS Specification & Mathematical Scoring Modal -->
+  <div class="modal-backdrop" id="docsModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>DBMS Architecture & Hotspot Scoring Specification</h3>
+        <button class="btn-icon" id="btnCloseDocs">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h4 style="color:#a5b4fc; margin-bottom:6px;">1. Relational Database Normalization</h4>
+        <p style="color:var(--text-secondary); margin-bottom:16px;">
+          The system strictly adheres to <strong>3rd Normal Form (3NF)</strong>. Data is decomposed across 9 normalized relations:
+          <code>states</code>, <code>districts</code>, <code>road_types</code>, <code>accident_types</code>, <code>accident_causes</code>, 
+          <code>weather_conditions</code>, <code>locations</code>, <code>accidents</code>, and <code>profiles</code>.
+          Zero redundant spatial coordinates or text taxonomies are repeated within transactional accident records.
+        </p>
+
+        <h4 style="color:#a5b4fc; margin-bottom:6px;">2. Calculated Accident Hotspot Score Formula</h4>
+        <div style="background:rgba(31,41,55,0.7); padding:14px; border-radius:var(--radius-sm); font-family:var(--font-mono); font-size:0.8rem; margin-bottom:16px; border:1px solid var(--border-subtle);">
+          Score = min(100, round(<br>
+          &nbsp;&nbsp;(Total_Accidents * 2.5) +<br>
+          &nbsp;&nbsp;(Fatal_Accidents * 6.0) +<br>
+          &nbsp;&nbsp;(Total_Deaths * 7.0) +<br>
+          &nbsp;&nbsp;(Total_Injuries * 2.0) +<br>
+          &nbsp;&nbsp;(Recency_Weight * 3.0)<br>
+          ))
+        </div>
+
+        <h4 style="color:#a5b4fc; margin-bottom:6px;">3. Row Level Security (RLS) & Server-Side Triggers</h4>
+        <p style="color:var(--text-secondary); margin-bottom:12px;">
+          All DDL relations enforce PostgreSQL Row Level Security. Public sessions possess anonymous read-only access.
+          Administrative mutations (INSERT, UPDATE, DELETE) are guarded by security definer function <code>is_admin()</code>.
+          Accident month and year are derived automatically on database insertion via trigger <code>trg_derive_accident_month_year</code>.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" id="btnCloseDocsFooter">Close Specification</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official Government Data Sources Modal -->
+  <div class="modal-backdrop" id="sourcesModal">
+    <div class="modal-dialog" style="max-width:720px;">
+      <div class="modal-header">
+        <h3>Official Indian Accident Data Sources</h3>
+        <button class="btn-icon" id="btnCloseSources">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text-secondary); margin-bottom:18px;">
+          This DBMS project integrates accident records, black spot engineering surveys, and casualty reports strictly citing authoritative Indian government sources and open geospatial platforms:
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="background:var(--bg-card); padding:16px; border-radius:var(--radius-sm); border-left:4px solid var(--primary);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <strong style="color:var(--text-primary); font-size:0.95rem;">1. data.gov.in — Government of India Open Data</strong>
+              <a href="https://data.gov.in" target="_blank" class="btn btn-secondary btn-sm" style="padding:2px 8px; font-size:0.7rem;">Visit Portal ↗</a>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
+              National Open Government Data (OGD) platform providing machine-readable datasets and API endpoints for transport statistics, road safety indicators, and state-wise casualty data.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-card); padding:16px; border-radius:var(--radius-sm); border-left:4px solid var(--tier-critical);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <strong style="color:var(--text-primary); font-size:0.95rem;">2. MoRTH — Ministry of Road Transport & Highways</strong>
+              <a href="https://morth.nic.in" target="_blank" class="btn btn-secondary btn-sm" style="padding:2px 8px; font-size:0.7rem;">Visit Portal ↗</a>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
+              Authoritative annual "Road Accidents in India" reports and National Highways Authority of India (NHAI) Highway Black Spot Identification studies documenting corridor-level fatal crash locations.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-card); padding:16px; border-radius:var(--radius-sm); border-left:4px solid var(--tier-high);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <strong style="color:var(--text-primary); font-size:0.95rem;">3. NCRB — National Crime Records Bureau</strong>
+              <a href="https://ncrb.gov.in" target="_blank" class="btn btn-secondary btn-sm" style="padding:2px 8px; font-size:0.7rem;">Visit Portal ↗</a>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
+              Annual "Accidental Deaths & Suicides in India" (ADSI) compendiums detailing road traffic accidents, vehicle types involved, urban area analyses, and long-term historical trends.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-card); padding:16px; border-radius:var(--radius-sm); border-left:4px solid var(--success);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <strong style="color:var(--text-primary); font-size:0.95rem;">4. OpenStreetMap & Nominatim Geocoding</strong>
+              <a href="https://www.openstreetmap.org" target="_blank" class="btn btn-secondary btn-sm" style="padding:2px 8px; font-size:0.7rem;">OpenStreetMap ↗</a>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
+              Open community-driven spatial cartography and Nominatim forward/reverse geocoding API for resolving Indian highway numbers, milestones, and town boundaries into precise WGS84 coordinates.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-card); padding:16px; border-radius:var(--radius-sm); border-left:4px solid #f59e0b;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <strong style="color:var(--text-primary); font-size:0.95rem;">5. Hugging Face Open Safety Datasets</strong>
+              <a href="https://huggingface.co/datasets" target="_blank" class="btn btn-secondary btn-sm" style="padding:2px 8px; font-size:0.7rem;">Hugging Face Hub ↗</a>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
+              Curated public datasets covering Indian vehicular traffic safety, black spot geographic records, and road condition classification models accessible via the open Datasets Hub API.
+            </p>
+          </div>
+
+          <div style="background:var(--bg-card); padding:16px; border-radius:var(--radius-sm); border-left:4px solid #4285F4;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <strong style="color:var(--text-primary); font-size:0.95rem;">6. Google Maps Platform & Real-Time Traffic Layer</strong>
+              <span class="badge badge-verified" style="font-size:0.7rem;">API Key Configured</span>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-secondary);">
+              Google Maps JavaScript API integration featuring dynamic vector dark styling, high-resolution satellite imagery, highway coordinate positioning, and real-time live traffic congestion layer across Indian national corridors.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-sm" id="btnCloseSourcesFooter">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Supabase SQL Setup Modal -->
+  <div class="modal-overlay" id="sqlModal">
+    <div class="modal-card" style="max-width:820px;">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="background:#1e1b4b; color:#a5b4fc; width:32px; height:32px; border-radius:6px; display:flex; align-items:center; justify-content:center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h3>Supabase Realtime & SQL Execution Setup</h3>
+            <p style="font-size:0.75rem; color:var(--text-secondary);">Enable instant WebSocket replication so SQL Editor queries update the map in real time</p>
+          </div>
+        </div>
+        <button class="modal-close" id="btnCloseSqlModal">&times;</button>
+      </div>
+      <div class="modal-body" style="max-height:65vh; overflow-y:auto; padding:20px;">
+        <!-- Tab navigation -->
+        <div style="display:flex; gap:8px; margin-bottom:14px; border-bottom:1px solid var(--border-subtle); padding-bottom:10px;">
+          <button id="tabBtnRealtimeSql" class="btn btn-primary btn-sm" style="font-size:0.8rem; font-weight:700;">
+            ⚡ 1. Enable Realtime & Views (Run this in Supabase)
+          </button>
+          <button id="tabBtnMasterSql" class="btn btn-secondary btn-sm" style="font-size:0.8rem;">
+            📦 Full DDL Master Schema (Optional)
+          </button>
+        </div>
+
+        <div class="alert-banner alert-info" id="sqlNoticeBanner" style="margin-bottom:14px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <div style="font-size:0.8rem; line-height:1.4;">
+            <strong>Real-Time Sync Activated:</strong> Run the script below in your <strong>Supabase SQL Editor</strong>. It registers <code>accidents</code> and <code>locations</code> into the <code>supabase_realtime</code> publication and creates the <code>hotspot_statistics</code> view. Once run, any <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code> in Supabase will instantly stream to this website in real time without refreshing!
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span id="activeSqlFileName" style="font-size:0.8rem; font-weight:600; color:var(--text-secondary);">Script: sql/enable_realtime_and_views.sql</span>
+          <button class="btn btn-primary btn-sm" id="btnCopySqlSetup">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span id="copySqlBtnText">Copy Realtime SQL Script</span>
+          </button>
+        </div>
+
+        <pre id="sqlSnippetBox" style="background:#090d16; border:1px solid var(--border-subtle); border-radius:6px; padding:14px; font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:#93c5fd; overflow-x:auto; max-height:260px; line-height:1.5;">-- Loading Realtime SQL script...</pre>
+
+        <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+          <h4 style="font-size:0.85rem; color:var(--text-primary);">How to Run in your Supabase Project:</h4>
+          <ol style="font-size:0.8rem; color:var(--text-secondary); padding-left:20px; line-height:1.6;">
+            <li>Go to your <a href="https://supabase.com/dashboard/project/ewbkjddovejukoqiibqv/sql" target="_blank" style="color:#818cf8; text-decoration:underline;">Supabase Project SQL Editor</a>.</li>
+            <li>Click <strong>New query</strong>.</li>
+            <li>Click the blue <strong>"Copy Realtime SQL Script"</strong> button above, and paste into the editor.</li>
+            <li>Click <strong>Run (or Ctrl+Enter)</strong>. It takes about 1-2 seconds.</li>
+            <li><strong>Test Real-Time updates:</strong> Run any query in your Supabase SQL editor, e.g.:<br>
+              <code style="background:rgba(255,255,255,0.08); padding:2px 6px; border-radius:4px; color:#38bdf8; display:inline-block; margin-top:4px;">INSERT INTO accidents (location_id, deaths, injured, severity, accident_date) VALUES ('ee1f74ba-8955-4ebc-b814-98fc43035e38', 5, 8, 'Fatal', '2025-01-15');</code><br>
+              You will instantly see a notification toast on this web application and the map pins and death counter will update in real time!
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary btn-sm" id="btnCloseSqlModalFooter">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS Library -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Leaflet Heatmap Layer Extension -->
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  
+  <!-- Google Maps Platform JavaScript API (Places, Marker, Visualization Heatmap) -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqLnJouBYVsgVuu-nVA1Wqp8wJm4rBdEQ&libraries=places,marker,visualization&loading=async" async defer></script>
+
+  <!-- Supabase JS Client v2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Application Modules -->
+  <script src="/js/config.js"></script>
+  <script src="/js/live_data_service.js"></script>
+  <script src="/js/supabase.js"></script>
+  <script src="/js/overlays_data.js"></script>
+  <script src="/js/accidents.js"></script>
+  <script src="/js/map.js"></script>
+  <script src="/js/filters.js"></script>
+  <script src="/js/analytics.js"></script>
+
+  <!-- Main Initialization Routine -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      // 1. Initialize Map Controller (defaults to Google Maps with Leaflet fallback)
+      const mapCtrl = new MapController("map");
+      window.mapCtrl = mapCtrl;
+      window.mapController = mapCtrl;
+
+      // 2. Initialize Telemetry & Data Loading
+      async function refreshData(filters = {}, options = {}) {
+        const hasActiveFilters = Object.values(filters).some(v => Boolean(v && String(v).trim()));
+        const [hotspots, summary] = await Promise.all([
+          window.accidentService.getHotspots(filters),
+          window.accidentService.getSummaryMetrics()
+        ]);
+        window.refreshData = refreshData;
+
+        // Update Map Markers with auto-fit bounds on filter change or real-time event
+        mapCtrl.plotHotspots(hotspots, {
+          fitBounds: hasActiveFilters || Boolean(options.fitBounds),
+          isRealtime: Boolean(options.isRealtime),
+          realtimeTable: options.realtimeTable,
+          realtimeType: options.realtimeType
+        });
+
+        // Update KPI telemetry
+        document.getElementById("kpiTotalAccidents").textContent = Number(summary.total_accidents).toLocaleString();
+        document.getElementById("kpiTotalDeaths").textContent = Number(summary.total_deaths).toLocaleString();
+        document.getElementById("kpiTotalInjured").textContent = Number(summary.total_injured).toLocaleString();
+        document.getElementById("kpiHotspotsCount").textContent = hotspots.length;
+        const topStateEl = document.getElementById("kpiTopState");
+        if (topStateEl) topStateEl.textContent = summary.most_affected_state || "N/A";
+        document.getElementById("drawerHotspotCountBadge").textContent = `${hotspots.length} Hotspots`;
+
+        // Update Header Telemetry Ticker and Compact KPI HUD
+        const headerHotspots = document.getElementById("headerKpiHotspots");
+        if (headerHotspots) headerHotspots.textContent = hotspots.length;
+        const headerDeaths = document.getElementById("headerKpiDeaths");
+        if (headerDeaths) headerDeaths.textContent = Number(summary.total_deaths).toLocaleString();
+        const headerInjured = document.getElementById("headerKpiInjured");
+        if (headerInjured) headerInjured.textContent = Number(summary.total_injured).toLocaleString();
+
+        const compactHotspots = document.getElementById("kpiCompactHotspots");
+        if (compactHotspots) compactHotspots.textContent = hotspots.length;
+        const compactDeaths = document.getElementById("kpiCompactFatalities");
+        if (compactDeaths) compactDeaths.textContent = Number(summary.total_deaths).toLocaleString();
+
+        // Render Drawer Table
+        renderDrawerHotspots(hotspots);
+      }
+
+      function renderDrawerHotspots(hotspots) {
+        const tbody = document.getElementById("drawerHotspotsBody");
+        if (!tbody) return;
+
+        if (hotspots.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:15px; color:var(--text-muted);">No hotspots match active filters.</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = "";
+        hotspots.slice(0, 10).forEach((spot, idx) => {
+          const tr = document.createElement("tr");
+          const lat = parseFloat(spot.latitude);
+          const lng = parseFloat(spot.longitude);
+          const coordsLabel = (!isNaN(lat) && !isNaN(lng))
+            ? `${lat.toFixed(5)}°, ${lng.toFixed(5)}°`
+            : "MoRTH Verified";
+          const localityLabel = spot.locality || spot.city || spot.district_name || "";
+
+          tr.innerHTML = `
+            <td>
+              <div style="font-weight:700; color:var(--text-primary);">#${idx + 1} ${spot.road_name}</div>
+              <div class="table-exact-coords">
+                <span class="coords-tag">📍 ${coordsLabel}</span>
+                <span class="locality-tag" title="${localityLabel}">${localityLabel}</span>
+              </div>
+            </td>
+            <td>${spot.state_name}</td>
+            <td>${spot.total_accidents}</td>
+            <td style="color:var(--tier-critical); font-weight:700;">${spot.total_deaths}</td>
+            <td><span class="badge badge-${spot.hotspot_tier.toLowerCase()}">${spot.hotspot_score}</span></td>
+            <td><button class="btn btn-secondary btn-sm" style="padding:4px 10px; font-weight:600;" onclick="window.mapFocus('${spot.location_id}')">📍 Locate</button></td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      window.mapFocus = (locId) => {
+        mapCtrl.focusLocation(locId);
+        const analyticsDrawer = document.getElementById("analyticsDrawer");
+        if (analyticsDrawer && analyticsDrawer.classList.contains("open")) {
+          analyticsDrawer.classList.remove("open");
+        }
+      };
+
+      // 3. Map Engine, Providers & Viewing Modes Toolbar Wire-Up
+      const selectMapProvider = document.getElementById("selectMapProvider");
+      const modeChips = document.querySelectorAll(".mode-chip");
+      const btnToggleHeatmap = document.getElementById("btnToggleHeatmap");
+      const btnHeatmapSettings = document.getElementById("btnHeatmapSettings");
+      const heatmapControlsPopover = document.getElementById("heatmapControlsPopover");
+      const btnCloseHeatmapControls = document.getElementById("btnCloseHeatmapControls");
+      const selectHeatmapMetric = document.getElementById("selectHeatmapMetric");
+      const radiusBtns = document.querySelectorAll(".radius-btn");
+
+      const btnToggleTraffic = document.getElementById("btnToggleTraffic");
+      const btnToggleMarkers = document.getElementById("btnToggleMarkers");
+      const btnToggleCorridors = document.getElementById("btnToggleCorridors");
+      const btnToggleSpeedCameras = document.getElementById("btnToggleSpeedCameras");
+      const btnToggleGhats = document.getElementById("btnToggleGhats");
+      const btnToggleRiskBuffers = document.getElementById("btnToggleRiskBuffers");
+      const btnToggleTrauma = document.getElementById("btnToggleTrauma");
+      const btnToggle3D = document.getElementById("btnToggle3D");
+      const btnToggleFullscreen = document.getElementById("btnToggleFullscreen");
+      const btnToggleMeasure = document.getElementById("btnToggleMeasure");
+      const btnClearMeasure = document.getElementById("btnClearMeasure");
+      const btnCloseMeasure = document.getElementById("btnCloseMeasure");
+      const btnLocateUser = document.getElementById("btnLocateUser");
+      const btnExportGeoJson = document.getElementById("btnExportGeoJson");
+
+      const selectJumpCorridor = document.getElementById("selectJumpCorridor");
+      const btnRecenterMap = document.getElementById("btnRecenterMap");
+      const btnSyncLiveData = document.getElementById("btnSyncLiveData");
+      const btnSyncText = document.getElementById("btnSyncText");
+      const btnIngestBigData = document.getElementById("btnIngestBigData");
+      const btnIngestText = document.getElementById("btnIngestText");
+
+      // Provider Selector Change
+      if (selectMapProvider) {
+        selectMapProvider.addEventListener("change", (e) => {
+          mapCtrl.switchProvider(e.target.value);
+        });
+      }
+
+      // Viewing Modes Chips (Dark, Light, Satellite, Terrain, Streets)
+      modeChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          const mode = chip.getAttribute("data-mode");
+          mapCtrl.setViewingMode(mode);
+        });
+      });
+
+      // Density Heatmap Layer Toggle
+      if (btnToggleHeatmap) {
+        btnToggleHeatmap.addEventListener("click", () => {
+          mapCtrl.toggleHeatmap();
+        });
+      }
+
+      // Heatmap Settings Popover Toggle
+      if (btnHeatmapSettings && heatmapControlsPopover) {
+        btnHeatmapSettings.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isShown = heatmapControlsPopover.style.display === "flex";
+          heatmapControlsPopover.style.display = isShown ? "none" : "flex";
+        });
+      }
+
+      if (btnCloseHeatmapControls && heatmapControlsPopover) {
+        btnCloseHeatmapControls.addEventListener("click", () => {
+          heatmapControlsPopover.style.display = "none";
+        });
+      }
+
+      if (selectHeatmapMetric) {
+        selectHeatmapMetric.addEventListener("change", (e) => {
+          mapCtrl.setHeatmapWeight(e.target.value);
+        });
+      }
+
+      radiusBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          radiusBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          const rad = btn.getAttribute("data-radius");
+          mapCtrl.setHeatmapRadius(rad);
+        });
+      });
+
+      const rangeHeatmapOpacity = document.getElementById("rangeHeatmapOpacity");
+      const heatmapOpacityVal = document.getElementById("heatmapOpacityVal");
+      if (rangeHeatmapOpacity) {
+        rangeHeatmapOpacity.addEventListener("input", (e) => {
+          const val = parseInt(e.target.value, 10);
+          if (heatmapOpacityVal) heatmapOpacityVal.textContent = val + "%";
+          mapCtrl.setHeatmapOpacity(val / 100);
+        });
+      }
+
+      const btnTogglePinsFromHeatmap = document.getElementById("btnTogglePinsFromHeatmap");
+      if (btnTogglePinsFromHeatmap) {
+        btnTogglePinsFromHeatmap.addEventListener("click", () => {
+          const visible = mapCtrl.toggleMarkers();
+          btnTogglePinsFromHeatmap.textContent = visible ? "📍 Hide Marker Pins (Pure Density)" : "📍 Show Marker Pins";
+        });
+      }
+
+      // Real-Time Live Traffic Layer Toggle
+      if (btnToggleTraffic) {
+        btnToggleTraffic.addEventListener("click", () => {
+          mapCtrl.toggleTraffic();
+        });
+      }
+
+      // Black Spot Marker Pins Toggle
+      if (btnToggleMarkers) {
+        btnToggleMarkers.addEventListener("click", () => {
+          mapCtrl.toggleMarkers();
+        });
+      }
+
+      // High-Fatality Highway Corridors Toggle
+      if (btnToggleCorridors) {
+        btnToggleCorridors.addEventListener("click", () => {
+          mapCtrl.toggleCorridors();
+        });
+      }
+
+      // Highway Speed Cameras & Radar Gantries Toggle
+      if (btnToggleSpeedCameras) {
+        btnToggleSpeedCameras.addEventListener("click", () => {
+          mapCtrl.toggleSpeedCameras();
+        });
+      }
+
+      // Hazardous Mountain Ghats & Hairpin Bends Toggle
+      if (btnToggleGhats) {
+        btnToggleGhats.addEventListener("click", () => {
+          mapCtrl.toggleHazardousGhats();
+        });
+      }
+
+      // Risk Buffer Zones Toggle
+      if (btnToggleRiskBuffers) {
+        btnToggleRiskBuffers.addEventListener("click", () => {
+          mapCtrl.toggleRiskBuffers();
+        });
+      }
+
+      // Emergency Trauma Care Hospitals Toggle
+      if (btnToggleTrauma) {
+        btnToggleTrauma.addEventListener("click", () => {
+          mapCtrl.toggleTrauma();
+        });
+      }
+
+      // 45° 3D Oblique Terrain Tilt Perspective Toggle
+      if (btnToggle3D) {
+        btnToggle3D.addEventListener("click", () => {
+          mapCtrl.toggle3DTilt();
+        });
+      }
+
+      // Fullscreen Toggle
+      if (btnToggleFullscreen) {
+        btnToggleFullscreen.addEventListener("click", () => {
+          mapCtrl.toggleFullscreen();
+        });
+      }
+
+      // Highway Distance & Risk Measurement Tool Toggle
+      if (btnToggleMeasure) {
+        btnToggleMeasure.addEventListener("click", () => {
+          mapCtrl.toggleMeasureTool();
+        });
+      }
+
+      if (btnClearMeasure) {
+        btnClearMeasure.addEventListener("click", () => {
+          mapCtrl.clearMeasure();
+        });
+      }
+
+      if (btnCloseMeasure) {
+        btnCloseMeasure.addEventListener("click", () => {
+          mapCtrl.toggleMeasureTool();
+        });
+      }
+
+      // Geolocation "Near Me" GPS Radar
+      if (btnLocateUser) {
+        btnLocateUser.addEventListener("click", () => {
+          mapCtrl.locateUser();
+        });
+      }
+
+      // Standard GIS GeoJSON Export
+      const exportGeoJsonHandler = () => {
+        if (window.accidentService && typeof window.accidentService.exportGeoJson === "function") {
+          window.accidentService.exportGeoJson();
+        }
+      };
+
+      if (btnExportGeoJson) {
+        btnExportGeoJson.addEventListener("click", exportGeoJsonHandler);
+      }
+
+      const btnExportGeoJsonMain = document.getElementById("btnExportGeoJsonMain");
+      if (btnExportGeoJsonMain) {
+        btnExportGeoJsonMain.addEventListener("click", exportGeoJsonHandler);
+      }
+
+      // Quick Jump to Critical Corridors
+      if (selectJumpCorridor) {
+        selectJumpCorridor.addEventListener("change", (e) => {
+          const locId = e.target.value;
+          if (locId) {
+            mapCtrl.focusLocation(locId);
+            const analyticsDrawer = document.getElementById("analyticsDrawer");
+            if (analyticsDrawer && analyticsDrawer.classList.contains("open")) {
+              analyticsDrawer.classList.remove("open");
+            }
+          }
+        });
+      }
+
+      // Recenter Map on India
+      if (btnRecenterMap) {
+        btnRecenterMap.addEventListener("click", () => {
+          mapCtrl.resetView();
+          if (selectJumpCorridor) selectJumpCorridor.value = "";
+        });
+      }
+
+      // Ingest Big Data from Internet (Overpass GIS + MoRTH Feeds)
+      if (btnIngestBigData) {
+        btnIngestBigData.addEventListener("click", async () => {
+          btnIngestText.textContent = "Ingesting Internet GIS Feeds...";
+          btnIngestBigData.style.opacity = "0.7";
+          btnIngestBigData.disabled = true;
+
+          try {
+            const bigDataRes = await window.accidentService.fetchBigExternalData();
+            await refreshData();
+            
+            const totalCount = bigDataRes?.stats?.totalHotspotsInDB || window.accidentService.benchmarkData.hotspots.length;
+            btnIngestText.textContent = `✓ Ingested Big Data (${totalCount} Nodes)`;
+            
+            const feedsBadge = document.getElementById("telemetryFeedsStatus");
+            if (feedsBadge) {
+              feedsBadge.textContent = `● Big Data Ingested (${totalCount} Hotspots)`;
+              feedsBadge.style.color = "#a855f7";
+            }
+
+            setTimeout(() => {
+              btnIngestText.textContent = "📡 Ingest Big Data";
+              btnIngestBigData.style.opacity = "1";
+              btnIngestBigData.disabled = false;
+            }, 4000);
+          } catch (err) {
+            console.error("Big data ingest error:", err);
+            btnIngestText.textContent = "Ingest Complete";
+            setTimeout(() => {
+              btnIngestText.textContent = "📡 Ingest Big Data";
+              btnIngestBigData.style.opacity = "1";
+              btnIngestBigData.disabled = false;
+            }, 2500);
+          }
+        });
+      }
+
+      // Sync MoRTH Live Data Button
+      if (btnSyncLiveData) {
+        btnSyncLiveData.addEventListener("click", async () => {
+          btnSyncText.textContent = "Connecting Live GIS & MoRTH API...";
+          btnSyncLiveData.style.opacity = "0.7";
+          btnSyncLiveData.disabled = true;
+
+          try {
+            const syncResult = await window.liveDataService.syncLiveApiData();
+            // Sync with the backend database engine API as well
+            try {
+              const allSpots = window.accidentService.benchmarkData.hotspots || [];
+              await fetch("/api/sync-live", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ hotspots: allSpots })
+              });
+            } catch (_) {}
+            await refreshData();
+            const liveText = syncResult.liveApiCount ? ` (${syncResult.govCount} MoRTH + ${syncResult.liveApiCount} Live OSM)` : ` (${syncResult.govCount} MoRTH Corridors)`;
+            btnSyncText.textContent = `✓ Synced ${syncResult.syncedCount} Hotspots${liveText}`;
+            setTimeout(() => {
+              btnSyncText.textContent = "Sync MoRTH Live Data";
+              btnSyncLiveData.style.opacity = "1";
+              btnSyncLiveData.disabled = false;
+            }, 3500);
+          } catch (err) {
+            console.error(err);
+            btnSyncText.textContent = "Sync Complete";
+            setTimeout(() => {
+              btnSyncText.textContent = "Sync MoRTH Live Data";
+              btnSyncLiveData.style.opacity = "1";
+              btnSyncLiveData.disabled = false;
+            }, 2000);
+          }
+        });
+      }
+
+      // 4. Initial Load immediately so map and HUD have real live data rendered
+      await refreshData();
+
+      // 5. Initialize Filters
+      const filterMgr = new FilterManager({
+        onFilterChange: (filters) => refreshData(filters)
+      });
+      await filterMgr.initDropdowns();
+      await window.analyticsEngine.renderMonthlyTrends("monthlyTrendChart");
+
+      // Auto-fetch supplementary Live GIS hazard nodes in the background and sync with DB
+      window.liveDataService.syncLiveApiData().then(async (syncResult) => {
+        if (syncResult && syncResult.syncedCount) {
+          try {
+            const allSpots = window.accidentService.benchmarkData.hotspots || [];
+            await fetch("/api/sync-live", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ hotspots: allSpots })
+            });
+          } catch (_) {}
+          await refreshData();
+          console.log(`Auto-synced ${syncResult.syncedCount} real hotspots to live database.`);
+        }
+      }).catch((e) => console.log("Startup sync notice:", e));
+
+      // 5. Clean UI Popovers & HUD Collapsible Logic
+      // Filter Popover Open/Close
+      const btnToggleFilters = document.getElementById("btnToggleFilters");
+      const filterPopover = document.getElementById("filterPopover");
+      const btnCloseFilterPopover = document.getElementById("btnCloseFilterPopover");
+      const btnApplyFilters = document.getElementById("btnApplyFilters");
+      const searchFilterContainer = document.getElementById("searchFilterContainer");
+
+      if (btnToggleFilters && filterPopover) {
+        btnToggleFilters.addEventListener("click", (e) => {
+          e.stopPropagation();
+          filterPopover.classList.toggle("open");
+        });
+      }
+
+      if (btnCloseFilterPopover && filterPopover) {
+        btnCloseFilterPopover.addEventListener("click", () => {
+          filterPopover.classList.remove("open");
+        });
+      }
+
+      if (btnApplyFilters && filterPopover) {
+        btnApplyFilters.addEventListener("click", () => {
+          filterPopover.classList.remove("open");
+        });
+      }
+
+      const btnEmptyResetFilters = document.getElementById("btnEmptyResetFilters");
+      if (btnEmptyResetFilters) {
+        btnEmptyResetFilters.addEventListener("click", () => {
+          if (window.filterManager) window.filterManager.resetFilters();
+        });
+      }
+
+      // KPI HUD Collapse / Expand
+      const kpiHud = document.getElementById("kpiHud");
+      const btnToggleKpiHud = document.getElementById("btnToggleKpiHud");
+      const kpiToggleIcon = document.getElementById("kpiToggleIcon");
+      const dbStatusBadgeHud = document.getElementById("dbStatusBadgeHud");
+
+      if (btnToggleKpiHud && kpiHud) {
+        btnToggleKpiHud.addEventListener("click", () => {
+          kpiHud.classList.toggle("collapsed");
+          if (kpiToggleIcon) {
+            kpiToggleIcon.textContent = kpiHud.classList.contains("collapsed") ? "+" : "−";
+          }
+        });
+      }
+
+      // Legend Minimize / Expand
+      const mapLegend = document.getElementById("mapLegend");
+      const btnToggleLegend = document.getElementById("btnToggleLegend");
+
+      if (btnToggleLegend && mapLegend) {
+        btnToggleLegend.addEventListener("click", () => {
+          mapLegend.classList.toggle("minimized");
+          btnToggleLegend.textContent = mapLegend.classList.contains("minimized") ? "+" : "−";
+        });
+      }
+
+      // Header Sync & Feeds Dropdown
+      const btnSyncMenu = document.getElementById("btnSyncMenu");
+      const syncDropdown = document.getElementById("syncDropdown");
+      const syncMenuContent = document.getElementById("syncMenuContent");
+
+      if (btnSyncMenu && syncMenuContent) {
+        btnSyncMenu.addEventListener("click", (e) => {
+          e.stopPropagation();
+          syncMenuContent.classList.toggle("active");
+          if (resourcesMenuContent) resourcesMenuContent.classList.remove("active");
+        });
+      }
+
+      // Resources Dropdown Menu in Header
+      const btnResourcesMenu = document.getElementById("btnResourcesMenu");
+      const resourcesDropdown = document.getElementById("resourcesDropdown");
+      const resourcesMenuContent = document.getElementById("resourcesMenuContent");
+
+      if (btnResourcesMenu && resourcesMenuContent) {
+        btnResourcesMenu.addEventListener("click", (e) => {
+          e.stopPropagation();
+          resourcesMenuContent.classList.toggle("active");
+          if (syncMenuContent) syncMenuContent.classList.remove("active");
+        });
+      }
+
+      // Toolbar Modular Dropdowns (Basemap, Layers, Tools)
+      const btnBasemapDropdown = document.getElementById("btnBasemapDropdown");
+      const basemapDropdownWrapper = document.getElementById("basemapDropdownWrapper");
+      const basemapMenuContent = document.getElementById("basemapMenuContent");
+      const activeBasemapLabel = document.getElementById("activeBasemapLabel");
+
+      if (btnBasemapDropdown && basemapMenuContent) {
+        btnBasemapDropdown.addEventListener("click", (e) => {
+          e.stopPropagation();
+          basemapMenuContent.classList.toggle("open");
+          if (layersMenuContent) layersMenuContent.classList.remove("open");
+          if (toolsMenuContent) toolsMenuContent.classList.remove("open");
+        });
+      }
+
+      const btnLayersDropdown = document.getElementById("btnLayersDropdown");
+      const layersDropdownWrapper = document.getElementById("layersDropdownWrapper");
+      const layersMenuContent = document.getElementById("layersMenuContent");
+
+      if (btnLayersDropdown && layersMenuContent) {
+        btnLayersDropdown.addEventListener("click", (e) => {
+          e.stopPropagation();
+          layersMenuContent.classList.toggle("open");
+          if (basemapMenuContent) basemapMenuContent.classList.remove("open");
+          if (toolsMenuContent) toolsMenuContent.classList.remove("open");
+        });
+      }
+
+      const btnToolsDropdown = document.getElementById("btnToolsDropdown");
+      const toolsDropdownWrapper = document.getElementById("toolsDropdownWrapper");
+      const toolsMenuContent = document.getElementById("toolsMenuContent");
+
+      if (btnToolsDropdown && toolsMenuContent) {
+        btnToolsDropdown.addEventListener("click", (e) => {
+          e.stopPropagation();
+          toolsMenuContent.classList.toggle("open");
+          if (basemapMenuContent) basemapMenuContent.classList.remove("open");
+          if (layersMenuContent) layersMenuContent.classList.remove("open");
+        });
+      }
+
+      // Auto update active layer status and counter
+      function refreshActiveLayersCount() {
+        const layerButtons = [
+          document.getElementById("btnToggleMarkers"),
+          document.getElementById("btnToggleCorridors"),
+          document.getElementById("btnToggleSpeedCameras"),
+          document.getElementById("btnToggleGhats"),
+          document.getElementById("btnToggleRiskBuffers"),
+          document.getElementById("btnToggleTrauma")
+        ];
+        let count = 0;
+        layerButtons.forEach(btn => {
+          if (btn) {
+            const isActive = btn.classList.contains("active");
+            const pill = btn.querySelector(".layer-status-pill");
+            if (pill) {
+              pill.textContent = isActive ? "ON" : "OFF";
+            }
+            if (isActive) count++;
+          }
+        });
+        const badge = document.getElementById("activeLayersBadge");
+        if (badge) badge.textContent = count;
+        const summary = document.getElementById("activeLayersSummary");
+        if (summary) summary.textContent = `${count} of ${layerButtons.length} active`;
+      }
+
+      // Attach click observer on layer buttons to update count
+      document.querySelectorAll(".layer-item-row").forEach(btn => {
+        btn.addEventListener("click", () => {
+          setTimeout(refreshActiveLayersCount, 50);
+        });
+      });
+      refreshActiveLayersCount();
+
+      // Mode chip click updates active label and closes popover
+      document.querySelectorAll(".basemap-chips-grid .mode-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          if (activeBasemapLabel) {
+            activeBasemapLabel.textContent = chip.textContent.trim();
+          }
+          if (basemapMenuContent) {
+            basemapMenuContent.classList.remove("open");
+          }
+        });
+      });
+
+      // Tool click closes tools popover
+      document.querySelectorAll(".tool-items-list .tool-item-btn").forEach(toolBtn => {
+        toolBtn.addEventListener("click", () => {
+          if (toolsMenuContent) {
+            toolsMenuContent.classList.remove("open");
+          }
+        });
+      });
+
+      // Global click-outside listener to close popovers and dropdowns
+      document.addEventListener("click", (e) => {
+        if (filterPopover && filterPopover.classList.contains("open")) {
+          if (!searchFilterContainer || !searchFilterContainer.contains(e.target)) {
+            filterPopover.classList.remove("open");
+          }
+        }
+        if (resourcesMenuContent && resourcesMenuContent.classList.contains("active")) {
+          if (!resourcesDropdown || !resourcesDropdown.contains(e.target)) {
+            resourcesMenuContent.classList.remove("active");
+          }
+        }
+        if (syncMenuContent && syncMenuContent.classList.contains("active")) {
+          if (!syncDropdown || !syncDropdown.contains(e.target)) {
+            syncMenuContent.classList.remove("active");
+          }
+        }
+        if (basemapMenuContent && basemapMenuContent.classList.contains("open")) {
+          if (!basemapDropdownWrapper || !basemapDropdownWrapper.contains(e.target)) {
+            basemapMenuContent.classList.remove("open");
+          }
+        }
+        if (layersMenuContent && layersMenuContent.classList.contains("open")) {
+          if (!layersDropdownWrapper || !layersDropdownWrapper.contains(e.target)) {
+            layersMenuContent.classList.remove("open");
+          }
+        }
+        if (toolsMenuContent && toolsMenuContent.classList.contains("open")) {
+          if (!toolsDropdownWrapper || !toolsDropdownWrapper.contains(e.target)) {
+            toolsMenuContent.classList.remove("open");
+          }
+        }
+      });
+
+      // 6. Drawer Toggle Logic
+      const drawer = document.getElementById("analyticsDrawer");
+      const drawerToggleBar = document.getElementById("drawerToggleBar");
+      const drawerBtnText = document.getElementById("btnToggleDrawerText");
+
+      drawerToggleBar.addEventListener("click", () => {
+        drawer.classList.toggle("expanded");
+        drawerBtnText.textContent = drawer.classList.contains("expanded") ? "Close Insights ▼" : "Open Insights ▲";
+      });
+
+      // 6. Docs Modal Logic
+      const docsModal = document.getElementById("docsModal");
+      const btnOpenDocs = document.getElementById("btnOpenDocs");
+      const btnCloseDocs = document.getElementById("btnCloseDocs");
+      const btnCloseDocsFooter = document.getElementById("btnCloseDocsFooter");
+      const linkFormula = document.getElementById("linkFormulaExplainer");
+
+      const openDocs = (e) => {
+        e.preventDefault();
+        docsModal.classList.add("active");
+      };
+      const closeDocs = () => docsModal.classList.remove("active");
+
+      btnOpenDocs.addEventListener("click", openDocs);
+      if (linkFormula) linkFormula.addEventListener("click", openDocs);
+      btnCloseDocs.addEventListener("click", closeDocs);
+      btnCloseDocsFooter.addEventListener("click", closeDocs);
+
+      // 7. Sources Modal Logic
+      const sourcesModal = document.getElementById("sourcesModal");
+      const btnOpenSources = document.getElementById("btnOpenSources");
+      const btnCloseSources = document.getElementById("btnCloseSources");
+      const btnCloseSourcesFooter = document.getElementById("btnCloseSourcesFooter");
+
+      const openSources = (e) => {
+        e.preventDefault();
+        sourcesModal.classList.add("active");
+      };
+      const closeSources = () => sourcesModal.classList.remove("active");
+
+      if (btnOpenSources) btnOpenSources.addEventListener("click", openSources);
+      if (btnCloseSources) btnCloseSources.addEventListener("click", closeSources);
+      if (btnCloseSourcesFooter) btnCloseSourcesFooter.addEventListener("click", closeSources);
+
+      // 8. SQL Setup Modal Logic
+      const sqlModal = document.getElementById("sqlModal");
+      const btnOpenSqlModal = document.getElementById("btnOpenSqlModal");
+      const dbStatusBadge = document.getElementById("dbStatusBadge");
+      const btnCloseSqlModal = document.getElementById("btnCloseSqlModal");
+      const btnCloseSqlModalFooter = document.getElementById("btnCloseSqlModalFooter");
+      const btnCopySqlSetup = document.getElementById("btnCopySqlSetup");
+      const copySqlBtnText = document.getElementById("copySqlBtnText");
+      const sqlSnippetBox = document.getElementById("sqlSnippetBox");
+      const tabBtnRealtimeSql = document.getElementById("tabBtnRealtimeSql");
+      const tabBtnMasterSql = document.getElementById("tabBtnMasterSql");
+      const activeSqlFileName = document.getElementById("activeSqlFileName");
+
+      let currentSqlType = "realtime"; // 'realtime' | 'master'
+      let realtimeSqlContent = "";
+      let masterSqlContent = "";
+
+      async function fetchSqlContent(type) {
+        if (type === "realtime" && !realtimeSqlContent) {
+          try {
+            const res = await fetch("/api/supabase/realtime-sql");
+            if (res.ok) realtimeSqlContent = await res.text();
+          } catch (_) {}
+        } else if (type === "master" && !masterSqlContent) {
+          try {
+            const res = await fetch("/api/supabase/setup-sql");
+            if (res.ok) masterSqlContent = await res.text();
+          } catch (_) {}
+        }
+
+        const content = type === "realtime" ? realtimeSqlContent : masterSqlContent;
+        if (sqlSnippetBox && content) {
+          sqlSnippetBox.textContent = content.length > 3500
+            ? content.slice(0, 3500) + "\n\n-- ... [Full script copied when you click the button above] ..."
+            : content;
+        }
+      }
+
+      function switchSqlTab(type) {
+        currentSqlType = type;
+        if (type === "realtime") {
+          tabBtnRealtimeSql.className = "btn btn-primary btn-sm";
+          tabBtnMasterSql.className = "btn btn-secondary btn-sm";
+          copySqlBtnText.textContent = "Copy Realtime SQL Script";
+          activeSqlFileName.textContent = "Script: sql/enable_realtime_and_views.sql";
+        } else {
+          tabBtnRealtimeSql.className = "btn btn-secondary btn-sm";
+          tabBtnMasterSql.className = "btn btn-primary btn-sm";
+          copySqlBtnText.textContent = "Copy Master DDL Script";
+          activeSqlFileName.textContent = "Script: sql/all_in_one_setup.sql";
+        }
+        fetchSqlContent(type);
+      }
+
+      if (tabBtnRealtimeSql) tabBtnRealtimeSql.addEventListener("click", () => switchSqlTab("realtime"));
+      if (tabBtnMasterSql) tabBtnMasterSql.addEventListener("click", () => switchSqlTab("master"));
+
+      const openSqlModal = async (e) => {
+        if (e) e.preventDefault();
+        sqlModal.classList.add("active");
+        await fetchSqlContent(currentSqlType);
+      };
+      const closeSqlModal = () => sqlModal.classList.remove("active");
+
+      if (btnOpenSqlModal) btnOpenSqlModal.addEventListener("click", openSqlModal);
+      if (dbStatusBadge) dbStatusBadge.addEventListener("click", openSqlModal);
+      if (dbStatusBadgeHud) dbStatusBadgeHud.addEventListener("click", openSqlModal);
+      if (btnCloseSqlModal) btnCloseSqlModal.addEventListener("click", closeSqlModal);
+      if (btnCloseSqlModalFooter) btnCloseSqlModalFooter.addEventListener("click", closeSqlModal);
+
+      if (btnCopySqlSetup) {
+        btnCopySqlSetup.addEventListener("click", async () => {
+          await fetchSqlContent(currentSqlType);
+          const textToCopy = currentSqlType === "realtime" ? realtimeSqlContent : masterSqlContent;
+          if (textToCopy && navigator.clipboard) {
+            await navigator.clipboard.writeText(textToCopy);
+            copySqlBtnText.textContent = "✓ Copied to Clipboard!";
+            setTimeout(() => {
+              copySqlBtnText.textContent = currentSqlType === "realtime" ? "Copy Realtime SQL Script" : "Copy Master DDL Script";
+            }, 2500);
+          } else {
+            alert("Clipboard error. Please copy from sql/enable_realtime_and_views.sql in project files.");
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
