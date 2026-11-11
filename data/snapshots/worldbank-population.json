@@ -1,0 +1,1861 @@
+{
+  "config": {
+    "id": "worldbank-population",
+    "name": "World Bank — Population, total",
+    "kind": "national_series",
+    "trustTier": "model_derived",
+    "endpointTemplate": "https://api.worldbank.org/v2/country/{codes}/indicator/SP.POP.TOTL?format=json&date={from}:{to}&per_page=2000",
+    "cadenceMs": 86400000,
+    "ttlMs": 604800000,
+    "timeoutMs": 15000,
+    "enabled": true,
+    "snapshotFile": "data/snapshots/worldbank-population.json",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
+    }
+  },
+  "status": "ok",
+  "lastFetchedAt": "2026-11-02T06:28:07.583Z",
+  "nextFetchAt": "2026-11-03T06:28:07.583Z",
+  "recordCount": 182,
+  "latencyMs": 849,
+  "error": null,
+  "failureCount": 0,
+  "provenance": {
+    "sourceId": "worldbank-population",
+    "publisher": "World Bank (World Development Indicators)",
+    "dataset": "Population, total",
+    "endpoint": "https://api.worldbank.org/v2/country/IND;BGD;PAK;NPL;LKA;MMR;BRN/indicator/SP.POP.TOTL?format=json&date=2000:2026&per_page=2000",
+    "retrievedAt": "2026-11-02T06:28:07.583Z",
+    "coverageFrom": "2000",
+    "coverageTo": "2025",
+    "license": "CC BY 4.0 — World Bank Data Terms",
+    "method": "WB API (World Development Indicators)",
+    "trustTier": "model_derived",
+    "cacheAgeMs": 0,
+    "fromSnapshot": false
+  },
+  "points": [
+    {
+      "period": "2025",
+      "value": 175686899,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2025"
+      }
+    },
+    {
+      "period": "2024",
+      "value": 173562364,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2024"
+      }
+    },
+    {
+      "period": "2023",
+      "value": 171466990,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2023"
+      }
+    },
+    {
+      "period": "2022",
+      "value": 169384897,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2022"
+      }
+    },
+    {
+      "period": "2021",
+      "value": 167658854,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2021"
+      }
+    },
+    {
+      "period": "2020",
+      "value": 166298024,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2020"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 164913055,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 163523103,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 162186147,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 160811932,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 159383179,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 157964929,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 156532141,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 155070101,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 153591076,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 152201981,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 150873714,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 149474264,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 147989278,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 146405973,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 144715786,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 142902856,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 140970351,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 138933658,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 136805810,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 134544304,
+      "unit": "people",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2025",
+      "value": 466330,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2025"
+      }
+    },
+    {
+      "period": "2024",
+      "value": 462721,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2024"
+      }
+    },
+    {
+      "period": "2023",
+      "value": 458949,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2023"
+      }
+    },
+    {
+      "period": "2022",
+      "value": 455370,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2022"
+      }
+    },
+    {
+      "period": "2021",
+      "value": 451721,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2021"
+      }
+    },
+    {
+      "period": "2020",
+      "value": 447404,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2020"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 442680,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 437810,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 432772,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 427564,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 422212,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 416750,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 411202,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 405557,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 399389,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 392332,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 384952,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 377793,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 370873,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 364663,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 358916,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 352911,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 346637,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 340099,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 333345,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 326424,
+      "unit": "people",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2025",
+      "value": 1463865525,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2025"
+      }
+    },
+    {
+      "period": "2024",
+      "value": 1450935791,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2024"
+      }
+    },
+    {
+      "period": "2023",
+      "value": 1438069596,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2023"
+      }
+    },
+    {
+      "period": "2022",
+      "value": 1425423212,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2022"
+      }
+    },
+    {
+      "period": "2021",
+      "value": 1414203896,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2021"
+      }
+    },
+    {
+      "period": "2020",
+      "value": 1402617695,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2020"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 1389030312,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 1374659064,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 1359657400,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 1343944296,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 1328024498,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 1312277191,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 1295829511,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 1278674502,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 1261224954,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 1243481564,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 1225524753,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 1207930964,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 1190676021,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 1172878890,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 1154676322,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 1135991513,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 1116803006,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 1097600380,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 1077898575,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 1057922733,
+      "unit": "people",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2025",
+      "value": 21756000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2025"
+      }
+    },
+    {
+      "period": "2024",
+      "value": 21916000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2024"
+      }
+    },
+    {
+      "period": "2023",
+      "value": 22037000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2023"
+      }
+    },
+    {
+      "period": "2022",
+      "value": 22181000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2022"
+      }
+    },
+    {
+      "period": "2021",
+      "value": 22156000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2021"
+      }
+    },
+    {
+      "period": "2020",
+      "value": 21919000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2020"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 21803000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 21670000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 21453000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 21209000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 20970000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 20778000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 20585000,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 21169458,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 21009048,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 20879089,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 20756435,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 20629378,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 20492545,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 20352411,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 20216524,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 20087605,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 19951521,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 19805752,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 19600362,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 19293054,
+      "unit": "people",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2025",
+      "value": 54850648,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2025"
+      }
+    },
+    {
+      "period": "2024",
+      "value": 54500091,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2024"
+      }
+    },
+    {
+      "period": "2023",
+      "value": 54133798,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2023"
+      }
+    },
+    {
+      "period": "2022",
+      "value": 53756787,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2022"
+      }
+    },
+    {
+      "period": "2021",
+      "value": 53387102,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2021"
+      }
+    },
+    {
+      "period": "2020",
+      "value": 53016522,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2020"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 52640713,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 52272247,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 51894938,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 51495696,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 51089056,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 50681634,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 50262658,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 49837446,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 49419820,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 49024382,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 48660459,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 48390793,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 48125043,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 47785135,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 47438365,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 47068772,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 46667192,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 46232653,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 45771139,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 45290841,
+      "unit": "people",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2025",
+      "value": 29618118,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2025"
+      }
+    },
+    {
+      "period": "2024",
+      "value": 29651054,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2024"
+      }
+    },
+    {
+      "period": "2023",
+      "value": 29694614,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2023"
+      }
+    },
+    {
+      "period": "2022",
+      "value": 29715436,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2022"
+      }
+    },
+    {
+      "period": "2021",
+      "value": 29475010,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2021"
+      }
+    },
+    {
+      "period": "2020",
+      "value": 28966574,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2020"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 28414064,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 28079689,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 28011258,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 27955462,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 27823629,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 27672370,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 27589996,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 27534915,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 27464494,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 27341952,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 27173035,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 26990037,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 26788492,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 26565425,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 26309458,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 26016656,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 25688758,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 25328981,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 24946748,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 24546509,
+      "unit": "people",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2025",
+      "value": 255219554,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2025"
+      }
+    },
+    {
+      "period": "2024",
+      "value": 251269164,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2024"
+      }
+    },
+    {
+      "period": "2023",
+      "value": 247504495,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2023"
+      }
+    },
+    {
+      "period": "2022",
+      "value": 243700667,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2022"
+      }
+    },
+    {
+      "period": "2021",
+      "value": 239477801,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2021"
+      }
+    },
+    {
+      "period": "2020",
+      "value": 235001746,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2020"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 230800899,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 226928892,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 223273967,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 220138869,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 217290883,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 214264647,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 211073978,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 207667125,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 203746065,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 199239047,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 194376534,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 189499113,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 184493231,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 179682690,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 175453212,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 171286000,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 167110248,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 163222549,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 159270907,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 154879127,
+      "unit": "people",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2000"
+      }
+    }
+  ],
+  "extra": null
+}

@@ -784,6 +784,8 @@
       </div>
     </div>
 
+    <!-- Prediction Sidebar Mount Target -->
+    <div id="prediction-sidebar"></div>
   </main>
 
   <!-- DBMS Specification & Mathematical Scoring Modal -->
@@ -881,11 +883,11 @@
 
           <div style="background:var(--bg-card); padding:16px; border-radius:var(--radius-sm); border-left:4px solid #f59e0b;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <strong style="color:var(--text-primary); font-size:0.95rem;">5. Hugging Face Open Safety Datasets</strong>
-              <a href="https://huggingface.co/datasets" target="_blank" class="btn btn-secondary btn-sm" style="padding:2px 8px; font-size:0.7rem;">Hugging Face Hub ↗</a>
+              <strong style="color:var(--text-primary); font-size:0.95rem;">5. Our World in Data & World Bank (Live Real Ingestion)</strong>
+              <a href="https://ourworldindata.org" target="_blank" class="btn btn-secondary btn-sm" style="padding:2px 8px; font-size:0.7rem;">OWID & WB ↗</a>
             </div>
             <p style="font-size:0.8rem; color:var(--text-secondary);">
-              Curated public datasets covering Indian vehicular traffic safety, black spot geographic records, and road condition classification models accessible via the open Datasets Hub API.
+              Integrated national time-series: OWID historical road fatality compendiums (1990–2017) and World Bank road traffic mortality rates per 100,000 population with regional peer benchmarking. (Hugging Face integration is planned).
             </p>
           </div>
 
@@ -1774,5 +1776,8 @@
       }
     });
   </script>
+  <script src="/js/prediction_render.js"></script>
+  <script src="/js/live_sources.js"></script>
+  <script src="/js/prediction.js"></script>
 </body>
 </html>

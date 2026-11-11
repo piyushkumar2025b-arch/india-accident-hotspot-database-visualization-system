@@ -337,7 +337,8 @@ class MapController {
         maxZoom: CONFIG.MAP.MAX_ZOOM,
         mapTypeId: initialMapType,
         styles: initialStyles,
-        mapId: CONFIG.MAP.MAP_ID || "DEMO_MAP_ID",
+        // mapId intentionally omitted: it forces vector rendering where the
+        // `styles` arrays below are ignored, breaking the dark/light modes.
         internalUsageAttributionIds: [CONFIG.GOOGLE_MAPS_ATTRIBUTION_ID || "gmp_mcp_codeassist_v1_aistudio"],
         mapTypeControl: false,
         streetViewControl: true,
@@ -2112,7 +2113,9 @@ class MapController {
 
       let marker = null;
 
-      if (AdvancedMarkerElement) {
+      // Advanced markers require a mapId; this map is styled via `styles` instead,
+      // so skip the attempt and go straight to the SVG-icon fallback.
+      if (AdvancedMarkerElement && this.googleMap.getMapId && this.googleMap.getMapId()) {
         try {
           const markerContent = document.createElement("div");
           markerContent.className = `custom-hotspot-marker ${tierClass} ${isCompact ? 'compact-dot' : ''}`;

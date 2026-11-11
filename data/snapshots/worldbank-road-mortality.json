@@ -1,0 +1,1441 @@
+{
+  "config": {
+    "id": "worldbank-road-mortality",
+    "name": "World Bank — Road-traffic mortality per 100k",
+    "kind": "national_series",
+    "trustTier": "model_derived",
+    "endpointTemplate": "https://api.worldbank.org/v2/country/{codes}/indicator/SH.STA.TRAF.P5?format=json&date={from}:{to}&per_page=2000",
+    "cadenceMs": 86400000,
+    "ttlMs": 604800000,
+    "timeoutMs": 15000,
+    "enabled": true,
+    "snapshotFile": "data/snapshots/worldbank-road-mortality.json",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
+    }
+  },
+  "status": "ok",
+  "lastFetchedAt": "2026-11-02T06:28:07.218Z",
+  "nextFetchAt": "2026-11-03T06:28:07.218Z",
+  "recordCount": 140,
+  "latencyMs": 484,
+  "error": null,
+  "failureCount": 0,
+  "provenance": {
+    "sourceId": "worldbank-road-mortality",
+    "publisher": "World Bank / WHO Global Health Estimates",
+    "dataset": "Mortality caused by road traffic injury (per 100,000 pop.)",
+    "endpoint": "https://api.worldbank.org/v2/country/IND;BGD;PAK;NPL;LKA;MMR;BRN/indicator/SH.STA.TRAF.P5?format=json&date=2000:2026&per_page=2000",
+    "retrievedAt": "2026-11-02T06:28:07.218Z",
+    "coverageFrom": "2000",
+    "coverageTo": "2019",
+    "license": "CC BY 4.0 — World Bank Data Terms",
+    "method": "WB API; WHO modelled estimate, not vital-registration count",
+    "trustTier": "model_derived",
+    "cacheAgeMs": 0,
+    "fromSnapshot": false
+  },
+  "points": [
+    {
+      "period": "2019",
+      "value": 15.3,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 15.5,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 15.6,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 15.8,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 15.8,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 15.9,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 15.9,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 15.9,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 16.8,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 16.9,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 16.9,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 16.9,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 16.9,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 17.6,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 17.6,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 16.4,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 14.9,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 13.5,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 12,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 10.8,
+      "unit": "deaths per 100k",
+      "iso3": "BGD",
+      "entity": "Bangladesh",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 7.5,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 7.8,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 8.1,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 9.1,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 8.9,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 8.5,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 9.6,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 9,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 12.2,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 7.7,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 11.5,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 10.5,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 17.6,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 12.7,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 14.4,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 12.5,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 8.8,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 15,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 19.4,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 15.9,
+      "unit": "deaths per 100k",
+      "iso3": "BRN",
+      "entity": "Brunei Darussalam",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 15.6,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 15.5,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 15.2,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 15.3,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 15.6,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 16.1,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 17,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 17.6,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 17.4,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 17.2,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 17,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 17.1,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 16.7,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 16.3,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 15.9,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 15.6,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 15.8,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 16.3,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 16.6,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 16.9,
+      "unit": "deaths per 100k",
+      "iso3": "IND",
+      "entity": "India",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 19.7,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 17.9,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 16.3,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 14.7,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 13.9,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 12.1,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 12.6,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 12.9,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 14.1,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 14.2,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 14.3,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 14.2,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 14.4,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 14.4,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 14.9,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 14.7,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 15,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 15.1,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 15.3,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 15.1,
+      "unit": "deaths per 100k",
+      "iso3": "LKA",
+      "entity": "Sri Lanka",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 20.4,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 20.2,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 20,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 19.9,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 19.7,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 19.6,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 19.5,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 19.5,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 19,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 19.1,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 19.1,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 19.2,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 19,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 19,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 19.3,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 19.7,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 20.1,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 20.4,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 20.6,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 20.9,
+      "unit": "deaths per 100k",
+      "iso3": "MMR",
+      "entity": "Myanmar",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 16.3,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 16.2,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 16.2,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 17,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 16.3,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 15.9,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 15.7,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 15.7,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 16.1,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 15.8,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 15.7,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 15.9,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 16,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 15.9,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 16,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 15.9,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 15.4,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 15.3,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 15.3,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 15.5,
+      "unit": "deaths per 100k",
+      "iso3": "NPL",
+      "entity": "Nepal",
+      "meta": {
+        "date": "2000"
+      }
+    },
+    {
+      "period": "2019",
+      "value": 13,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2019"
+      }
+    },
+    {
+      "period": "2018",
+      "value": 13.1,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2018"
+      }
+    },
+    {
+      "period": "2017",
+      "value": 13.3,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2017"
+      }
+    },
+    {
+      "period": "2016",
+      "value": 13.5,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2016"
+      }
+    },
+    {
+      "period": "2015",
+      "value": 13.5,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2015"
+      }
+    },
+    {
+      "period": "2014",
+      "value": 13.5,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2014"
+      }
+    },
+    {
+      "period": "2013",
+      "value": 13.7,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2013"
+      }
+    },
+    {
+      "period": "2012",
+      "value": 13.8,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2012"
+      }
+    },
+    {
+      "period": "2011",
+      "value": 14.8,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2011"
+      }
+    },
+    {
+      "period": "2010",
+      "value": 14.7,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2010"
+      }
+    },
+    {
+      "period": "2009",
+      "value": 14.5,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2009"
+      }
+    },
+    {
+      "period": "2008",
+      "value": 14.2,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2008"
+      }
+    },
+    {
+      "period": "2007",
+      "value": 14.1,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2007"
+      }
+    },
+    {
+      "period": "2006",
+      "value": 14.1,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2006"
+      }
+    },
+    {
+      "period": "2005",
+      "value": 14.4,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2005"
+      }
+    },
+    {
+      "period": "2004",
+      "value": 14.4,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2004"
+      }
+    },
+    {
+      "period": "2003",
+      "value": 14,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2003"
+      }
+    },
+    {
+      "period": "2002",
+      "value": 14.1,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2002"
+      }
+    },
+    {
+      "period": "2001",
+      "value": 14,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2001"
+      }
+    },
+    {
+      "period": "2000",
+      "value": 14,
+      "unit": "deaths per 100k",
+      "iso3": "PAK",
+      "entity": "Pakistan",
+      "meta": {
+        "date": "2000"
+      }
+    }
+  ],
+  "extra": null
+}

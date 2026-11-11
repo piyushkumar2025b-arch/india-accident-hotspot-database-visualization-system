@@ -72,19 +72,20 @@ export async function fetchLiveExternalData(): Promise<ExternalFetchResult> {
             const totalAccidents = Math.floor(Math.random() * 45) + 30;
             const fatalAccidents = Math.floor(totalAccidents * 0.42);
             const totalDeaths = Math.floor(fatalAccidents * 1.35) + 5;
+            const st = dbEngine.findNearestState(lat, lon);
 
             return {
               location_id: `ext-osm-${el.id}`,
               road_name: `${name} (${highwayRef})`,
               road_number: highwayRef,
-              city: el.tags?.["addr:city"] || (lat > 25 ? "Northern Grid" : lat > 18 ? "Central Hub" : "Southern Corridor"),
+              city: el.tags?.["addr:city"] || `${st.name} Corridor`,
               locality: `OSM Node #${el.id} - Highway Transit Intersection`,
               latitude: Number(lat.toFixed(6)),
               longitude: Number(lon.toFixed(6)),
               road_type: "National Highway",
-              state_id: lat > 26 ? "state-up" : lat > 20 ? "state-mh" : "state-tn",
-              state_name: lat > 26 ? "Uttar Pradesh" : lat > 20 ? "Maharashtra" : "Tamil Nadu",
-              state_code: lat > 26 ? "UP" : lat > 20 ? "MH" : "TN",
+              state_id: st.id,
+              state_name: st.name,
+              state_code: st.state_code,
               district_id: "dist-ext-gis",
               district_name: "Open GIS Ingestion Zone",
               total_accidents: totalAccidents,
@@ -98,8 +99,10 @@ export async function fetchLiveExternalData(): Promise<ExternalFetchResult> {
               highest_risk_month: "December",
               hotspot_score: Math.min(99, Math.round(75 + Math.random() * 22)),
               hotspot_tier: "High" as const,
-              primary_source: "OpenStreetMap Overpass Live API",
-              dominant_vehicle: "Commercial Transport Vehicle"
+              primary_source: "OSM Node Geometry (Casualties Simulated)",
+              dominant_vehicle: "Commercial Transport Vehicle",
+              data_origin: "simulated" as const,
+              provenance_url: `https://www.openstreetmap.org/node/${el.id}`
             };
           });
         }
@@ -112,7 +115,7 @@ export async function fetchLiveExternalData(): Promise<ExternalFetchResult> {
   // If external live fetch didn't yield points (e.g. rate-limit or network timeout),
   // ingest verified high-density Open Government GIS highway blackspots across India
   if (fetchedHotspots.length === 0) {
-    sourceUsed = "data.gov.in Open Government Data (OGD) & NHAI Highway Safety Audits";
+    sourceUsed = "Seeded fixture (derived from MoRTH/OGD blackspot audits)";
     fetchedHotspots = generateHighDensityGovernmentGISNodes();
   }
 

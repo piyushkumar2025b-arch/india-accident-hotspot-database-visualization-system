@@ -1,0 +1,238 @@
+{
+  "config": {
+    "id": "owid-road-deaths-longterm",
+    "name": "OWID — Road deaths (long-term, India)",
+    "kind": "national_series",
+    "trustTier": "measured",
+    "endpointTemplate": "https://ourworldindata.org/grapher/road-deaths-over-the-long-term.csv",
+    "cadenceMs": 86400000,
+    "ttlMs": 604800000,
+    "timeoutMs": 15000,
+    "enabled": true,
+    "snapshotFile": "data/snapshots/owid-road-deaths-longterm.json",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
+      "Accept": "text/csv"
+    }
+  },
+  "status": "ok",
+  "lastFetchedAt": "2026-11-02T06:35:30.785Z",
+  "nextFetchAt": "2026-11-03T06:35:30.785Z",
+  "recordCount": 28,
+  "latencyMs": 321270,
+  "error": null,
+  "failureCount": 0,
+  "provenance": {
+    "sourceId": "owid-road-deaths-longterm",
+    "publisher": "Our World in Data (source: NCRB Accidents in India)",
+    "dataset": "Reported road accident deaths, long-term",
+    "endpoint": "https://ourworldindata.org/grapher/road-deaths-over-the-long-term.csv",
+    "retrievedAt": "2026-11-02T06:35:30.785Z",
+    "coverageFrom": "1990",
+    "coverageTo": "2017",
+    "license": "CC BY — verify at owid.org",
+    "method": "direct CSV download (raw OWID values)",
+    "trustTier": "measured",
+    "cacheAgeMs": 0,
+    "fromSnapshot": false
+  },
+  "points": [
+    {
+      "period": "1990",
+      "value": 54100,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1991",
+      "value": 56278,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1992",
+      "value": 60113,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1993",
+      "value": 60380,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1994",
+      "value": 64463,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1995",
+      "value": 70781,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1996",
+      "value": 74665,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1997",
+      "value": 76977,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1998",
+      "value": 79919,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1999",
+      "value": 81966,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2000",
+      "value": 78911,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2001",
+      "value": 80888,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2002",
+      "value": 84674,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2003",
+      "value": 85998,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2004",
+      "value": 92618,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2005",
+      "value": 94968,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2006",
+      "value": 105749,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2007",
+      "value": 114444,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2008",
+      "value": 119860,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2009",
+      "value": 125660,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2010",
+      "value": 134513,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2011",
+      "value": 142485,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2012",
+      "value": 138258,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2013",
+      "value": 137572,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2014",
+      "value": 139671,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2015",
+      "value": 146133,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2016",
+      "value": 150785,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2017",
+      "value": 147913,
+      "unit": "deaths/yr",
+      "iso3": "IND",
+      "entity": "India"
+    }
+  ],
+  "extra": null
+}

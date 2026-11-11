@@ -1,0 +1,3248 @@
+{
+  "config": {
+    "id": "ncrb-adsi-table-1a2",
+    "name": "NCRB ADSI — 36 States/UTs & 53 Million-Plus Cities",
+    "kind": "gov_api",
+    "trustTier": "registry_aggregate",
+    "endpointTemplate": "local:data/ncrb_adsi_traffic_accidents.csv",
+    "cadenceMs": 604800000,
+    "ttlMs": 2592000000,
+    "timeoutMs": 10000,
+    "enabled": true,
+    "snapshotFile": "data/snapshots/ncrb-adsi-table-1a2.json"
+  },
+  "status": "ok",
+  "lastFetchedAt": "2026-11-02T06:56:05.901Z",
+  "nextFetchAt": "2026-11-09T06:56:05.901Z",
+  "recordCount": 89,
+  "latencyMs": 3,
+  "error": null,
+  "failureCount": 0,
+  "provenance": {
+    "sourceId": "ncrb-adsi-table-1a2",
+    "publisher": "National Crime Records Bureau (NCRB), Ministry of Home Affairs, GoI",
+    "dataset": "ADSI Table 1A.2: Traffic Accidents by State, Union Territory & Million-Plus Cities",
+    "endpoint": "local:data/ncrb_adsi_traffic_accidents.csv",
+    "retrievedAt": "2026-11-02T06:56:05.900Z",
+    "coverageFrom": "2022",
+    "coverageTo": "2022",
+    "license": "Government Open Data License — India (GODL)",
+    "method": "Official police-recorded ADSI annual compendium compilation",
+    "trustTier": "registry_aggregate",
+    "cacheAgeMs": 0,
+    "fromSnapshot": false
+  },
+  "points": [
+    {
+      "period": "2022",
+      "value": 8293,
+      "unit": "road fatalities",
+      "entity": "Andhra Pradesh",
+      "meta": {
+        "slNo": 1,
+        "isCity": false,
+        "roadCases": 21070,
+        "roadInjured": 21340,
+        "roadDied": 8293,
+        "totalCases": 22099,
+        "totalInjured": 21340,
+        "totalDied": 9330
+      }
+    },
+    {
+      "period": "2022",
+      "value": 152,
+      "unit": "road fatalities",
+      "entity": "Arunachal Pradesh",
+      "meta": {
+        "slNo": 2,
+        "isCity": false,
+        "roadCases": 215,
+        "roadInjured": 177,
+        "roadDied": 152,
+        "totalCases": 215,
+        "totalInjured": 177,
+        "totalDied": 152
+      }
+    },
+    {
+      "period": "2022",
+      "value": 3060,
+      "unit": "road fatalities",
+      "entity": "Assam",
+      "meta": {
+        "slNo": 3,
+        "isCity": false,
+        "roadCases": 7028,
+        "roadInjured": 5679,
+        "roadDied": 3060,
+        "totalCases": 7739,
+        "totalInjured": 5679,
+        "totalDied": 3775
+      }
+    },
+    {
+      "period": "2022",
+      "value": 8898,
+      "unit": "road fatalities",
+      "entity": "Bihar",
+      "meta": {
+        "slNo": 4,
+        "isCity": false,
+        "roadCases": 10801,
+        "roadInjured": 7068,
+        "roadDied": 8898,
+        "totalCases": 12297,
+        "totalInjured": 7074,
+        "totalDied": 10397
+      }
+    },
+    {
+      "period": "2022",
+      "value": 5890,
+      "unit": "road fatalities",
+      "entity": "Chhattisgarh",
+      "meta": {
+        "slNo": 5,
+        "isCity": false,
+        "roadCases": 13091,
+        "roadInjured": 11459,
+        "roadDied": 5890,
+        "totalCases": 13524,
+        "totalInjured": 11480,
+        "totalDied": 6323
+      }
+    },
+    {
+      "period": "2022",
+      "value": 274,
+      "unit": "road fatalities",
+      "entity": "Goa",
+      "meta": {
+        "slNo": 6,
+        "isCity": false,
+        "roadCases": 3012,
+        "roadInjured": 1071,
+        "roadDied": 274,
+        "totalCases": 3066,
+        "totalInjured": 1071,
+        "totalDied": 328
+      }
+    },
+    {
+      "period": "2022",
+      "value": 7634,
+      "unit": "road fatalities",
+      "entity": "Gujarat",
+      "meta": {
+        "slNo": 7,
+        "isCity": false,
+        "roadCases": 15777,
+        "roadInjured": 15139,
+        "roadDied": 7634,
+        "totalCases": 16549,
+        "totalInjured": 15139,
+        "totalDied": 8417
+      }
+    },
+    {
+      "period": "2022",
+      "value": 5228,
+      "unit": "road fatalities",
+      "entity": "Haryana",
+      "meta": {
+        "slNo": 8,
+        "isCity": false,
+        "roadCases": 10654,
+        "roadInjured": 8353,
+        "roadDied": 5228,
+        "totalCases": 11876,
+        "totalInjured": 8379,
+        "totalDied": 6424
+      }
+    },
+    {
+      "period": "2022",
+      "value": 979,
+      "unit": "road fatalities",
+      "entity": "Himachal Pradesh",
+      "meta": {
+        "slNo": 9,
+        "isCity": false,
+        "roadCases": 2484,
+        "roadInjured": 3891,
+        "roadDied": 979,
+        "totalCases": 2484,
+        "totalInjured": 3891,
+        "totalDied": 979
+      }
+    },
+    {
+      "period": "2022",
+      "value": 3898,
+      "unit": "road fatalities",
+      "entity": "Jharkhand",
+      "meta": {
+        "slNo": 10,
+        "isCity": false,
+        "roadCases": 5175,
+        "roadInjured": 3747,
+        "roadDied": 3898,
+        "totalCases": 5544,
+        "totalInjured": 3766,
+        "totalDied": 4251
+      }
+    },
+    {
+      "period": "2022",
+      "value": 11705,
+      "unit": "road fatalities",
+      "entity": "Karnataka",
+      "meta": {
+        "slNo": 11,
+        "isCity": false,
+        "roadCases": 39765,
+        "roadInjured": 48154,
+        "roadDied": 11705,
+        "totalCases": 39765,
+        "totalInjured": 48154,
+        "totalDied": 11705
+      }
+    },
+    {
+      "period": "2022",
+      "value": 4317,
+      "unit": "road fatalities",
+      "entity": "Kerala",
+      "meta": {
+        "slNo": 12,
+        "isCity": false,
+        "roadCases": 43592,
+        "roadInjured": 49317,
+        "roadDied": 4317,
+        "totalCases": 43970,
+        "totalInjured": 49318,
+        "totalDied": 4696
+      }
+    },
+    {
+      "period": "2022",
+      "value": 13918,
+      "unit": "road fatalities",
+      "entity": "Madhya Pradesh",
+      "meta": {
+        "slNo": 13,
+        "isCity": false,
+        "roadCases": 51965,
+        "roadInjured": 51264,
+        "roadDied": 13918,
+        "totalCases": 53479,
+        "totalInjured": 51264,
+        "totalDied": 15432
+      }
+    },
+    {
+      "period": "2022",
+      "value": 15748,
+      "unit": "road fatalities",
+      "entity": "Maharashtra",
+      "meta": {
+        "slNo": 14,
+        "isCity": false,
+        "roadCases": 30546,
+        "roadInjured": 23878,
+        "roadDied": 15748,
+        "totalCases": 35373,
+        "totalInjured": 25564,
+        "totalDied": 18893
+      }
+    },
+    {
+      "period": "2022",
+      "value": 127,
+      "unit": "road fatalities",
+      "entity": "Manipur",
+      "meta": {
+        "slNo": 15,
+        "isCity": false,
+        "roadCases": 508,
+        "roadInjured": 817,
+        "roadDied": 127,
+        "totalCases": 510,
+        "totalInjured": 817,
+        "totalDied": 129
+      }
+    },
+    {
+      "period": "2022",
+      "value": 162,
+      "unit": "road fatalities",
+      "entity": "Meghalaya",
+      "meta": {
+        "slNo": 16,
+        "isCity": false,
+        "roadCases": 246,
+        "roadInjured": 310,
+        "roadDied": 162,
+        "totalCases": 246,
+        "totalInjured": 310,
+        "totalDied": 162
+      }
+    },
+    {
+      "period": "2022",
+      "value": 83,
+      "unit": "road fatalities",
+      "entity": "Mizoram",
+      "meta": {
+        "slNo": 17,
+        "isCity": false,
+        "roadCases": 71,
+        "roadInjured": 28,
+        "roadDied": 83,
+        "totalCases": 71,
+        "totalInjured": 28,
+        "totalDied": 83
+      }
+    },
+    {
+      "period": "2022",
+      "value": 22,
+      "unit": "road fatalities",
+      "entity": "Nagaland",
+      "meta": {
+        "slNo": 18,
+        "isCity": false,
+        "roadCases": 24,
+        "roadInjured": 42,
+        "roadDied": 22,
+        "totalCases": 29,
+        "totalInjured": 42,
+        "totalDied": 27
+      }
+    },
+    {
+      "period": "2022",
+      "value": 5470,
+      "unit": "road fatalities",
+      "entity": "Odisha",
+      "meta": {
+        "slNo": 19,
+        "isCity": false,
+        "roadCases": 11663,
+        "roadInjured": 10269,
+        "roadDied": 5470,
+        "totalCases": 11744,
+        "totalInjured": 10323,
+        "totalDied": 5497
+      }
+    },
+    {
+      "period": "2022",
+      "value": 4688,
+      "unit": "road fatalities",
+      "entity": "Punjab",
+      "meta": {
+        "slNo": 20,
+        "isCity": false,
+        "roadCases": 6122,
+        "roadInjured": 3372,
+        "roadDied": 4688,
+        "totalCases": 7100,
+        "totalInjured": 3446,
+        "totalDied": 5602
+      }
+    },
+    {
+      "period": "2022",
+      "value": 11103,
+      "unit": "road fatalities",
+      "entity": "Rajasthan",
+      "meta": {
+        "slNo": 21,
+        "isCity": false,
+        "roadCases": 23620,
+        "roadInjured": 22249,
+        "roadDied": 11103,
+        "totalCases": 24562,
+        "totalInjured": 22257,
+        "totalDied": 12046
+      }
+    },
+    {
+      "period": "2022",
+      "value": 98,
+      "unit": "road fatalities",
+      "entity": "Sikkim",
+      "meta": {
+        "slNo": 22,
+        "isCity": false,
+        "roadCases": 199,
+        "roadInjured": 371,
+        "roadDied": 98,
+        "totalCases": 199,
+        "totalInjured": 371,
+        "totalDied": 98
+      }
+    },
+    {
+      "period": "2022",
+      "value": 17884,
+      "unit": "road fatalities",
+      "entity": "Tamil Nadu",
+      "meta": {
+        "slNo": 23,
+        "isCity": false,
+        "roadCases": 64105,
+        "roadInjured": 67703,
+        "roadDied": 17884,
+        "totalCases": 66117,
+        "totalInjured": 67892,
+        "totalDied": 19717
+      }
+    },
+    {
+      "period": "2022",
+      "value": 7559,
+      "unit": "road fatalities",
+      "entity": "Telangana",
+      "meta": {
+        "slNo": 24,
+        "isCity": false,
+        "roadCases": 21619,
+        "roadInjured": 20209,
+        "roadDied": 7559,
+        "totalCases": 22235,
+        "totalInjured": 20209,
+        "totalDied": 8184
+      }
+    },
+    {
+      "period": "2022",
+      "value": 241,
+      "unit": "road fatalities",
+      "entity": "Tripura",
+      "meta": {
+        "slNo": 25,
+        "isCity": false,
+        "roadCases": 575,
+        "roadInjured": 541,
+        "roadDied": 241,
+        "totalCases": 604,
+        "totalInjured": 541,
+        "totalDied": 270
+      }
+    },
+    {
+      "period": "2022",
+      "value": 24109,
+      "unit": "road fatalities",
+      "entity": "Uttar Pradesh",
+      "meta": {
+        "slNo": 26,
+        "isCity": false,
+        "roadCases": 36875,
+        "roadInjured": 21696,
+        "roadDied": 24109,
+        "totalCases": 41405,
+        "totalInjured": 21735,
+        "totalDied": 28615
+      }
+    },
+    {
+      "period": "2022",
+      "value": 1042,
+      "unit": "road fatalities",
+      "entity": "Uttarakhand",
+      "meta": {
+        "slNo": 27,
+        "isCity": false,
+        "roadCases": 1674,
+        "roadInjured": 1613,
+        "roadDied": 1042,
+        "totalCases": 1749,
+        "totalInjured": 1613,
+        "totalDied": 1117
+      }
+    },
+    {
+      "period": "2022",
+      "value": 5788,
+      "unit": "road fatalities",
+      "entity": "West Bengal",
+      "meta": {
+        "slNo": 28,
+        "isCity": false,
+        "roadCases": 10635,
+        "roadInjured": 8124,
+        "roadDied": 5788,
+        "totalCases": 13402,
+        "totalInjured": 8463,
+        "totalDied": 8216
+      }
+    },
+    {
+      "period": "2022",
+      "value": 19,
+      "unit": "road fatalities",
+      "entity": "Andaman and Nicobar Islands",
+      "meta": {
+        "slNo": 29,
+        "isCity": false,
+        "roadCases": 141,
+        "roadInjured": 136,
+        "roadDied": 19,
+        "totalCases": 141,
+        "totalInjured": 136,
+        "totalDied": 19
+      }
+    },
+    {
+      "period": "2022",
+      "value": 83,
+      "unit": "road fatalities",
+      "entity": "Chandigarh",
+      "meta": {
+        "slNo": 30,
+        "isCity": false,
+        "roadCases": 238,
+        "roadInjured": 203,
+        "roadDied": 83,
+        "totalCases": 238,
+        "totalInjured": 203,
+        "totalDied": 83
+      }
+    },
+    {
+      "period": "2022",
+      "value": 80,
+      "unit": "road fatalities",
+      "entity": "Dadra and Nicoabr Haveli and Daman and Diu",
+      "meta": {
+        "slNo": 31,
+        "isCity": false,
+        "roadCases": 175,
+        "roadInjured": 257,
+        "roadDied": 80,
+        "totalCases": 175,
+        "totalInjured": 257,
+        "totalDied": 80
+      }
+    },
+    {
+      "period": "2022",
+      "value": 1461,
+      "unit": "road fatalities",
+      "entity": "Delhi",
+      "meta": {
+        "slNo": 32,
+        "isCity": false,
+        "roadCases": 5560,
+        "roadInjured": 4713,
+        "roadDied": 1461,
+        "totalCases": 6356,
+        "totalInjured": 4818,
+        "totalDied": 2152
+      }
+    },
+    {
+      "period": "2022",
+      "value": 838,
+      "unit": "road fatalities",
+      "entity": "Jammu and Kashmir",
+      "meta": {
+        "slNo": 33,
+        "isCity": false,
+        "roadCases": 6090,
+        "roadInjured": 8350,
+        "roadDied": 838,
+        "totalCases": 6142,
+        "totalInjured": 8352,
+        "totalDied": 890
+      }
+    },
+    {
+      "period": "2022",
+      "value": 66,
+      "unit": "road fatalities",
+      "entity": "Ladakh",
+      "meta": {
+        "slNo": 34,
+        "isCity": false,
+        "roadCases": 268,
+        "roadInjured": 333,
+        "roadDied": 66,
+        "totalCases": 268,
+        "totalInjured": 333,
+        "totalDied": 66
+      }
+    },
+    {
+      "period": "2022",
+      "value": 2,
+      "unit": "road fatalities",
+      "entity": "Lakshadweep",
+      "meta": {
+        "slNo": 35,
+        "isCity": false,
+        "roadCases": 4,
+        "roadInjured": 3,
+        "roadDied": 2,
+        "totalCases": 4,
+        "totalInjured": 3,
+        "totalDied": 2
+      }
+    },
+    {
+      "period": "2022",
+      "value": 181,
+      "unit": "road fatalities",
+      "entity": "Puducherry",
+      "meta": {
+        "slNo": 36,
+        "isCity": false,
+        "roadCases": 1181,
+        "roadInjured": 1282,
+        "roadDied": 181,
+        "totalCases": 1190,
+        "totalInjured": 1282,
+        "totalDied": 190
+      }
+    },
+    {
+      "period": "2022",
+      "value": 698,
+      "unit": "road fatalities",
+      "entity": "Agra",
+      "meta": {
+        "slNo": 37,
+        "isCity": true,
+        "roadCases": 729,
+        "roadInjured": 91,
+        "roadDied": 698,
+        "totalCases": 806,
+        "totalInjured": 91,
+        "totalDied": 756
+      }
+    },
+    {
+      "period": "2022",
+      "value": 488,
+      "unit": "road fatalities",
+      "entity": "Ahmedabad",
+      "meta": {
+        "slNo": 38,
+        "isCity": true,
+        "roadCases": 1711,
+        "roadInjured": 1305,
+        "roadDied": 488,
+        "totalCases": 1751,
+        "totalInjured": 1305,
+        "totalDied": 529
+      }
+    },
+    {
+      "period": "2022",
+      "value": 82,
+      "unit": "road fatalities",
+      "entity": "Amritsar",
+      "meta": {
+        "slNo": 39,
+        "isCity": true,
+        "roadCases": 117,
+        "roadInjured": 62,
+        "roadDied": 82,
+        "totalCases": 117,
+        "totalInjured": 62,
+        "totalDied": 82
+      }
+    },
+    {
+      "period": "2022",
+      "value": 365,
+      "unit": "road fatalities",
+      "entity": "Asansol",
+      "meta": {
+        "slNo": 40,
+        "isCity": true,
+        "roadCases": 497,
+        "roadInjured": 308,
+        "roadDied": 365,
+        "totalCases": 504,
+        "totalInjured": 308,
+        "totalDied": 372
+      }
+    },
+    {
+      "period": "2022",
+      "value": 204,
+      "unit": "road fatalities",
+      "entity": "Aurangabad",
+      "meta": {
+        "slNo": 41,
+        "isCity": true,
+        "roadCases": 491,
+        "roadInjured": 352,
+        "roadDied": 204,
+        "totalCases": 505,
+        "totalInjured": 352,
+        "totalDied": 218
+      }
+    },
+    {
+      "period": "2022",
+      "value": 772,
+      "unit": "road fatalities",
+      "entity": "Bengaluru",
+      "meta": {
+        "slNo": 42,
+        "isCity": true,
+        "roadCases": 3822,
+        "roadInjured": 3189,
+        "roadDied": 772,
+        "totalCases": 3822,
+        "totalInjured": 3189,
+        "totalDied": 772
+      }
+    },
+    {
+      "period": "2022",
+      "value": 205,
+      "unit": "road fatalities",
+      "entity": "Bhopal",
+      "meta": {
+        "slNo": 43,
+        "isCity": true,
+        "roadCases": 2788,
+        "roadInjured": 2151,
+        "roadDied": 205,
+        "totalCases": 2855,
+        "totalInjured": 2151,
+        "totalDied": 272
+      }
+    },
+    {
+      "period": "2022",
+      "value": 83,
+      "unit": "road fatalities",
+      "entity": "Chandigarh (city)",
+      "meta": {
+        "slNo": 44,
+        "isCity": true,
+        "roadCases": 238,
+        "roadInjured": 203,
+        "roadDied": 83,
+        "totalCases": 238,
+        "totalInjured": 203,
+        "totalDied": 83
+      }
+    },
+    {
+      "period": "2022",
+      "value": 507,
+      "unit": "road fatalities",
+      "entity": "Chennai",
+      "meta": {
+        "slNo": 45,
+        "isCity": true,
+        "roadCases": 3452,
+        "roadInjured": 3724,
+        "roadDied": 507,
+        "totalCases": 3452,
+        "totalInjured": 3724,
+        "totalDied": 507
+      }
+    },
+    {
+      "period": "2022",
+      "value": 272,
+      "unit": "road fatalities",
+      "entity": "Coimbatore",
+      "meta": {
+        "slNo": 46,
+        "isCity": true,
+        "roadCases": 1085,
+        "roadInjured": 939,
+        "roadDied": 272,
+        "totalCases": 1085,
+        "totalInjured": 939,
+        "totalDied": 272
+      }
+    },
+    {
+      "period": "2022",
+      "value": 1412,
+      "unit": "road fatalities",
+      "entity": "Delhi (city)",
+      "meta": {
+        "slNo": 47,
+        "isCity": true,
+        "roadCases": 5387,
+        "roadInjured": 4572,
+        "roadDied": 1412,
+        "totalCases": 6183,
+        "totalInjured": 4677,
+        "totalDied": 2103
+      }
+    },
+    {
+      "period": "2022",
+      "value": 114,
+      "unit": "road fatalities",
+      "entity": "Dhanbad",
+      "meta": {
+        "slNo": 48,
+        "isCity": true,
+        "roadCases": 179,
+        "roadInjured": 73,
+        "roadDied": 114,
+        "totalCases": 179,
+        "totalInjured": 73,
+        "totalDied": 114
+      }
+    },
+    {
+      "period": "2022",
+      "value": 145,
+      "unit": "road fatalities",
+      "entity": "Durg Bhilainagar",
+      "meta": {
+        "slNo": 49,
+        "isCity": true,
+        "roadCases": 789,
+        "roadInjured": 601,
+        "roadDied": 145,
+        "totalCases": 819,
+        "totalInjured": 601,
+        "totalDied": 175
+      }
+    },
+    {
+      "period": "2022",
+      "value": 302,
+      "unit": "road fatalities",
+      "entity": "Faridabad",
+      "meta": {
+        "slNo": 50,
+        "isCity": true,
+        "roadCases": 629,
+        "roadInjured": 448,
+        "roadDied": 302,
+        "totalCases": 629,
+        "totalInjured": 448,
+        "totalDied": 302
+      }
+    },
+    {
+      "period": "2022",
+      "value": 362,
+      "unit": "road fatalities",
+      "entity": "Ghaziabad",
+      "meta": {
+        "slNo": 51,
+        "isCity": true,
+        "roadCases": 883,
+        "roadInjured": 661,
+        "roadDied": 362,
+        "totalCases": 931,
+        "totalInjured": 661,
+        "totalDied": 410
+      }
+    },
+    {
+      "period": "2022",
+      "value": 151,
+      "unit": "road fatalities",
+      "entity": "Gwalior",
+      "meta": {
+        "slNo": 52,
+        "isCity": true,
+        "roadCases": 1219,
+        "roadInjured": 1096,
+        "roadDied": 151,
+        "totalCases": 1232,
+        "totalInjured": 1096,
+        "totalDied": 164
+      }
+    },
+    {
+      "period": "2022",
+      "value": 323,
+      "unit": "road fatalities",
+      "entity": "Hyderabad",
+      "meta": {
+        "slNo": 53,
+        "isCity": true,
+        "roadCases": 2516,
+        "roadInjured": 2252,
+        "roadDied": 323,
+        "totalCases": 2516,
+        "totalInjured": 2252,
+        "totalDied": 323
+      }
+    },
+    {
+      "period": "2022",
+      "value": 282,
+      "unit": "road fatalities",
+      "entity": "Indore",
+      "meta": {
+        "slNo": 54,
+        "isCity": true,
+        "roadCases": 3317,
+        "roadInjured": 2731,
+        "roadDied": 282,
+        "totalCases": 3334,
+        "totalInjured": 2731,
+        "totalDied": 299
+      }
+    },
+    {
+      "period": "2022",
+      "value": 167,
+      "unit": "road fatalities",
+      "entity": "Jabalpur",
+      "meta": {
+        "slNo": 55,
+        "isCity": true,
+        "roadCases": 2460,
+        "roadInjured": 2439,
+        "roadDied": 167,
+        "totalCases": 2460,
+        "totalInjured": 2439,
+        "totalDied": 167
+      }
+    },
+    {
+      "period": "2022",
+      "value": 765,
+      "unit": "road fatalities",
+      "entity": "Jaipur",
+      "meta": {
+        "slNo": 56,
+        "isCity": true,
+        "roadCases": 2687,
+        "roadInjured": 2162,
+        "roadDied": 765,
+        "totalCases": 2840,
+        "totalInjured": 2162,
+        "totalDied": 918
+      }
+    },
+    {
+      "period": "2022",
+      "value": 68,
+      "unit": "road fatalities",
+      "entity": "Jamshedpur",
+      "meta": {
+        "slNo": 57,
+        "isCity": true,
+        "roadCases": 167,
+        "roadInjured": 115,
+        "roadDied": 68,
+        "totalCases": 167,
+        "totalInjured": 115,
+        "totalDied": 68
+      }
+    },
+    {
+      "period": "2022",
+      "value": 267,
+      "unit": "road fatalities",
+      "entity": "Jodhpur",
+      "meta": {
+        "slNo": 58,
+        "isCity": true,
+        "roadCases": 686,
+        "roadInjured": 505,
+        "roadDied": 267,
+        "totalCases": 700,
+        "totalInjured": 505,
+        "totalDied": 281
+      }
+    },
+    {
+      "period": "2022",
+      "value": 149,
+      "unit": "road fatalities",
+      "entity": "Kannur",
+      "meta": {
+        "slNo": 59,
+        "isCity": true,
+        "roadCases": 1635,
+        "roadInjured": 2118,
+        "roadDied": 149,
+        "totalCases": 1656,
+        "totalInjured": 2118,
+        "totalDied": 170
+      }
+    },
+    {
+      "period": "2022",
+      "value": 640,
+      "unit": "road fatalities",
+      "entity": "Kanpur",
+      "meta": {
+        "slNo": 60,
+        "isCity": true,
+        "roadCases": 1595,
+        "roadInjured": 955,
+        "roadDied": 640,
+        "totalCases": 1750,
+        "totalInjured": 955,
+        "totalDied": 795
+      }
+    },
+    {
+      "period": "2022",
+      "value": 156,
+      "unit": "road fatalities",
+      "entity": "Kochi",
+      "meta": {
+        "slNo": 61,
+        "isCity": true,
+        "roadCases": 2432,
+        "roadInjured": 2362,
+        "roadDied": 156,
+        "totalCases": 2454,
+        "totalInjured": 2362,
+        "totalDied": 178
+      }
+    },
+    {
+      "period": "2022",
+      "value": 217,
+      "unit": "road fatalities",
+      "entity": "Kolkata",
+      "meta": {
+        "slNo": 62,
+        "isCity": true,
+        "roadCases": 1037,
+        "roadInjured": 816,
+        "roadDied": 217,
+        "totalCases": 1037,
+        "totalInjured": 816,
+        "totalDied": 217
+      }
+    },
+    {
+      "period": "2022",
+      "value": 214,
+      "unit": "road fatalities",
+      "entity": "Kollam",
+      "meta": {
+        "slNo": 63,
+        "isCity": true,
+        "roadCases": 2083,
+        "roadInjured": 2176,
+        "roadDied": 214,
+        "totalCases": 2094,
+        "totalInjured": 2176,
+        "totalDied": 225
+      }
+    },
+    {
+      "period": "2022",
+      "value": 111,
+      "unit": "road fatalities",
+      "entity": "Kota",
+      "meta": {
+        "slNo": 64,
+        "isCity": true,
+        "roadCases": 444,
+        "roadInjured": 431,
+        "roadDied": 111,
+        "totalCases": 473,
+        "totalInjured": 431,
+        "totalDied": 140
+      }
+    },
+    {
+      "period": "2022",
+      "value": 195,
+      "unit": "road fatalities",
+      "entity": "Kozhikode",
+      "meta": {
+        "slNo": 65,
+        "isCity": true,
+        "roadCases": 2054,
+        "roadInjured": 2163,
+        "roadDied": 195,
+        "totalCases": 2074,
+        "totalInjured": 2164,
+        "totalDied": 215
+      }
+    },
+    {
+      "period": "2022",
+      "value": 643,
+      "unit": "road fatalities",
+      "entity": "Lucknow",
+      "meta": {
+        "slNo": 66,
+        "isCity": true,
+        "roadCases": 1408,
+        "roadInjured": 994,
+        "roadDied": 643,
+        "totalCases": 1450,
+        "totalInjured": 994,
+        "totalDied": 685
+      }
+    },
+    {
+      "period": "2022",
+      "value": 364,
+      "unit": "road fatalities",
+      "entity": "Ludhiana",
+      "meta": {
+        "slNo": 67,
+        "isCity": true,
+        "roadCases": 467,
+        "roadInjured": 174,
+        "roadDied": 364,
+        "totalCases": 467,
+        "totalInjured": 174,
+        "totalDied": 364
+      }
+    },
+    {
+      "period": "2022",
+      "value": 192,
+      "unit": "road fatalities",
+      "entity": "Madurai",
+      "meta": {
+        "slNo": 68,
+        "isCity": true,
+        "roadCases": 744,
+        "roadInjured": 601,
+        "roadDied": 192,
+        "totalCases": 744,
+        "totalInjured": 601,
+        "totalDied": 192
+      }
+    },
+    {
+      "period": "2022",
+      "value": 116,
+      "unit": "road fatalities",
+      "entity": "Malappuram",
+      "meta": {
+        "slNo": 69,
+        "isCity": true,
+        "roadCases": 870,
+        "roadInjured": 1098,
+        "roadDied": 116,
+        "totalCases": 873,
+        "totalInjured": 1098,
+        "totalDied": 119
+      }
+    },
+    {
+      "period": "2022",
+      "value": 149,
+      "unit": "road fatalities",
+      "entity": "Meerut",
+      "meta": {
+        "slNo": 70,
+        "isCity": true,
+        "roadCases": 451,
+        "roadInjured": 443,
+        "roadDied": 149,
+        "totalCases": 477,
+        "totalInjured": 443,
+        "totalDied": 175
+      }
+    },
+    {
+      "period": "2022",
+      "value": 538,
+      "unit": "road fatalities",
+      "entity": "Mumbai",
+      "meta": {
+        "slNo": 71,
+        "isCity": true,
+        "roadCases": 538,
+        "roadInjured": 4,
+        "roadDied": 538,
+        "totalCases": 538,
+        "totalInjured": 4,
+        "totalDied": 538
+      }
+    },
+    {
+      "period": "2022",
+      "value": 335,
+      "unit": "road fatalities",
+      "entity": "Nagpur",
+      "meta": {
+        "slNo": 72,
+        "isCity": true,
+        "roadCases": 1181,
+        "roadInjured": 987,
+        "roadDied": 335,
+        "totalCases": 1235,
+        "totalInjured": 987,
+        "totalDied": 390
+      }
+    },
+    {
+      "period": "2022",
+      "value": 201,
+      "unit": "road fatalities",
+      "entity": "Nasik",
+      "meta": {
+        "slNo": 73,
+        "isCity": true,
+        "roadCases": 190,
+        "roadInjured": 49,
+        "roadDied": 201,
+        "totalCases": 214,
+        "totalInjured": 49,
+        "totalDied": 225
+      }
+    },
+    {
+      "period": "2022",
+      "value": 198,
+      "unit": "road fatalities",
+      "entity": "Patna",
+      "meta": {
+        "slNo": 74,
+        "isCity": true,
+        "roadCases": 275,
+        "roadInjured": 121,
+        "roadDied": 198,
+        "totalCases": 275,
+        "totalInjured": 121,
+        "totalDied": 198
+      }
+    },
+    {
+      "period": "2022",
+      "value": 603,
+      "unit": "road fatalities",
+      "entity": "Prayagraj +",
+      "meta": {
+        "slNo": 75,
+        "isCity": true,
+        "roadCases": 1370,
+        "roadInjured": 886,
+        "roadDied": 603,
+        "totalCases": 1370,
+        "totalInjured": 886,
+        "totalDied": 603
+      }
+    },
+    {
+      "period": "2022",
+      "value": 343,
+      "unit": "road fatalities",
+      "entity": "Pune",
+      "meta": {
+        "slNo": 76,
+        "isCity": true,
+        "roadCases": 387,
+        "roadInjured": 107,
+        "roadDied": 343,
+        "totalCases": 404,
+        "totalInjured": 107,
+        "totalDied": 360
+      }
+    },
+    {
+      "period": "2022",
+      "value": 186,
+      "unit": "road fatalities",
+      "entity": "Raipur",
+      "meta": {
+        "slNo": 77,
+        "isCity": true,
+        "roadCases": 1021,
+        "roadInjured": 575,
+        "roadDied": 186,
+        "totalCases": 1054,
+        "totalInjured": 575,
+        "totalDied": 219
+      }
+    },
+    {
+      "period": "2022",
+      "value": 150,
+      "unit": "road fatalities",
+      "entity": "Rajkot",
+      "meta": {
+        "slNo": 78,
+        "isCity": true,
+        "roadCases": 498,
+        "roadInjured": 422,
+        "roadDied": 150,
+        "totalCases": 511,
+        "totalInjured": 422,
+        "totalDied": 163
+      }
+    },
+    {
+      "period": "2022",
+      "value": 90,
+      "unit": "road fatalities",
+      "entity": "Ranchi",
+      "meta": {
+        "slNo": 79,
+        "isCity": true,
+        "roadCases": 175,
+        "roadInjured": 111,
+        "roadDied": 90,
+        "totalCases": 175,
+        "totalInjured": 111,
+        "totalDied": 90
+      }
+    },
+    {
+      "period": "2022",
+      "value": 53,
+      "unit": "road fatalities",
+      "entity": "Srinagar",
+      "meta": {
+        "slNo": 80,
+        "isCity": true,
+        "roadCases": 426,
+        "roadInjured": 438,
+        "roadDied": 53,
+        "totalCases": 426,
+        "totalInjured": 438,
+        "totalDied": 53
+      }
+    },
+    {
+      "period": "2022",
+      "value": 293,
+      "unit": "road fatalities",
+      "entity": "Surat",
+      "meta": {
+        "slNo": 81,
+        "isCity": true,
+        "roadCases": 683,
+        "roadInjured": 553,
+        "roadDied": 293,
+        "totalCases": 719,
+        "totalInjured": 553,
+        "totalDied": 330
+      }
+    },
+    {
+      "period": "2022",
+      "value": 171,
+      "unit": "road fatalities",
+      "entity": "Thiruvananthapuram",
+      "meta": {
+        "slNo": 82,
+        "isCity": true,
+        "roadCases": 1825,
+        "roadInjured": 1910,
+        "roadDied": 171,
+        "totalCases": 1843,
+        "totalInjured": 1910,
+        "totalDied": 189
+      }
+    },
+    {
+      "period": "2022",
+      "value": 210,
+      "unit": "road fatalities",
+      "entity": "Thrissur",
+      "meta": {
+        "slNo": 83,
+        "isCity": true,
+        "roadCases": 2374,
+        "roadInjured": 2711,
+        "roadDied": 210,
+        "totalCases": 2374,
+        "totalInjured": 2711,
+        "totalDied": 210
+      }
+    },
+    {
+      "period": "2022",
+      "value": 149,
+      "unit": "road fatalities",
+      "entity": "Tiruchirappalli",
+      "meta": {
+        "slNo": 84,
+        "isCity": true,
+        "roadCases": 542,
+        "roadInjured": 624,
+        "roadDied": 149,
+        "totalCases": 542,
+        "totalInjured": 624,
+        "totalDied": 149
+      }
+    },
+    {
+      "period": "2022",
+      "value": 181,
+      "unit": "road fatalities",
+      "entity": "Vadodara",
+      "meta": {
+        "slNo": 85,
+        "isCity": true,
+        "roadCases": 478,
+        "roadInjured": 378,
+        "roadDied": 181,
+        "totalCases": 483,
+        "totalInjured": 378,
+        "totalDied": 186
+      }
+    },
+    {
+      "period": "2022",
+      "value": 145,
+      "unit": "road fatalities",
+      "entity": "Varanasi",
+      "meta": {
+        "slNo": 86,
+        "isCity": true,
+        "roadCases": 133,
+        "roadInjured": 86,
+        "roadDied": 145,
+        "totalCases": 162,
+        "totalInjured": 86,
+        "totalDied": 174
+      }
+    },
+    {
+      "period": "2022",
+      "value": 165,
+      "unit": "road fatalities",
+      "entity": "Vasai Virar",
+      "meta": {
+        "slNo": 87,
+        "isCity": true,
+        "roadCases": 342,
+        "roadInjured": 213,
+        "roadDied": 165,
+        "totalCases": 342,
+        "totalInjured": 213,
+        "totalDied": 165
+      }
+    },
+    {
+      "period": "2022",
+      "value": 418,
+      "unit": "road fatalities",
+      "entity": "Vijayawada",
+      "meta": {
+        "slNo": 88,
+        "isCity": true,
+        "roadCases": 1543,
+        "roadInjured": 1367,
+        "roadDied": 418,
+        "totalCases": 1543,
+        "totalInjured": 1367,
+        "totalDied": 418
+      }
+    },
+    {
+      "period": "2022",
+      "value": 358,
+      "unit": "road fatalities",
+      "entity": "Vishakhapatnam",
+      "meta": {
+        "slNo": 89,
+        "isCity": true,
+        "roadCases": 1352,
+        "roadInjured": 1288,
+        "roadDied": 358,
+        "totalCases": 1352,
+        "totalInjured": 1288,
+        "totalDied": 358
+      }
+    }
+  ],
+  "extra": {
+    "totalEntities": 89,
+    "statesCount": 36,
+    "citiesCount": 53,
+    "records": [
+      {
+        "slNo": 1,
+        "entityName": "Andhra Pradesh",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 21070,
+          "injured": 21340,
+          "died": 8293
+        },
+        "railwayAccidents": {
+          "cases": 1029,
+          "injured": 0,
+          "died": 1037
+        },
+        "totalTrafficAccidents": {
+          "cases": 22099,
+          "injured": 21340,
+          "died": 9330
+        }
+      },
+      {
+        "slNo": 2,
+        "entityName": "Arunachal Pradesh",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 215,
+          "injured": 177,
+          "died": 152
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 215,
+          "injured": 177,
+          "died": 152
+        }
+      },
+      {
+        "slNo": 3,
+        "entityName": "Assam",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 7028,
+          "injured": 5679,
+          "died": 3060
+        },
+        "railwayAccidents": {
+          "cases": 689,
+          "injured": 0,
+          "died": 693
+        },
+        "totalTrafficAccidents": {
+          "cases": 7739,
+          "injured": 5679,
+          "died": 3775
+        }
+      },
+      {
+        "slNo": 4,
+        "entityName": "Bihar",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 10801,
+          "injured": 7068,
+          "died": 8898
+        },
+        "railwayAccidents": {
+          "cases": 1444,
+          "injured": 6,
+          "died": 1446
+        },
+        "totalTrafficAccidents": {
+          "cases": 12297,
+          "injured": 7074,
+          "died": 10397
+        }
+      },
+      {
+        "slNo": 5,
+        "entityName": "Chhattisgarh",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 13091,
+          "injured": 11459,
+          "died": 5890
+        },
+        "railwayAccidents": {
+          "cases": 429,
+          "injured": 21,
+          "died": 429
+        },
+        "totalTrafficAccidents": {
+          "cases": 13524,
+          "injured": 11480,
+          "died": 6323
+        }
+      },
+      {
+        "slNo": 6,
+        "entityName": "Goa",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 3012,
+          "injured": 1071,
+          "died": 274
+        },
+        "railwayAccidents": {
+          "cases": 54,
+          "injured": 0,
+          "died": 54
+        },
+        "totalTrafficAccidents": {
+          "cases": 3066,
+          "injured": 1071,
+          "died": 328
+        }
+      },
+      {
+        "slNo": 7,
+        "entityName": "Gujarat",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 15777,
+          "injured": 15139,
+          "died": 7634
+        },
+        "railwayAccidents": {
+          "cases": 766,
+          "injured": 0,
+          "died": 777
+        },
+        "totalTrafficAccidents": {
+          "cases": 16549,
+          "injured": 15139,
+          "died": 8417
+        }
+      },
+      {
+        "slNo": 8,
+        "entityName": "Haryana",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 10654,
+          "injured": 8353,
+          "died": 5228
+        },
+        "railwayAccidents": {
+          "cases": 1127,
+          "injured": 26,
+          "died": 1101
+        },
+        "totalTrafficAccidents": {
+          "cases": 11876,
+          "injured": 8379,
+          "died": 6424
+        }
+      },
+      {
+        "slNo": 9,
+        "entityName": "Himachal Pradesh",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 2484,
+          "injured": 3891,
+          "died": 979
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 2484,
+          "injured": 3891,
+          "died": 979
+        }
+      },
+      {
+        "slNo": 10,
+        "entityName": "Jharkhand",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 5175,
+          "injured": 3747,
+          "died": 3898
+        },
+        "railwayAccidents": {
+          "cases": 362,
+          "injured": 19,
+          "died": 346
+        },
+        "totalTrafficAccidents": {
+          "cases": 5544,
+          "injured": 3766,
+          "died": 4251
+        }
+      },
+      {
+        "slNo": 11,
+        "entityName": "Karnataka",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 39765,
+          "injured": 48154,
+          "died": 11705
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 39765,
+          "injured": 48154,
+          "died": 11705
+        }
+      },
+      {
+        "slNo": 12,
+        "entityName": "Kerala",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 43592,
+          "injured": 49317,
+          "died": 4317
+        },
+        "railwayAccidents": {
+          "cases": 194,
+          "injured": 0,
+          "died": 194
+        },
+        "totalTrafficAccidents": {
+          "cases": 43970,
+          "injured": 49318,
+          "died": 4696
+        }
+      },
+      {
+        "slNo": 13,
+        "entityName": "Madhya Pradesh",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 51965,
+          "injured": 51264,
+          "died": 13918
+        },
+        "railwayAccidents": {
+          "cases": 1275,
+          "injured": 0,
+          "died": 1275
+        },
+        "totalTrafficAccidents": {
+          "cases": 53479,
+          "injured": 51264,
+          "died": 15432
+        }
+      },
+      {
+        "slNo": 14,
+        "entityName": "Maharashtra",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 30546,
+          "injured": 23878,
+          "died": 15748
+        },
+        "railwayAccidents": {
+          "cases": 4827,
+          "injured": 1686,
+          "died": 3145
+        },
+        "totalTrafficAccidents": {
+          "cases": 35373,
+          "injured": 25564,
+          "died": 18893
+        }
+      },
+      {
+        "slNo": 15,
+        "entityName": "Manipur",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 508,
+          "injured": 817,
+          "died": 127
+        },
+        "railwayAccidents": {
+          "cases": 2,
+          "injured": 0,
+          "died": 2
+        },
+        "totalTrafficAccidents": {
+          "cases": 510,
+          "injured": 817,
+          "died": 129
+        }
+      },
+      {
+        "slNo": 16,
+        "entityName": "Meghalaya",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 246,
+          "injured": 310,
+          "died": 162
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 246,
+          "injured": 310,
+          "died": 162
+        }
+      },
+      {
+        "slNo": 17,
+        "entityName": "Mizoram",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 71,
+          "injured": 28,
+          "died": 83
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 71,
+          "injured": 28,
+          "died": 83
+        }
+      },
+      {
+        "slNo": 18,
+        "entityName": "Nagaland",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 24,
+          "injured": 42,
+          "died": 22
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 29,
+          "injured": 42,
+          "died": 27
+        }
+      },
+      {
+        "slNo": 19,
+        "entityName": "Odisha",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 11663,
+          "injured": 10269,
+          "died": 5470
+        },
+        "railwayAccidents": {
+          "cases": 27,
+          "injured": 0,
+          "died": 27
+        },
+        "totalTrafficAccidents": {
+          "cases": 11744,
+          "injured": 10323,
+          "died": 5497
+        }
+      },
+      {
+        "slNo": 20,
+        "entityName": "Punjab",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 6122,
+          "injured": 3372,
+          "died": 4688
+        },
+        "railwayAccidents": {
+          "cases": 978,
+          "injured": 74,
+          "died": 914
+        },
+        "totalTrafficAccidents": {
+          "cases": 7100,
+          "injured": 3446,
+          "died": 5602
+        }
+      },
+      {
+        "slNo": 21,
+        "entityName": "Rajasthan",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 23620,
+          "injured": 22249,
+          "died": 11103
+        },
+        "railwayAccidents": {
+          "cases": 942,
+          "injured": 8,
+          "died": 943
+        },
+        "totalTrafficAccidents": {
+          "cases": 24562,
+          "injured": 22257,
+          "died": 12046
+        }
+      },
+      {
+        "slNo": 22,
+        "entityName": "Sikkim",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 199,
+          "injured": 371,
+          "died": 98
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 199,
+          "injured": 371,
+          "died": 98
+        }
+      },
+      {
+        "slNo": 23,
+        "entityName": "Tamil Nadu",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 64105,
+          "injured": 67703,
+          "died": 17884
+        },
+        "railwayAccidents": {
+          "cases": 2012,
+          "injured": 189,
+          "died": 1833
+        },
+        "totalTrafficAccidents": {
+          "cases": 66117,
+          "injured": 67892,
+          "died": 19717
+        }
+      },
+      {
+        "slNo": 24,
+        "entityName": "Telangana",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 21619,
+          "injured": 20209,
+          "died": 7559
+        },
+        "railwayAccidents": {
+          "cases": 616,
+          "injured": 0,
+          "died": 625
+        },
+        "totalTrafficAccidents": {
+          "cases": 22235,
+          "injured": 20209,
+          "died": 8184
+        }
+      },
+      {
+        "slNo": 25,
+        "entityName": "Tripura",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 575,
+          "injured": 541,
+          "died": 241
+        },
+        "railwayAccidents": {
+          "cases": 27,
+          "injured": 0,
+          "died": 27
+        },
+        "totalTrafficAccidents": {
+          "cases": 604,
+          "injured": 541,
+          "died": 270
+        }
+      },
+      {
+        "slNo": 26,
+        "entityName": "Uttar Pradesh",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 36875,
+          "injured": 21696,
+          "died": 24109
+        },
+        "railwayAccidents": {
+          "cases": 3190,
+          "injured": 35,
+          "died": 3166
+        },
+        "totalTrafficAccidents": {
+          "cases": 41405,
+          "injured": 21735,
+          "died": 28615
+        }
+      },
+      {
+        "slNo": 27,
+        "entityName": "Uttarakhand",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 1674,
+          "injured": 1613,
+          "died": 1042
+        },
+        "railwayAccidents": {
+          "cases": 74,
+          "injured": 0,
+          "died": 74
+        },
+        "totalTrafficAccidents": {
+          "cases": 1749,
+          "injured": 1613,
+          "died": 1117
+        }
+      },
+      {
+        "slNo": 28,
+        "entityName": "West Bengal",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 10635,
+          "injured": 8124,
+          "died": 5788
+        },
+        "railwayAccidents": {
+          "cases": 2221,
+          "injured": 286,
+          "died": 1935
+        },
+        "totalTrafficAccidents": {
+          "cases": 13402,
+          "injured": 8463,
+          "died": 8216
+        }
+      },
+      {
+        "slNo": 29,
+        "entityName": "Andaman and Nicobar Islands",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 141,
+          "injured": 136,
+          "died": 19
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 141,
+          "injured": 136,
+          "died": 19
+        }
+      },
+      {
+        "slNo": 30,
+        "entityName": "Chandigarh",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 238,
+          "injured": 203,
+          "died": 83
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 238,
+          "injured": 203,
+          "died": 83
+        }
+      },
+      {
+        "slNo": 31,
+        "entityName": "Dadra and Nicoabr Haveli and Daman and Diu",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 175,
+          "injured": 257,
+          "died": 80
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 175,
+          "injured": 257,
+          "died": 80
+        }
+      },
+      {
+        "slNo": 32,
+        "entityName": "Delhi",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 5560,
+          "injured": 4713,
+          "died": 1461
+        },
+        "railwayAccidents": {
+          "cases": 796,
+          "injured": 105,
+          "died": 691
+        },
+        "totalTrafficAccidents": {
+          "cases": 6356,
+          "injured": 4818,
+          "died": 2152
+        }
+      },
+      {
+        "slNo": 33,
+        "entityName": "Jammu and Kashmir",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 6090,
+          "injured": 8350,
+          "died": 838
+        },
+        "railwayAccidents": {
+          "cases": 49,
+          "injured": 2,
+          "died": 49
+        },
+        "totalTrafficAccidents": {
+          "cases": 6142,
+          "injured": 8352,
+          "died": 890
+        }
+      },
+      {
+        "slNo": 34,
+        "entityName": "Ladakh",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 268,
+          "injured": 333,
+          "died": 66
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 268,
+          "injured": 333,
+          "died": 66
+        }
+      },
+      {
+        "slNo": 35,
+        "entityName": "Lakshadweep",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 4,
+          "injured": 3,
+          "died": 2
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 4,
+          "injured": 3,
+          "died": 2
+        }
+      },
+      {
+        "slNo": 36,
+        "entityName": "Puducherry",
+        "isCity": false,
+        "roadAccidents": {
+          "cases": 1181,
+          "injured": 1282,
+          "died": 181
+        },
+        "railwayAccidents": {
+          "cases": 9,
+          "injured": 0,
+          "died": 9
+        },
+        "totalTrafficAccidents": {
+          "cases": 1190,
+          "injured": 1282,
+          "died": 190
+        }
+      },
+      {
+        "slNo": 37,
+        "entityName": "Agra",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 729,
+          "injured": 91,
+          "died": 698
+        },
+        "railwayAccidents": {
+          "cases": 66,
+          "injured": 0,
+          "died": 47
+        },
+        "totalTrafficAccidents": {
+          "cases": 806,
+          "injured": 91,
+          "died": 756
+        }
+      },
+      {
+        "slNo": 38,
+        "entityName": "Ahmedabad",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1711,
+          "injured": 1305,
+          "died": 488
+        },
+        "railwayAccidents": {
+          "cases": 40,
+          "injured": 0,
+          "died": 41
+        },
+        "totalTrafficAccidents": {
+          "cases": 1751,
+          "injured": 1305,
+          "died": 529
+        }
+      },
+      {
+        "slNo": 39,
+        "entityName": "Amritsar",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 117,
+          "injured": 62,
+          "died": 82
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 117,
+          "injured": 62,
+          "died": 82
+        }
+      },
+      {
+        "slNo": 40,
+        "entityName": "Asansol",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 497,
+          "injured": 308,
+          "died": 365
+        },
+        "railwayAccidents": {
+          "cases": 7,
+          "injured": 0,
+          "died": 7
+        },
+        "totalTrafficAccidents": {
+          "cases": 504,
+          "injured": 308,
+          "died": 372
+        }
+      },
+      {
+        "slNo": 41,
+        "entityName": "Aurangabad",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 491,
+          "injured": 352,
+          "died": 204
+        },
+        "railwayAccidents": {
+          "cases": 14,
+          "injured": 0,
+          "died": 14
+        },
+        "totalTrafficAccidents": {
+          "cases": 505,
+          "injured": 352,
+          "died": 218
+        }
+      },
+      {
+        "slNo": 42,
+        "entityName": "Bengaluru",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 3822,
+          "injured": 3189,
+          "died": 772
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 3822,
+          "injured": 3189,
+          "died": 772
+        }
+      },
+      {
+        "slNo": 43,
+        "entityName": "Bhopal",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 2788,
+          "injured": 2151,
+          "died": 205
+        },
+        "railwayAccidents": {
+          "cases": 62,
+          "injured": 0,
+          "died": 62
+        },
+        "totalTrafficAccidents": {
+          "cases": 2855,
+          "injured": 2151,
+          "died": 272
+        }
+      },
+      {
+        "slNo": 44,
+        "entityName": "Chandigarh (city)",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 238,
+          "injured": 203,
+          "died": 83
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 238,
+          "injured": 203,
+          "died": 83
+        }
+      },
+      {
+        "slNo": 45,
+        "entityName": "Chennai",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 3452,
+          "injured": 3724,
+          "died": 507
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 3452,
+          "injured": 3724,
+          "died": 507
+        }
+      },
+      {
+        "slNo": 46,
+        "entityName": "Coimbatore",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1085,
+          "injured": 939,
+          "died": 272
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 1085,
+          "injured": 939,
+          "died": 272
+        }
+      },
+      {
+        "slNo": 47,
+        "entityName": "Delhi (city)",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 5387,
+          "injured": 4572,
+          "died": 1412
+        },
+        "railwayAccidents": {
+          "cases": 796,
+          "injured": 105,
+          "died": 691
+        },
+        "totalTrafficAccidents": {
+          "cases": 6183,
+          "injured": 4677,
+          "died": 2103
+        }
+      },
+      {
+        "slNo": 48,
+        "entityName": "Dhanbad",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 179,
+          "injured": 73,
+          "died": 114
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 179,
+          "injured": 73,
+          "died": 114
+        }
+      },
+      {
+        "slNo": 49,
+        "entityName": "Durg Bhilainagar",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 789,
+          "injured": 601,
+          "died": 145
+        },
+        "railwayAccidents": {
+          "cases": 30,
+          "injured": 0,
+          "died": 30
+        },
+        "totalTrafficAccidents": {
+          "cases": 819,
+          "injured": 601,
+          "died": 175
+        }
+      },
+      {
+        "slNo": 50,
+        "entityName": "Faridabad",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 629,
+          "injured": 448,
+          "died": 302
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 629,
+          "injured": 448,
+          "died": 302
+        }
+      },
+      {
+        "slNo": 51,
+        "entityName": "Ghaziabad",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 883,
+          "injured": 661,
+          "died": 362
+        },
+        "railwayAccidents": {
+          "cases": 48,
+          "injured": 0,
+          "died": 48
+        },
+        "totalTrafficAccidents": {
+          "cases": 931,
+          "injured": 661,
+          "died": 410
+        }
+      },
+      {
+        "slNo": 52,
+        "entityName": "Gwalior",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1219,
+          "injured": 1096,
+          "died": 151
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 1232,
+          "injured": 1096,
+          "died": 164
+        }
+      },
+      {
+        "slNo": 53,
+        "entityName": "Hyderabad",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 2516,
+          "injured": 2252,
+          "died": 323
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 2516,
+          "injured": 2252,
+          "died": 323
+        }
+      },
+      {
+        "slNo": 54,
+        "entityName": "Indore",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 3317,
+          "injured": 2731,
+          "died": 282
+        },
+        "railwayAccidents": {
+          "cases": 17,
+          "injured": 0,
+          "died": 17
+        },
+        "totalTrafficAccidents": {
+          "cases": 3334,
+          "injured": 2731,
+          "died": 299
+        }
+      },
+      {
+        "slNo": 55,
+        "entityName": "Jabalpur",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 2460,
+          "injured": 2439,
+          "died": 167
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 2460,
+          "injured": 2439,
+          "died": 167
+        }
+      },
+      {
+        "slNo": 56,
+        "entityName": "Jaipur",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 2687,
+          "injured": 2162,
+          "died": 765
+        },
+        "railwayAccidents": {
+          "cases": 153,
+          "injured": 0,
+          "died": 153
+        },
+        "totalTrafficAccidents": {
+          "cases": 2840,
+          "injured": 2162,
+          "died": 918
+        }
+      },
+      {
+        "slNo": 57,
+        "entityName": "Jamshedpur",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 167,
+          "injured": 115,
+          "died": 68
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 167,
+          "injured": 115,
+          "died": 68
+        }
+      },
+      {
+        "slNo": 58,
+        "entityName": "Jodhpur",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 686,
+          "injured": 505,
+          "died": 267
+        },
+        "railwayAccidents": {
+          "cases": 14,
+          "injured": 0,
+          "died": 14
+        },
+        "totalTrafficAccidents": {
+          "cases": 700,
+          "injured": 505,
+          "died": 281
+        }
+      },
+      {
+        "slNo": 59,
+        "entityName": "Kannur",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1635,
+          "injured": 2118,
+          "died": 149
+        },
+        "railwayAccidents": {
+          "cases": 21,
+          "injured": 0,
+          "died": 21
+        },
+        "totalTrafficAccidents": {
+          "cases": 1656,
+          "injured": 2118,
+          "died": 170
+        }
+      },
+      {
+        "slNo": 60,
+        "entityName": "Kanpur",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1595,
+          "injured": 955,
+          "died": 640
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 1750,
+          "injured": 955,
+          "died": 795
+        }
+      },
+      {
+        "slNo": 61,
+        "entityName": "Kochi",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 2432,
+          "injured": 2362,
+          "died": 156
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 2454,
+          "injured": 2362,
+          "died": 178
+        }
+      },
+      {
+        "slNo": 62,
+        "entityName": "Kolkata",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1037,
+          "injured": 816,
+          "died": 217
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 1037,
+          "injured": 816,
+          "died": 217
+        }
+      },
+      {
+        "slNo": 63,
+        "entityName": "Kollam",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 2083,
+          "injured": 2176,
+          "died": 214
+        },
+        "railwayAccidents": {
+          "cases": 11,
+          "injured": 0,
+          "died": 11
+        },
+        "totalTrafficAccidents": {
+          "cases": 2094,
+          "injured": 2176,
+          "died": 225
+        }
+      },
+      {
+        "slNo": 64,
+        "entityName": "Kota",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 444,
+          "injured": 431,
+          "died": 111
+        },
+        "railwayAccidents": {
+          "cases": 29,
+          "injured": 0,
+          "died": 29
+        },
+        "totalTrafficAccidents": {
+          "cases": 473,
+          "injured": 431,
+          "died": 140
+        }
+      },
+      {
+        "slNo": 65,
+        "entityName": "Kozhikode",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 2054,
+          "injured": 2163,
+          "died": 195
+        },
+        "railwayAccidents": {
+          "cases": 7,
+          "injured": 0,
+          "died": 7
+        },
+        "totalTrafficAccidents": {
+          "cases": 2074,
+          "injured": 2164,
+          "died": 215
+        }
+      },
+      {
+        "slNo": 66,
+        "entityName": "Lucknow",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1408,
+          "injured": 994,
+          "died": 643
+        },
+        "railwayAccidents": {
+          "cases": 34,
+          "injured": 0,
+          "died": 34
+        },
+        "totalTrafficAccidents": {
+          "cases": 1450,
+          "injured": 994,
+          "died": 685
+        }
+      },
+      {
+        "slNo": 67,
+        "entityName": "Ludhiana",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 467,
+          "injured": 174,
+          "died": 364
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 467,
+          "injured": 174,
+          "died": 364
+        }
+      },
+      {
+        "slNo": 68,
+        "entityName": "Madurai",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 744,
+          "injured": 601,
+          "died": 192
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 744,
+          "injured": 601,
+          "died": 192
+        }
+      },
+      {
+        "slNo": 69,
+        "entityName": "Malappuram",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 870,
+          "injured": 1098,
+          "died": 116
+        },
+        "railwayAccidents": {
+          "cases": 3,
+          "injured": 0,
+          "died": 3
+        },
+        "totalTrafficAccidents": {
+          "cases": 873,
+          "injured": 1098,
+          "died": 119
+        }
+      },
+      {
+        "slNo": 70,
+        "entityName": "Meerut",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 451,
+          "injured": 443,
+          "died": 149
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 477,
+          "injured": 443,
+          "died": 175
+        }
+      },
+      {
+        "slNo": 71,
+        "entityName": "Mumbai",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 538,
+          "injured": 4,
+          "died": 538
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 538,
+          "injured": 4,
+          "died": 538
+        }
+      },
+      {
+        "slNo": 72,
+        "entityName": "Nagpur",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1181,
+          "injured": 987,
+          "died": 335
+        },
+        "railwayAccidents": {
+          "cases": 54,
+          "injured": 0,
+          "died": 55
+        },
+        "totalTrafficAccidents": {
+          "cases": 1235,
+          "injured": 987,
+          "died": 390
+        }
+      },
+      {
+        "slNo": 73,
+        "entityName": "Nasik",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 190,
+          "injured": 49,
+          "died": 201
+        },
+        "railwayAccidents": {
+          "cases": 24,
+          "injured": 0,
+          "died": 24
+        },
+        "totalTrafficAccidents": {
+          "cases": 214,
+          "injured": 49,
+          "died": 225
+        }
+      },
+      {
+        "slNo": 74,
+        "entityName": "Patna",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 275,
+          "injured": 121,
+          "died": 198
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 275,
+          "injured": 121,
+          "died": 198
+        }
+      },
+      {
+        "slNo": 75,
+        "entityName": "Prayagraj +",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1370,
+          "injured": 886,
+          "died": 603
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 1370,
+          "injured": 886,
+          "died": 603
+        }
+      },
+      {
+        "slNo": 76,
+        "entityName": "Pune",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 387,
+          "injured": 107,
+          "died": 343
+        },
+        "railwayAccidents": {
+          "cases": 17,
+          "injured": 0,
+          "died": 17
+        },
+        "totalTrafficAccidents": {
+          "cases": 404,
+          "injured": 107,
+          "died": 360
+        }
+      },
+      {
+        "slNo": 77,
+        "entityName": "Raipur",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1021,
+          "injured": 575,
+          "died": 186
+        },
+        "railwayAccidents": {
+          "cases": 33,
+          "injured": 0,
+          "died": 33
+        },
+        "totalTrafficAccidents": {
+          "cases": 1054,
+          "injured": 575,
+          "died": 219
+        }
+      },
+      {
+        "slNo": 78,
+        "entityName": "Rajkot",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 498,
+          "injured": 422,
+          "died": 150
+        },
+        "railwayAccidents": {
+          "cases": 13,
+          "injured": 0,
+          "died": 13
+        },
+        "totalTrafficAccidents": {
+          "cases": 511,
+          "injured": 422,
+          "died": 163
+        }
+      },
+      {
+        "slNo": 79,
+        "entityName": "Ranchi",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 175,
+          "injured": 111,
+          "died": 90
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 175,
+          "injured": 111,
+          "died": 90
+        }
+      },
+      {
+        "slNo": 80,
+        "entityName": "Srinagar",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 426,
+          "injured": 438,
+          "died": 53
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 426,
+          "injured": 438,
+          "died": 53
+        }
+      },
+      {
+        "slNo": 81,
+        "entityName": "Surat",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 683,
+          "injured": 553,
+          "died": 293
+        },
+        "railwayAccidents": {
+          "cases": 36,
+          "injured": 0,
+          "died": 37
+        },
+        "totalTrafficAccidents": {
+          "cases": 719,
+          "injured": 553,
+          "died": 330
+        }
+      },
+      {
+        "slNo": 82,
+        "entityName": "Thiruvananthapuram",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1825,
+          "injured": 1910,
+          "died": 171
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 1843,
+          "injured": 1910,
+          "died": 189
+        }
+      },
+      {
+        "slNo": 83,
+        "entityName": "Thrissur",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 2374,
+          "injured": 2711,
+          "died": 210
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 2374,
+          "injured": 2711,
+          "died": 210
+        }
+      },
+      {
+        "slNo": 84,
+        "entityName": "Tiruchirappalli",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 542,
+          "injured": 624,
+          "died": 149
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 542,
+          "injured": 624,
+          "died": 149
+        }
+      },
+      {
+        "slNo": 85,
+        "entityName": "Vadodara",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 478,
+          "injured": 378,
+          "died": 181
+        },
+        "railwayAccidents": {
+          "cases": 5,
+          "injured": 0,
+          "died": 5
+        },
+        "totalTrafficAccidents": {
+          "cases": 483,
+          "injured": 378,
+          "died": 186
+        }
+      },
+      {
+        "slNo": 86,
+        "entityName": "Varanasi",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 133,
+          "injured": 86,
+          "died": 145
+        },
+        "railwayAccidents": {
+          "cases": 29,
+          "injured": 0,
+          "died": 29
+        },
+        "totalTrafficAccidents": {
+          "cases": 162,
+          "injured": 86,
+          "died": 174
+        }
+      },
+      {
+        "slNo": 87,
+        "entityName": "Vasai Virar",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 342,
+          "injured": 213,
+          "died": 165
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 342,
+          "injured": 213,
+          "died": 165
+        }
+      },
+      {
+        "slNo": 88,
+        "entityName": "Vijayawada",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1543,
+          "injured": 1367,
+          "died": 418
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 1543,
+          "injured": 1367,
+          "died": 418
+        }
+      },
+      {
+        "slNo": 89,
+        "entityName": "Vishakhapatnam",
+        "isCity": true,
+        "roadAccidents": {
+          "cases": 1352,
+          "injured": 1288,
+          "died": 358
+        },
+        "railwayAccidents": {
+          "cases": 0,
+          "injured": 0,
+          "died": 0
+        },
+        "totalTrafficAccidents": {
+          "cases": 1352,
+          "injured": 1288,
+          "died": 358
+        }
+      }
+    ]
+  }
+}

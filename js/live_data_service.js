@@ -2679,7 +2679,7 @@ class LiveDataService {
   }
 
   /**
-   * Generates live real-time highway patrol incident nodes across active Indian corridors
+   * Generates live real-time highway patrol incident nodes across active Indian corridors (SIMULATED)
    */
   getSimulatedLiveCorridorHazards() {
     const liveCorridors = [
@@ -2716,13 +2716,14 @@ class LiveDataService {
       highest_risk_month: "August",
       hotspot_score: Math.floor(Math.random() * 12) + 84,
       hotspot_tier: "Critical",
-      primary_source: "Live Telemetry & GIS Patrol Stream",
+      primary_source: "Simulated Highway Patrol Stream",
+      data_origin: "simulated",
       dominant_vehicle: "Highway Patrol & Commercial Transport"
     }));
   }
 
   /**
-   * Transforms raw OpenStreetMap hazard nodes into standardized hotspot statistics records
+   * Transforms raw OpenStreetMap hazard nodes into standardized hotspot statistics records (Casualties Simulated)
    */
   transformOsmElementsToHotspots(elements) {
     return elements.map((el, idx) => {
@@ -2755,7 +2756,8 @@ class LiveDataService {
         highest_risk_month: "August",
         hotspot_score: Math.floor(Math.random() * 15) + 80,
         hotspot_tier: "Critical",
-        primary_source: "Live OSM Overpass Open GIS API Feed",
+        primary_source: "OSM Node Geometry (Casualties Simulated)",
+        data_origin: "simulated",
         dominant_vehicle: "Commercial Transport / Highway Vehicles"
       };
     });

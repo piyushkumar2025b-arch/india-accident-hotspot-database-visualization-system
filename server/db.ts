@@ -17,6 +17,9 @@ import {
   SpeedCamera,
   HazardousGhat
 } from "./real_data";
+import type { TrustTier } from "./ingestion/types";
+import fs from "fs";
+import path from "path";
 
 export interface HotspotRecord {
   location_id: string;
@@ -46,6 +49,8 @@ export interface HotspotRecord {
   primary_source: string;
   dominant_vehicle: string;
   weather_hazard_factor?: number;
+  data_origin?: TrustTier;
+  provenance_url?: string;
 }
 
 export interface StateRecord {
@@ -79,6 +84,19 @@ export interface TelemetrySummary {
   last_synced: string;
 }
 
+// dominant_cause is free text; taxonomy names rarely appear as exact substrings,
+// so each cause is matched via keyword fragments too.
+const CAUSE_KEYWORDS: Record<string, string[]> = {
+  "c-1": ["overspeed", "speeding", "speed", "velocity", "racing", "joyriding"],
+  "c-2": ["drunk", "alcohol", "intoxic", "liquor"],
+  "c-3": ["wrong"],
+  "c-4": ["fatigue", "drows", "asleep", "sleep", "hypnosis", "exhaustion", "deprivation"],
+  "c-5": ["distract", "mobile", "phone", "selfie"],
+  "c-6": ["fog", "smog", "visibility", "glare", "blindness"],
+  "c-7": ["brake", "mechanical", "tyre", "tire", "blowout", "delamination", "breakdown"],
+  "c-8": ["pothole", "obstacle", "unmarked", "debris", "rockfall", "landslide", "subsidence", "cattle", "wildlife", "stray", "boulder", "shooting stones"]
+};
+
 class DatabaseEngine {
   private hotspots: HotspotRecord[] = [];
   private states: StateRecord[] = [];
@@ -94,7 +112,25 @@ class DatabaseEngine {
     this.initCorridors();
     // Ingest all verified authentic MoRTH black spots
     this.mergeCorridors(REAL_BLACKSPOTS);
+    // Ingest 417 high-density accident clusters extracted from the Indian Roads 20k dataset
+    this.ingestIndianRoadsDatasetClusters();
     this.initAccidents();
+  }
+
+  private ingestIndianRoadsDatasetClusters() {
+    try {
+      const clusterFile = path.resolve(process.cwd(), "data", "indian_roads_hotspot_clusters.json");
+      if (fs.existsSync(clusterFile)) {
+        const raw = fs.readFileSync(clusterFile, "utf-8");
+        const clusters: HotspotRecord[] = JSON.parse(raw);
+        if (Array.isArray(clusters) && clusters.length > 0) {
+          const merged = this.mergeCorridors(clusters);
+          console.log(`[db] Successfully merged ${clusters.length} measured Indian Roads clusters into database (Total hotspots: ${merged})`);
+        }
+      }
+    } catch (err) {
+      console.warn("[db] Failed to ingest indian_roads_hotspot_clusters:", err);
+    }
   }
 
   private initMasterTaxonomy() {
@@ -122,7 +158,19 @@ class DatabaseEngine {
       { id: "state-ch", name: "Chandigarh", state_code: "CH", latitude: 30.7333, longitude: 76.7794 },
       { id: "state-cg", name: "Chhattisgarh", state_code: "CG", latitude: 21.2787, longitude: 81.8661 },
       { id: "state-jk", name: "Jammu & Kashmir", state_code: "JK", latitude: 33.7782, longitude: 76.5762 },
-      { id: "state-ga", name: "Goa", state_code: "GA", latitude: 15.2993, longitude: 74.1240 }
+      { id: "state-ga", name: "Goa", state_code: "GA", latitude: 15.2993, longitude: 74.1240 },
+      { id: "state-ar", name: "Arunachal Pradesh", state_code: "AR", latitude: 28.2180, longitude: 94.7278 },
+      { id: "state-mn", name: "Manipur", state_code: "MN", latitude: 24.6637, longitude: 93.9063 },
+      { id: "state-ml", name: "Meghalaya", state_code: "ML", latitude: 25.4670, longitude: 91.3662 },
+      { id: "state-mz", name: "Mizoram", state_code: "MZ", latitude: 23.1645, longitude: 92.9376 },
+      { id: "state-nl", name: "Nagaland", state_code: "NL", latitude: 26.1584, longitude: 94.5624 },
+      { id: "state-sk", name: "Sikkim", state_code: "SK", latitude: 27.5330, longitude: 88.5122 },
+      { id: "state-tr", name: "Tripura", state_code: "TR", latitude: 23.9408, longitude: 91.9882 },
+      { id: "state-an", name: "Andaman & Nicobar Islands", state_code: "AN", latitude: 11.7401, longitude: 92.6586 },
+      { id: "state-dn", name: "Dadra and Nagar Haveli and Daman and Diu", state_code: "DN", latitude: 20.1809, longitude: 73.0169 },
+      { id: "state-la", name: "Ladakh", state_code: "LA", latitude: 34.1526, longitude: 77.5771 },
+      { id: "state-ld", name: "Lakshadweep", state_code: "LD", latitude: 10.5667, longitude: 72.6369 },
+      { id: "state-py", name: "Puducherry", state_code: "PY", latitude: 11.9416, longitude: 79.8083 }
     ];
 
     this.roadTypes = [
@@ -161,6 +209,21 @@ class DatabaseEngine {
       { id: "wc-3", name: "Dense Fog / Smog" },
       { id: "wc-4", name: "Hail / Thunderstorm" }
     ];
+  }
+
+  public findNearestState(lat: number, lon: number): StateRecord {
+    let nearest = this.states[0];
+    let minDist = Number.POSITIVE_INFINITY;
+    for (const s of this.states) {
+      const dLat = (lat - s.latitude) * 111.32;
+      const dLon = (lon - s.longitude) * 111.32 * Math.cos((lat * Math.PI) / 180);
+      const dist = dLat * dLat + dLon * dLon;
+      if (dist < minDist) {
+        minDist = dist;
+        nearest = s;
+      }
+    }
+    return nearest;
   }
 
   private initCorridors() {
@@ -1019,8 +1082,11 @@ class DatabaseEngine {
       if (filters.minFatalities && h.total_deaths < Number(filters.minFatalities)) return false;
       if (filters.causeId) {
         const c = this.causes.find(item => item.id === filters.causeId);
-        if (c && h.dominant_cause && !h.dominant_cause.toLowerCase().includes(c.name.toLowerCase())) {
-          return false;
+        if (c && h.dominant_cause) {
+          const dc = h.dominant_cause.toLowerCase();
+          const keywords = CAUSE_KEYWORDS[c.id] || [];
+          const matched = dc.includes(c.name.toLowerCase()) || keywords.some(k => dc.includes(k));
+          if (!matched) return false;
         }
       }
       if (filters.year && h.last_accident_date) {
@@ -1176,7 +1242,7 @@ class DatabaseEngine {
         responsible_vehicle: h.dominant_vehicle || "Heavy Freight Truck",
         road_condition: "Dry",
         description: `Verified corridor crash point: ${h.road_name} (${h.road_number || 'NH'}). Cause: ${h.dominant_cause}`,
-        source_name: h.primary_source || "MoRTH Official Audit",
+        source_name: h.primary_source ? `${h.primary_source} (Derived from aggregate)` : "Derived from aggregate",
         verification_status: "Verified",
         road_name: h.road_name,
         road_number: h.road_number,

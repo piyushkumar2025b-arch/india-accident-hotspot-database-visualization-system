@@ -1,0 +1,203 @@
+{
+  "config": {
+    "id": "indian-roads-20k-incidents",
+    "name": "Indian Roads — 20,000 Granular Highway Incidents",
+    "kind": "national_series",
+    "trustTier": "measured",
+    "endpointTemplate": "local:data/indian_roads_dataset.csv",
+    "cadenceMs": 604800000,
+    "ttlMs": 2592000000,
+    "timeoutMs": 15000,
+    "enabled": true,
+    "snapshotFile": "data/snapshots/indian-roads-20k-incidents.json"
+  },
+  "status": "ok",
+  "lastFetchedAt": "2026-11-02T06:56:13.317Z",
+  "nextFetchAt": "2026-11-09T06:56:13.317Z",
+  "recordCount": 8,
+  "latencyMs": 157,
+  "error": null,
+  "failureCount": 0,
+  "provenance": {
+    "sourceId": "indian-roads-20k-incidents",
+    "publisher": "Indian Transport Safety Research Repository (High-Density Corridor Study)",
+    "dataset": "20,000 Micro-Level Indian Road Accidents & Weather Impact Records",
+    "endpoint": "local:data/indian_roads_dataset.csv",
+    "retrievedAt": "2026-11-02T06:56:13.317Z",
+    "coverageFrom": "2023",
+    "coverageTo": "2025",
+    "license": "Open Data Commons / Research Permissive",
+    "method": "Micro-incident sensor, telemetry & highway patrol corridor FIR compilation",
+    "trustTier": "measured",
+    "cacheAgeMs": 0,
+    "fromSnapshot": false
+  },
+  "points": [
+    {
+      "period": "2023-2025",
+      "value": 2517,
+      "unit": "recorded corridor collisions",
+      "entity": "Pune",
+      "meta": {
+        "fatalCount": 398,
+        "totalCasualties": 5038,
+        "meanLatitude": 18.550878924116027,
+        "meanLongitude": 73.85255871315056,
+        "fatalityRate": 0.15812475168851808
+      }
+    },
+    {
+      "period": "2023-2025",
+      "value": 2492,
+      "unit": "recorded corridor collisions",
+      "entity": "Mumbai",
+      "meta": {
+        "fatalCount": 359,
+        "totalCasualties": 4909,
+        "meanLatitude": 19.051717570626014,
+        "meanLongitude": 72.84892775040122,
+        "fatalityRate": 0.1440609951845907
+      }
+    },
+    {
+      "period": "2023-2025",
+      "value": 2577,
+      "unit": "recorded corridor collisions",
+      "entity": "Chandigarh",
+      "meta": {
+        "fatalCount": 378,
+        "totalCasualties": 5000,
+        "meanLatitude": 30.698615903764157,
+        "meanLongitude": 76.80133292782325,
+        "fatalityRate": 0.14668218859138532
+      }
+    },
+    {
+      "period": "2023-2025",
+      "value": 2575,
+      "unit": "recorded corridor collisions",
+      "entity": "Chennai",
+      "meta": {
+        "fatalCount": 371,
+        "totalCasualties": 5189,
+        "meanLatitude": 13.00159414407772,
+        "meanLongitude": 80.20003576388368,
+        "fatalityRate": 0.14407766990291263
+      }
+    },
+    {
+      "period": "2023-2025",
+      "value": 2433,
+      "unit": "recorded corridor collisions",
+      "entity": "Delhi",
+      "meta": {
+        "fatalCount": 382,
+        "totalCasualties": 4780,
+        "meanLatitude": 28.651106046855737,
+        "meanLongitude": 77.045334050966,
+        "fatalityRate": 0.1570078092889437
+      }
+    },
+    {
+      "period": "2023-2025",
+      "value": 2438,
+      "unit": "recorded corridor collisions",
+      "entity": "Bangalore",
+      "meta": {
+        "fatalCount": 384,
+        "totalCasualties": 4747,
+        "meanLatitude": 12.999878330598838,
+        "meanLongitude": 77.60000368170623,
+        "fatalityRate": 0.15750615258408532
+      }
+    },
+    {
+      "period": "2023-2025",
+      "value": 2409,
+      "unit": "recorded corridor collisions",
+      "entity": "Hyderabad",
+      "meta": {
+        "fatalCount": 338,
+        "totalCasualties": 4671,
+        "meanLatitude": 17.40049382606891,
+        "meanLongitude": 78.40288316936488,
+        "fatalityRate": 0.1403071814030718
+      }
+    },
+    {
+      "period": "2023-2025",
+      "value": 2559,
+      "unit": "recorded corridor collisions",
+      "entity": "Kolkata",
+      "meta": {
+        "fatalCount": 377,
+        "totalCasualties": 5120,
+        "meanLatitude": 22.55007099257524,
+        "meanLongitude": 88.35303054279024,
+        "fatalityRate": 0.14732317311449786
+      }
+    }
+  ],
+  "extra": {
+    "totalIncidents": 20000,
+    "cityHubs": {
+      "Pune": {
+        "total": 2517,
+        "fatal": 398,
+        "casualties": 5038,
+        "latSum": 46692.56225200004,
+        "lngSum": 185886.89028099994
+      },
+      "Mumbai": {
+        "total": 2492,
+        "fatal": 359,
+        "casualties": 4909,
+        "latSum": 47476.88018600003,
+        "lngSum": 181539.52795399982
+      },
+      "Chandigarh": {
+        "total": 2577,
+        "fatal": 378,
+        "casualties": 5000,
+        "latSum": 79110.33318400024,
+        "lngSum": 197917.03495500053
+      },
+      "Chennai": {
+        "total": 2575,
+        "fatal": 371,
+        "casualties": 5189,
+        "latSum": 33479.10492100013,
+        "lngSum": 206515.09209200047
+      },
+      "Delhi": {
+        "total": 2433,
+        "fatal": 382,
+        "casualties": 4780,
+        "latSum": 69708.14101200001,
+        "lngSum": 187451.2977460003
+      },
+      "Bangalore": {
+        "total": 2438,
+        "fatal": 384,
+        "casualties": 4747,
+        "latSum": 31693.703369999967,
+        "lngSum": 189188.80897599977
+      },
+      "Hyderabad": {
+        "total": 2409,
+        "fatal": 338,
+        "casualties": 4671,
+        "latSum": 41917.789627000006,
+        "lngSum": 188872.545555
+      },
+      "Kolkata": {
+        "total": 2559,
+        "fatal": 377,
+        "casualties": 5120,
+        "latSum": 57705.63167000004,
+        "lngSum": 226095.40515900022
+      }
+    },
+    "sampleSize": 20000
+  }
+}

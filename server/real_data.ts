@@ -14,6 +14,8 @@ import { WEST_CENTRAL_BLACKSPOTS } from "./data_west_central";
 import { EAST_NORTHEAST_BLACKSPOTS } from "./data_east_northeast";
 import { INTERNET_EXPANDED_BLACKSPOTS } from "./data_internet_corridors";
 import { LIVE_MORTH_BLACKSPOTS } from "./data_live_morth";
+import { EXPANDED_MORTH_BLACKSPOTS } from "./data_expanded_morth";
+import { REAL_INGESTED_HOTSPOTS } from "./data_real_ingested";
 
 export type {
   TraumaCenter,
@@ -1593,5 +1595,11 @@ INTERNET_EXPANDED_BLACKSPOTS.forEach(s => blackspotMap.set(s.location_id, s));
 
 // 7. Official MoRTH Survey-Grade Blackspots (with exact GPS coordinates)
 LIVE_MORTH_BLACKSPOTS.forEach(s => blackspotMap.set(s.location_id, s));
+
+// 8. Pan-India Expanded High-Casualty Audit Blackspots
+EXPANDED_MORTH_BLACKSPOTS.forEach(s => blackspotMap.set(s.location_id, s));
+
+// 9. Real Multi-Source Ingested Datasets (NCRB ADSI 53 Cities, TN Police, Bengaluru CAS 207k)
+REAL_INGESTED_HOTSPOTS.forEach(s => blackspotMap.set(s.location_id, s));
 
 export const REAL_BLACKSPOTS: HotspotRecord[] = Array.from(blackspotMap.values());

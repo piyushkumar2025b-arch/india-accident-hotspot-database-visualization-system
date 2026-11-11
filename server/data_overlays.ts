@@ -325,6 +325,54 @@ export const TRAUMA_CENTERS: TraumaCenter[] = [
     emergency_helpline: "0135-2462940 / 108",
     highway_covered: "NH-58 / NH-7 Char Dham Highway Stretches",
     icu_beds: 60
+  },
+  {
+    id: "tc-salem-ghat-apex",
+    name: "Government Mohan Kumaramangalam Medical College Trauma Care",
+    level: "Level 1 (Apex)",
+    city: "Salem",
+    state: "Tamil Nadu",
+    latitude: 11.6643,
+    longitude: 78.1460,
+    emergency_helpline: "0427-2211440 / 108",
+    highway_covered: "NH-44 Thoppur Ghat Corridor / NH-544 Salem-Kochi",
+    icu_beds: 65
+  },
+  {
+    id: "tc-dharmapuri-district-trauma",
+    name: "Dharmapuri Government Medical College Emergency Trauma Center",
+    level: "Level 2 (Regional)",
+    city: "Dharmapuri",
+    state: "Tamil Nadu",
+    latitude: 12.1287,
+    longitude: 78.1589,
+    emergency_helpline: "04342-230444 / 108",
+    highway_covered: "NH-44 Thoppur Ghat Descent & Salem Highway",
+    icu_beds: 45
+  },
+  {
+    id: "tc-gmc-aurangabad",
+    name: "Government Medical College Chhatrapati Sambhajinagar Trauma",
+    level: "Level 1 (Apex)",
+    city: "Chhatrapati Sambhajinagar",
+    state: "Maharashtra",
+    latitude: 19.8872,
+    longitude: 75.3214,
+    emergency_helpline: "0240-2402412 / 108",
+    highway_covered: "Samruddhi Mahamarg (SM-01) & NH-52",
+    icu_beds: 55
+  },
+  {
+    id: "tc-hassan-shiradi-trauma",
+    name: "Hassan Institute of Medical Sciences (HIMS) Emergency Wing",
+    level: "Level 2 (Regional)",
+    city: "Hassan",
+    state: "Karnataka",
+    latitude: 13.0072,
+    longitude: 76.1012,
+    emergency_helpline: "08172-231122 / 108",
+    highway_covered: "NH-75 Shiradi Ghat Mangaluru-Bengaluru",
+    icu_beds: 40
   }
 ];
 

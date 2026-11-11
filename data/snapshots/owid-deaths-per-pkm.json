@@ -1,0 +1,238 @@
+{
+  "config": {
+    "id": "owid-deaths-per-pkm",
+    "name": "OWID — Deaths per passenger-kilometre",
+    "kind": "national_series",
+    "trustTier": "measured",
+    "endpointTemplate": "https://ourworldindata.org/grapher/road-accident-deaths-per-passenger-kilometers.csv",
+    "cadenceMs": 86400000,
+    "ttlMs": 604800000,
+    "timeoutMs": 15000,
+    "enabled": true,
+    "snapshotFile": "data/snapshots/owid-deaths-per-pkm.json",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
+      "Accept": "text/csv"
+    }
+  },
+  "status": "ok",
+  "lastFetchedAt": "2026-11-02T06:28:07.006Z",
+  "nextFetchAt": "2026-11-03T06:28:07.006Z",
+  "recordCount": 28,
+  "latencyMs": 272,
+  "error": null,
+  "failureCount": 0,
+  "provenance": {
+    "sourceId": "owid-deaths-per-pkm",
+    "publisher": "Our World in Data (source: NCRB Accidents in India)",
+    "dataset": "Road accident deaths per billion passenger-kilometres",
+    "endpoint": "https://ourworldindata.org/grapher/road-accident-deaths-per-passenger-kilometers.csv",
+    "retrievedAt": "2026-11-02T06:28:07.006Z",
+    "coverageFrom": "1990",
+    "coverageTo": "2017",
+    "license": "CC BY — verify at owid.org",
+    "method": "direct CSV download (raw OWID values)",
+    "trustTier": "measured",
+    "cacheAgeMs": 0,
+    "fromSnapshot": false
+  },
+  "points": [
+    {
+      "period": "1990",
+      "value": 70.44271,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1991",
+      "value": 63.503277,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1992",
+      "value": 59.84704,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1993",
+      "value": 53.782646,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1994",
+      "value": 51.949047,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1995",
+      "value": 52.078896,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1996",
+      "value": 50.540398,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1997",
+      "value": 48.244625,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1998",
+      "value": 46.63323,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "1999",
+      "value": 44.74127,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2000",
+      "value": 38.011078,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2001",
+      "value": 33.52176,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2002",
+      "value": 30.079575,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2003",
+      "value": 28.012379,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2004",
+      "value": 26.698761,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2005",
+      "value": 22.334902,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2006",
+      "value": 22.707537,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2007",
+      "value": 20.876322,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2008",
+      "value": 19.388548,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2009",
+      "value": 17.47219,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2010",
+      "value": 15.996313,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2011",
+      "value": 15.033235,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2012",
+      "value": 13.302993,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2013",
+      "value": 11.70228,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2014",
+      "value": 10.420876,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2015",
+      "value": 9.479922,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2016",
+      "value": 8.618256,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    },
+    {
+      "period": "2017",
+      "value": 7.50142,
+      "unit": "deaths per billion passenger-km",
+      "iso3": "IND",
+      "entity": "India"
+    }
+  ],
+  "extra": null
+}

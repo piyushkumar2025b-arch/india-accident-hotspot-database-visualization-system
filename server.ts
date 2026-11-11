@@ -6,6 +6,42 @@ import { createServer as createViteServer } from "vite";
 import { dbEngine, HotspotRecord } from "./server/db";
 import { fetchLiveExternalData } from "./server/external_fetcher";
 import { supabaseBridge } from "./server/supabase_bridge";
+import {
+  predictHotspotRisk,
+  getTemporalCalendar,
+  calculateRouteSafety,
+  getRealtimePredictions
+} from "./server/prediction/index";
+import {
+  computeEmpiricalBayesModel,
+  computeEPDORating,
+  computeGoldenHourReachability,
+  computeCircadianIndex,
+  computeBlackspotBudgetROI
+} from "./server/analytics_models";
+import {
+  initIngestion,
+  shutdownIngestion,
+  ingestionStore,
+  refreshSource,
+  refreshAll,
+  GIS_REGIONS
+} from "./server/ingestion/index";
+import {
+  computeCrashProbability,
+  computeTrendIndex,
+  computeLongRunProjection,
+  computeDailyHazardSeasonality,
+  computeSeverityPosterior,
+  computeKdeDensity,
+  computeSpatialClustering,
+  computeExtremeReturnLevels,
+  computeMonteCarloTrip,
+  computeGoldenHourSurvival,
+  computeHourlyIntensityCurve,
+  computeNationalBurdenComparison,
+  computeRankConcordance
+} from "./server/prediction/math/math_models";
 
 async function startServer() {
   const app = express();
@@ -59,6 +95,7 @@ async function startServer() {
         causeId: req.query.causeId as string,
         year: req.query.year as string,
         month: req.query.month as string
+        
       };
       const hotspots = dbEngine.getHotspots(filters);
       res.json(hotspots);
@@ -94,6 +131,154 @@ async function startServer() {
       res.json(causes);
     } catch (err: any) {
       res.status(500).json({ error: "Failed to fetch causes", details: err.message });
+    }
+  });
+
+  // ============================================================================
+  // PREDICTION & ROUTE-SAFETY INTELLIGENCE ENDPOINTS (/api/predict/*)
+  // ============================================================================
+
+  // 1. Hotspot Daily Forecast
+  app.get("/api/predict/hotspot/:locationId", async (req, res) => {
+    try {
+      const locationId = req.params.locationId;
+      const targetDate = req.query.date as string | undefined;
+      const result = await predictHotspotRisk(locationId, targetDate);
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({
+        success: false,
+        error: "Failed to calculate hotspot forecast",
+        details: err.message
+      });
+    }
+  });
+
+  // 2. Historical Temporal Calendar ("This Day, This Year")
+  app.get("/api/predict/calendar", async (req, res) => {
+    try {
+      const locationId = req.query.locationId as string || "loc-tn-thoppur-ghat";
+      const month = req.query.month ? parseInt(req.query.month as string, 10) : undefined;
+      const year = req.query.year ? parseInt(req.query.year as string, 10) : undefined;
+      const result = await getTemporalCalendar(locationId, month, year);
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({
+        success: false,
+        error: "Failed to generate temporal calendar",
+        details: err.message
+      });
+    }
+  });
+
+  // 3. Route Safety Score via Weighted Graph (Dijkstra)
+  app.post("/api/predict/route", async (req, res) => {
+    try {
+      const { origin, destination, date } = req.body || {};
+      if (!origin || !destination || origin.lat == null || origin.lng == null || destination.lat == null || destination.lng == null) {
+        res.status(400).json({
+          success: false,
+          error: "Origin and Destination coordinates {lat, lng} are required"
+        });
+        return;
+      }
+      const result = await calculateRouteSafety(
+        { lat: Number(origin.lat), lng: Number(origin.lng) },
+        { lat: Number(destination.lat), lng: Number(destination.lng) },
+        date
+      );
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({
+        success: false,
+        error: "Failed to calculate route safety score",
+        details: err.message
+      });
+    }
+  });
+
+  // 4. Real-time Risk Heatmap & Active Alerts
+  app.get("/api/predict/realtime", async (_req, res) => {
+    try {
+      const result = await getRealtimePredictions();
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({
+        success: false,
+        error: "Failed to generate realtime prediction layer",
+        details: err.message
+      });
+    }
+  });
+
+  // ============================================================================
+  // ADVANCED TRANSPORT MATHEMATICAL INTELLIGENCE ENDPOINTS
+  // ============================================================================
+
+  // Empirical Bayes (EB) Expected Crash Hazard Model
+  app.get("/api/analytics/eb-model/:locationId", (req, res) => {
+    try {
+      const result = computeEmpiricalBayesModel(req.params.locationId);
+      if (!result) {
+        res.status(404).json({ error: "Location not found" });
+        return;
+      }
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: "Failed to calculate Empirical Bayes model", details: err.message });
+    }
+  });
+
+  // IRC:SP:88-2019 EPDO & Economic Valuation
+  app.get("/api/analytics/epdo/:locationId", (req, res) => {
+    try {
+      const result = computeEPDORating(req.params.locationId);
+      if (!result) {
+        res.status(404).json({ error: "Location not found" });
+        return;
+      }
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: "Failed to compute EPDO rating", details: err.message });
+    }
+  });
+
+  // Golden Hour Trauma Center Reachability & Desert Catchment
+  app.get("/api/analytics/golden-hour/:locationId", (req, res) => {
+    try {
+      const result = computeGoldenHourReachability(req.params.locationId);
+      if (!result) {
+        res.status(404).json({ error: "Location not found" });
+        return;
+      }
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: "Failed to compute Golden Hour reachability", details: err.message });
+    }
+  });
+
+  // Circadian 24-Hour Fatigue Multiplier Index
+  app.get("/api/analytics/circadian/:hour", (req, res) => {
+    try {
+      const hour = parseInt(req.params.hour, 10);
+      const result = computeCircadianIndex(hour);
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: "Failed to compute circadian index", details: err.message });
+    }
+  });
+
+  // Blackspot Remedial Budget Allocation & Benefit-Cost Ratio (BCR)
+  app.get("/api/analytics/budget-roi/:locationId", (req, res) => {
+    try {
+      const result = computeBlackspotBudgetROI(req.params.locationId);
+      if (!result) {
+        res.status(404).json({ error: "Location not found" });
+        return;
+      }
+      res.json(result);
+    } catch (err: any) {
+      res.status(500).json({ error: "Failed to compute Budget ROI", details: err.message });
     }
   });
 
@@ -522,6 +707,399 @@ async function startServer() {
   });
 
   // ============================================================================
+  // REAL-DATA INGESTION & ADVANCED "SAFETY PREDICTIONS" APIS (Phase 3)
+  // ============================================================================
+
+  // 1. Ingestion Sources Status
+  app.get("/api/sources/status", (_req, res) => {
+    try {
+      const list = ingestionStore.statusList();
+      res.json({ success: true, count: list.length, sources: list });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to retrieve sources status", details: err.message });
+    }
+  });
+
+  // 2. Trigger Ingestion Refresh (single or all)
+  app.post("/api/sources/refresh", async (req, res) => {
+    try {
+      const { id, force } = req.body || {};
+      if (id) {
+        const state = await refreshSource(id, { force: Boolean(force) });
+        res.json({ success: true, source: state });
+      } else {
+        const results = await refreshAll({ force: Boolean(force) });
+        res.json({ success: true, refreshed: results.length, sources: results });
+      }
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to refresh source(s)", details: err.message });
+    }
+  });
+
+  // 3. Historical / Ingested Series by Source ID
+  app.get("/api/sources/series/:id", async (req, res) => {
+    try {
+      const { points, provenance } = await ingestionStore.resolveSeries(req.params.id);
+      res.json({ success: true, sourceId: req.params.id, count: points.length, points, provenance });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to resolve series", details: err.message });
+    }
+  });
+
+  // 4. Live Environmental Telemetry (0.1-degree grid LRU cache)
+  app.get("/api/live/telemetry", async (req, res) => {
+    try {
+      const lat = parseFloat(req.query.lat as string || "28.6139");
+      const lng = parseFloat(req.query.lng as string || "77.2090");
+      if (Number.isNaN(lat) || Number.isNaN(lng)) {
+        res.status(400).json({ success: false, error: "Valid latitude and longitude numbers are required" });
+        return;
+      }
+      const env = await ingestionStore.getLiveEnvironment(lat, lng);
+      res.json({ success: true, telemetry: env });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to fetch live telemetry", details: err.message });
+    }
+  });
+
+  // 5. Active Environmental & Blackspot Alerts (server-side computed top-N)
+  app.get("/api/live/alerts", async (req, res) => {
+    try {
+      const limit = Math.max(1, Math.min(parseInt(req.query.limit as string || "10", 10), 50));
+      const hotspots = dbEngine.getHotspots();
+      const sampleSpots = hotspots.slice(0, 30); // Cap upstream telemetry evaluation
+
+      const alerts: any[] = [];
+      await Promise.all(
+        sampleSpots.map(async (spot) => {
+          try {
+            const env = await ingestionStore.getLiveEnvironment(spot.latitude, spot.longitude);
+            if (env.hazardIndex >= 0.6 || (env.visibilityM != null && env.visibilityM < 2000) || (env.windKmh != null && env.windKmh > 35)) {
+              alerts.push({
+                locationId: spot.location_id,
+                roadName: spot.road_name,
+                state: spot.state_name,
+                hazardIndex: env.hazardIndex,
+                visibilityM: env.visibilityM,
+                windKmh: env.windKmh,
+                weatherCode: env.weatherCode,
+                reason: env.visibilityM != null && env.visibilityM < 1500 ? "Low Visibility Fog" : env.hazardIndex >= 0.7 ? "High Hazard Weather Grid" : "Elevated Environmental Risk",
+                lat: spot.latitude,
+                lng: spot.longitude,
+                timestamp: env.fetchedAt
+              });
+            }
+          } catch {}
+        })
+      );
+
+      alerts.sort((a, b) => b.hazardIndex - a.hazardIndex);
+      const topAlerts = alerts.slice(0, limit);
+      res.json({ success: true, count: topAlerts.length, alerts: topAlerts });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to generate live alerts", details: err.message });
+    }
+  });
+
+  // 6. Overpass Infrastructure Census Regions & Features
+  app.get("/api/gis/overpass", async (_req, res) => {
+    try {
+      const state = ingestionStore.get("overpass-gis-exposure");
+      res.json({
+        success: true,
+        regions: GIS_REGIONS,
+        census: state?.extra || null,
+        provenance: state?.provenance || null,
+        status: state?.status || "snapshot"
+      });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to fetch overpass GIS data", details: err.message });
+    }
+  });
+
+  // 7. National Baseline Series (World Bank + OWID)
+  app.get("/api/national/baseline", async (_req, res) => {
+    try {
+      const [owidRes, wbRes] = await Promise.all([
+        ingestionStore.resolveSeries("owid-road-deaths-longterm"),
+        ingestionStore.resolveSeries("worldbank-road-mortality")
+      ]);
+      const comparison = computeNationalBurdenComparison({
+        mortality: wbRes.points,
+        absolute: owidRes.points,
+        provenance: wbRes.provenance
+      });
+      res.json({ success: true, ...comparison, owidProvenance: owidRes.provenance });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute national baseline", details: err.message });
+    }
+  });
+
+  // 8. Model 1: Crash Probability (Poisson / Negative Binomial 2)
+  app.get("/api/predict/probability/:id", async (req, res) => {
+    try {
+      const spot = dbEngine.getHotspots().find((h) => h.location_id === req.params.id);
+      if (!spot) {
+        res.status(404).json({ success: false, error: "Location not found" });
+        return;
+      }
+      const env = await ingestionStore.getLiveEnvironment(spot.latitude, spot.longitude);
+      const hours = req.query.hours ? parseInt(req.query.hours as string, 10) : 24;
+      const k = req.query.k ? parseInt(req.query.k as string, 10) : 2;
+      const result = computeCrashProbability({
+        spot,
+        env,
+        hours,
+        k,
+        provenance: { endpoint: `/api/predict/probability/${spot.location_id}` }
+      });
+      res.json({ success: true, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute crash probability", details: err.message });
+    }
+  });
+
+  // 9. Model 2: Trend Index (EWMA + OLS with 95% CI)
+  app.get("/api/predict/trend/:id", async (req, res) => {
+    try {
+      const spot = dbEngine.getHotspots().find((h) => h.location_id === req.params.id);
+      if (!spot) {
+        res.status(404).json({ success: false, error: "Location not found" });
+        return;
+      }
+      const env = await ingestionStore.getLiveEnvironment(spot.latitude, spot.longitude);
+      const result = computeTrendIndex({
+        spot,
+        env,
+        provenance: { endpoint: `/api/predict/trend/${spot.location_id}` }
+      });
+      res.json({ success: true, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute trend index", details: err.message });
+    }
+  });
+
+  // 10. Model 6: KDE Spatial Density Grid (2-D Gaussian KDE)
+  app.get("/api/predict/kde", async (req, res) => {
+    try {
+      const spots = dbEngine.getHotspots();
+      const bandwidthKm = req.query.bandwidth ? parseFloat(req.query.bandwidth as string) : 60;
+      const rows = Math.min(100, Math.max(10, req.query.rows ? parseInt(req.query.rows as string, 10) : 40));
+      const cols = Math.min(100, Math.max(10, req.query.cols ? parseInt(req.query.cols as string, 10) : 40));
+
+      const weightedSpots = spots.map((s) => ({
+        lat: s.latitude,
+        lng: s.longitude,
+        weight: s.hotspot_score || (s.total_accidents / 2) || 10
+      }));
+
+      const result = computeKdeDensity({
+        spots: weightedSpots,
+        bandwidthKm,
+        rows,
+        cols,
+        provenance: { endpoint: "/api/predict/kde" }
+      });
+      res.json({ success: true, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute KDE density", details: err.message });
+    }
+  });
+
+  // 11. Model 5: Severity Posterior (Beta-Binomial with Wilson & Jeffreys intervals)
+  app.get("/api/predict/severity/:id", async (req, res) => {
+    try {
+      const spot = dbEngine.getHotspots().find((h) => h.location_id === req.params.id);
+      if (!spot) {
+        res.status(404).json({ success: false, error: "Location not found" });
+        return;
+      }
+      const result = computeSeverityPosterior({
+        spot,
+        provenance: { endpoint: `/api/predict/severity/${spot.location_id}` }
+      });
+      res.json({ success: true, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute severity posterior", details: err.message });
+    }
+  });
+
+  // 12. Model 8: Extreme Return Levels (Gumbel Distribution on annual counts)
+  app.get("/api/predict/extremes", async (req, res) => {
+    try {
+      const { points, provenance } = await ingestionStore.resolveSeries("owid-road-deaths-longterm");
+      const values = (points || []).map((p) => p.value).filter((v) => Number.isFinite(v));
+      const labels = (points || []).map((p) => p.period);
+      const result = computeExtremeReturnLevels({
+        values: values.length ? values : [110000, 115000, 120000, 130000, 140000, 148000, 150000],
+        labels,
+        provenance
+      });
+      res.json({ success: true, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute extreme return levels", details: err.message });
+    }
+  });
+
+  // 13. Model 9: Monte Carlo Trip Simulation (Seeded Mulberry32 PRNG)
+  app.post("/api/predict/monte-carlo", async (req, res) => {
+    try {
+      const { segments, departHour, weatherHazard, seed, runs } = req.body || {};
+      const cappedRuns = Math.min(20000, Math.max(100, runs ? parseInt(runs, 10) : 5000));
+      const result = computeMonteCarloTrip({
+        segments: segments || [
+          { lengthKm: 45, risk0to100: 65, roadName: "Sector 1 (Ghat Incline)" },
+          { lengthKm: 70, risk0to100: 40, roadName: "Sector 2 (Expressway Plain)" }
+        ],
+        departHour: departHour != null ? parseInt(departHour, 10) : 22,
+        weatherHazard: weatherHazard != null ? parseFloat(weatherHazard) : 0.4,
+        seed: seed != null ? parseInt(seed, 10) : 42,
+        runs: cappedRuns,
+        provenance: { endpoint: "/api/predict/monte-carlo" }
+      });
+      res.json({ success: true, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to execute Monte Carlo trip risk", details: err.message });
+    }
+  });
+
+  // 14. Model 10: Golden Hour Trauma Survival Decay
+  app.get("/api/predict/survival/:id", async (req, res) => {
+    try {
+      const spot = dbEngine.getHotspots().find((h) => h.location_id === req.params.id);
+      if (!spot) {
+        res.status(404).json({ success: false, error: "Location not found" });
+        return;
+      }
+      // Compute travel time to nearest trauma center from real data
+      const traumaCenters = dbEngine.getTraumaCenters ? dbEngine.getTraumaCenters() : [];
+      let minMinutes = 45;
+      if (traumaCenters.length > 0) {
+        let minDistKm = Number.POSITIVE_INFINITY;
+        for (const tc of traumaCenters) {
+          const dLat = (spot.latitude - tc.latitude) * 111.32;
+          const dLon = (spot.longitude - tc.longitude) * 111.32 * Math.cos((spot.latitude * Math.PI) / 180);
+          const d = Math.sqrt(dLat * dLat + dLon * dLon);
+          if (d < minDistKm) minDistKm = d;
+        }
+        minMinutes = Math.max(10, Math.round((minDistKm / 45) * 60)); // Avg 45 km/h emergency response
+      }
+      const result = computeGoldenHourSurvival({
+        arrivalMinutes: minMinutes,
+        traumaCentersNearby: traumaCenters.length,
+        provenance: { endpoint: `/api/predict/survival/${spot.location_id}` }
+      });
+      res.json({ success: true, locationId: spot.location_id, arrivalMinutes: minMinutes, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute golden hour survival", details: err.message });
+    }
+  });
+
+  // 15. Model 13: Metric Rank Concordance (Spearman rho + Kendall tau)
+  app.get("/api/predict/concordance", (_req, res) => {
+    try {
+      const spots = dbEngine.getHotspots();
+      const seriesA = spots.map((s) => ({ id: s.location_id, name: s.road_name, value: s.hotspot_score }));
+      const seriesB = spots.map((s) => ({ id: s.location_id, name: s.road_name, value: s.fatal_accidents }));
+      const result = computeRankConcordance({
+        seriesA,
+        seriesB,
+        labelA: "Hotspot Hazard Score",
+        labelB: "Observed Fatal Accidents",
+        provenance: { endpoint: "/api/predict/concordance" }
+      });
+      res.json({ success: true, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute rank concordance", details: err.message });
+    }
+  });
+
+  // 16. Model 7: Spatial Clustering (Moran's I)
+  app.get("/api/predict/clustering", async (_req, res) => {
+    try {
+      const spots = dbEngine.getHotspots();
+      const points = spots.map((s) => ({
+        lat: s.latitude,
+        lng: s.longitude,
+        value: s.hotspot_score || s.total_accidents || 10
+      }));
+      const result = computeSpatialClustering({
+        points,
+        provenance: { endpoint: "/api/predict/clustering" }
+      });
+      res.json({ success: true, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute spatial clustering", details: err.message });
+    }
+  });
+
+  // 17. Model 11: 24-Hour Intensity Curve (Circadian x Environmental Hazard)
+  app.get("/api/predict/intensity-curve/:id", async (req, res) => {
+    try {
+      const spot = dbEngine.getHotspots().find((h) => h.location_id === req.params.id);
+      if (!spot) {
+        res.status(404).json({ success: false, error: "Location not found" });
+        return;
+      }
+      const env = await ingestionStore.getLiveEnvironment(spot.latitude, spot.longitude);
+      const lambdaDaily = Math.max(0.05, spot.total_accidents / 3650);
+      const result = computeHourlyIntensityCurve({
+        lambdaDaily,
+        envHourly: env.hourly,
+        provenance: { endpoint: `/api/predict/intensity-curve/${spot.location_id}` }
+      });
+      res.json({ success: true, locationId: spot.location_id, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute intensity curve", details: err.message });
+    }
+  });
+
+  // Long-run projection (Model 3) & Seasonality (Model 4) helpers
+  app.get("/api/predict/projection", async (req, res) => {
+    try {
+      const { points, provenance } = await ingestionStore.resolveSeries("owid-road-deaths-longterm");
+      const horizonYears = req.query.years ? parseInt(req.query.years as string, 10) : 10;
+      const result = computeLongRunProjection({
+        annual: points,
+        horizonYears,
+        provenance
+      });
+      res.json({ success: true, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute long-run projection", details: err.message });
+    }
+  });
+
+  app.get("/api/predict/seasonality/:id", async (req, res) => {
+    try {
+      const spot = dbEngine.getHotspots().find((h) => h.location_id === req.params.id);
+      if (!spot) {
+        res.status(404).json({ success: false, error: "Location not found" });
+        return;
+      }
+      const env = await ingestionStore.getLiveEnvironment(spot.latitude, spot.longitude);
+      const dailyHazard = (env.daily || []).map((d) => (d.precipMm || 0) * 0.1 + (d.windMaxKmh || 0) * 0.01 + 0.3);
+      const dates = (env.daily || []).map((d) => d.date);
+      const result = computeDailyHazardSeasonality({
+        dailyHazard: dailyHazard.length >= 7 ? dailyHazard : [0.3, 0.35, 0.4, 0.5, 0.45, 0.38, 0.32],
+        dates,
+        provenance: { endpoint: `/api/predict/seasonality/${spot.location_id}` }
+      });
+      res.json({ success: true, locationId: spot.location_id, ...result });
+    } catch (err: any) {
+      res.status(500).json({ success: false, error: "Failed to compute seasonality", details: err.message });
+    }
+  });
+
+  // Strict JSON 404 for unknown /api/* routes
+  app.all("/api/*", (req, res) => {
+    res.status(404).json({
+      success: false,
+      error: `API endpoint not found: ${req.method} ${req.path}`
+    });
+  });
+
+  // ============================================================================
   // STATIC ASSET SERVING WITH CANONICAL MIME TYPES
   // ============================================================================
   const jsDir = path.join(process.cwd(), "js");
@@ -552,9 +1130,26 @@ async function startServer() {
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
+  const server = app.listen(PORT, "0.0.0.0", async () => {
     console.log(`India Accident Hotspot System Server running on http://0.0.0.0:${PORT}`);
+    try {
+      await initIngestion();
+      console.log(`[ingestion] Ingestion scheduler and snapshot hydration initialized.`);
+    } catch (ingestErr) {
+      console.error(`[ingestion] Ingestion initialization error:`, ingestErr);
+    }
   });
+
+  const handleShutdown = () => {
+    console.log(`[server] Shutting down gracefully...`);
+    shutdownIngestion();
+    server.close(() => {
+      process.exit(0);
+    });
+  };
+
+  process.on("SIGINT", handleShutdown);
+  process.on("SIGTERM", handleShutdown);
 }
 
 startServer().catch(err => {
